@@ -1,0 +1,38 @@
+{
+	"name": "Dick Fucking",
+	"description": "A penis penetrating a penis",
+	"usage": "other",
+	"category": "Miscellaneous",
+	"distance_allowed": 0,
+	"message": [
+		"%USER% STUFFS their Penis into %TARGET%'s Penis."
+	],
+	"sound_use": 1,
+	"sound_possible": [
+		"modular_skyrat\modules\modular_items\lewd_items\sounds\squelch2.ogg"
+	],
+	"sound_cache":  "modular_skyrat\modules\modular_items\lewd_items\sounds\squelch2.ogg",
+    "user_messages": [
+        "You STUFF your Dick into %TARGET%'s Dick.",
+        "You FORCE your Penis into %TARGET%'s Penis."
+    ],
+    "target_messages": [
+        "%USER% STUFFS their Dick into your Dick.",
+        "%USER% FORCES their Penis into your Penis."
+    ],
+	"sound_range": 1,
+    "target_required_parts": [
+        "penis"
+    ],
+    "user_required_parts": [
+        "penis"
+    ],
+    "user_pleasure": 20,
+    "user_arousal": 17,
+    "target_pleasure": 20,
+    "target_arousal": 17,
+    "target_pain": 30,
+    "user_pain": 20,
+    "lewd": 1,
+    "color": "pink"
+}

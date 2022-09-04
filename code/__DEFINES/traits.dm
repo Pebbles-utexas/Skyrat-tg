@@ -299,6 +299,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Makes you flashable from any direction
 #define TRAIT_FLASH_SENSITIVE "flash_sensitive"
 #define TRAIT_NAIVE "naive"
+#define TRAIT_DRINKSBLOOD "drinks_blood"
 #define TRAIT_PRIMITIVE "primitive"
 #define TRAIT_GUNFLIP "gunflip"
 /// Increases chance of getting special traumas, makes them harder to cure

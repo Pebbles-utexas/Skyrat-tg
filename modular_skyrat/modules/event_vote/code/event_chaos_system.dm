@@ -98,9 +98,6 @@
 /datum/round_event_control/shuttle_loan
 	chaos_level = EVENT_CHAOS_LOW
 
-/datum/round_event_control/grey_tide
-	chaos_level = EVENT_CHAOS_LOW
-
 /datum/round_event_control/processor_overload
 	chaos_level = EVENT_CHAOS_LOW
 

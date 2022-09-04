@@ -1,0 +1,35 @@
+{
+	"name": "Deep Throat",
+	"description": "Shoving your dick down someone's throat.",
+	"usage": "other",
+	"category": "Miscellaneous",
+	"distance_allowed": 0,
+	"message": [
+		"%USER% SLAMS their Dick down %TARGET%'s throat."
+	],
+	"sound_use": 1,
+	"sound_possible": [
+		"modular_skyrat\modules\modular_items\lewd_items\sounds\squelch2.ogg"
+	],
+	"sound_cache":  "modular_skyrat\modules\modular_items\lewd_items\sounds\squelch2.ogg",
+    "user_messages": [
+        "You SLAM your Dick down %TARGET%'s Throat.",
+        "You THRUST your Penis down %TARGET%'s Throat."
+    ],
+    "target_messages": [
+        "%USER% SLAMS their Dick down your Throat",
+        "%USER% THRUSTS their Dick down your Throat."
+    ],
+	"sound_range": 1,
+    "user_required_parts": [
+        "penis"
+    ],
+    "user_pleasure": 5,
+    "user_arousal": 5,
+    "target_pleasure": 5,
+    "target_arousal": 5,
+    "target_pain": 3,
+    "user_pain": 1,
+    "lewd": 1,
+    "color": "pink"
+}

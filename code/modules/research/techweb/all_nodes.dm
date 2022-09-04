@@ -1389,6 +1389,17 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 	discount_experiments = list(/datum/experiment/scanning/random/material/hard/one = 5000)
 
+/datum/techweb_node/bluespace_mining
+	id = "bluespace_mining"
+	display_name = "Bluespace Mining Technology"
+	description = "Efficiency Level 254" //dumb mc references
+	prereq_ids = list("adv_mining")
+	design_ids = list(
+		"bluespace_miner",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
+	discount_experiments = list(/datum/experiment/scanning/random/material/hard/one = 5000)
+
 /datum/techweb_node/janitor
 	id = "janitor"
 	display_name = "Advanced Sanitation Technology"

@@ -1,0 +1,35 @@
+{
+	"name": "Ass Penetration",
+	"description": "A penis penetrating a ass",
+	"usage": "other",
+	"category": "Miscellaneous",
+	"distance_allowed": 0,
+	"message": [
+		"%USER% SLAMS their Dick into %TARGET%'s Ass."
+	],
+	"sound_use": 1,
+	"sound_possible": [
+		"modular_skyrat\modules\modular_items\lewd_items\sounds\squelch2.ogg"
+	],
+	"sound_cache":  "modular_skyrat\modules\modular_items\lewd_items\sounds\squelch2.ogg",
+    "user_messages": [
+        "You SLAM your Dick into %TARGET%'s Rear.",
+        "You THRUST your Penis into %TARGET%'s Asshole."
+    ],
+    "target_messages": [
+        "%USER% SLAMS their Dick into your Rear.",
+        "%USER% THRUSTS their Dick into your Asshole."
+    ],
+	"sound_range": 1,
+    "user_required_parts": [
+        "penis"
+    ],
+    "user_pleasure": 9,
+    "user_arousal": 7,
+    "target_pleasure": 9,
+    "target_arousal": 7,
+    "target_pain": 11,
+    "user_pain": 6,
+    "lewd": 1,
+    "color": "pink"
+}
