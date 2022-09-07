@@ -1,10 +1,10 @@
-/obj/machinery/power/bluespace_miner
-	name = "bluespace mining machine MK"
+/obj/machinery/power/bluespace_minerII
+	name = "bluespace mining machine MKII"
 	desc = "A machine that uses the magic of Bluespace to slowly generate materials and add them to a linked ore silo."
 	icon = 'icons/obj/machines/bsm.dmi'
 	icon_state = "bsm_off"
 	density = TRUE
-	circuit = /obj/item/circuitboard/machine/bluespace_miner
+	circuit = /obj/item/circuitboard/machine/bluespace_minerII
 	layer = BELOW_OBJ_LAYER
 	use_power = NO_POWER_USE
 	idle_power_usage = 50000
@@ -22,18 +22,18 @@
 	var/list/tier4_ores = list(/datum/material/diamond = 1)
 	var/datum/component/remote_materials/materials
 
-/obj/machinery/power/bluespace_miner/Initialize(mapload)
+/obj/machinery/power/bluespace_minerII/Initialize(mapload)
 	. = ..()
 	RefreshParts()
 	if(anchored)
 		connect_to_network()
 	materials = AddComponent(/datum/component/remote_materials, "bsm", mapload)
 
-/obj/machinery/power/bluespace_miner/Destroy()
+/obj/machinery/power/bluespace_minerII/Destroy()
 	materials = null
 	return ..()
 
-/obj/machinery/power/bluespace_miner/update_icon_state()
+/obj/machinery/power/bluespace_minerII/update_icon_state()
 	if (panel_open)
 		icon_state = "bsm_t"
 		return
@@ -42,7 +42,7 @@
 	else
 		icon_state = "bsm_off"
 
-/obj/machinery/power/bluespace_miner/RefreshParts()
+/obj/machinery/power/bluespace_minerII/RefreshParts()
 	var/M_C = 0 //mining_chance
 	var/P_C = 1.3 //power_coeff
 	for(var/obj/item/stock_parts/scanning_module/SM in component_parts)
@@ -61,7 +61,7 @@
 		for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
 			P_C -= MB.rating*0.1
 		power_coeff = P_C
-/obj/machinery/power/bluespace_miner/examine(mob/user)
+/obj/machinery/power/bluespace_minerII/examine(mob/user)
 	. += ..()
 	if(anchored)
 		. += "<span class='info'>It's currently anchored to the floor, you can unsecure it with a <b>wrench</b>.</span>"
@@ -81,7 +81,7 @@
 		else
 			. += "<span class='notice'>Its status display reads: Mining with [mining_chance]% efficiency.</span>"
 
-/obj/machinery/power/bluespace_miner/interact(mob/user)
+/obj/machinery/power/bluespace_minerII/interact(mob/user)
 	add_fingerprint(user)
 	if(anchored)
 		if(!powernet)
@@ -104,7 +104,7 @@
 		to_chat(user, "<span class='warning'>[src] needs to be firmly secured to the floor first!</span>")
 		return TRUE
 
-/obj/machinery/power/bluespace_miner/process()
+/obj/machinery/power/bluespace_minerII/process()
 	if(!materials?.silo || materials?.on_hold())
 		active = FALSE
 		return
@@ -131,13 +131,13 @@
 				update_icon()
 			return
 
-/obj/machinery/power/bluespace_miner/can_be_unfasten_wrench(mob/user, silent)
+/obj/machinery/power/bluespace_minerII/can_be_unfasten_wrench(mob/user, silent)
 	if(active)
 		to_chat(user, "<span class='warning'>Turn \the [src] off first!</span>")
 		return FAILED_UNFASTEN
 	return ..()
 
-/obj/machinery/power/bluespace_miner/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/power/bluespace_minerII/wrench_act(mob/living/user, obj/item/I)
 	..()
 	default_unfasten_wrench(user, I)
 	if(anchored)
@@ -146,7 +146,7 @@
 		disconnect_from_network()
 	return TRUE
 
-/obj/machinery/power/bluespace_miner/screwdriver_act(mob/living/user, obj/item/I)
+/obj/machinery/power/bluespace_minerII/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
 	if(active)
@@ -156,10 +156,10 @@
 	update_icon_state()
 	return TRUE
 
-/obj/machinery/power/bluespace_miner/crowbar_act(mob/living/user, obj/item/I)
+/obj/machinery/power/bluespace_minerII/crowbar_act(mob/living/user, obj/item/I)
 	default_deconstruction_crowbar(I)
 	return TRUE
 
-/obj/machinery/power/bluespace_miner/proc/mine()
+/obj/machinery/power/bluespace_minerII/proc/mine()
 	var/datum/material/ore = pick(minable_ores)
 	materials.mat_container.insert_amount_mat((mining_rate * minable_ores[ore]), ore)

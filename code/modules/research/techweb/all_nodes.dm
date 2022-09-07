@@ -1389,16 +1389,15 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 	discount_experiments = list(/datum/experiment/scanning/random/material/hard/one = 5000)
 
-/datum/techweb_node/bluespace_mining
-	id = "bluespace_mining"
-	display_name = "Bluespace Mining Technology"
+/datum/techweb_node/bluespace_miningII
+	id = "bluespace_miningII"
+	display_name = "Bluespace MiningII Technology"
 	description = "Efficiency Level 254" //dumb mc references
 	prereq_ids = list("adv_mining")
 	design_ids = list(
-		"bluespace_miner",
+		"bluespace_minerII",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
-	discount_experiments = list(/datum/experiment/scanning/random/material/hard/one = 5000)
 
 /datum/techweb_node/janitor
 	id = "janitor"
@@ -1664,6 +1663,7 @@
 		"mod_injector",
 		"mod_organ_thrower",
 		"mod_dna_lock",
+		"mod_auto_doc",
 		"mod_patienttransport",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
