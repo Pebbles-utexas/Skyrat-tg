@@ -522,6 +522,10 @@
 	suffix = "tram"
 	name = "NT Long-Distance Bluespace Freighter"
 
+/datum/map_template/shuttle/whiteship/empty
+	suffix = "ENG"
+	name = "Empty engineering sample cruiser template"
+
 /datum/map_template/shuttle/whiteship/delta
 	suffix = "delta"
 	name = "NT Frigate"
