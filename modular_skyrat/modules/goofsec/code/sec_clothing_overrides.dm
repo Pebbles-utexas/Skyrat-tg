@@ -103,6 +103,10 @@
 			RESKIN_ICON_STATE = "belt_white",
 			RESKIN_WORN_ICON_STATE = "belt_white"
 		),
+		"Slim Variant" = list(
+			RESKIN_ICON_STATE = "belt_slim",
+			RESKIN_WORN_ICON_STATE = "belt_slim"
+		),
 	)
 
 /obj/item/storage/belt/security/webbing
@@ -175,6 +179,12 @@
 /*
 * HEAD
 */
+
+//Overrides the bulletproof helm with the older non red visor version.
+/obj/item/clothing/head/helmet/alt
+	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
+	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/head.dmi'
+
 //Standard helmet (w/ visor)
 /obj/item/clothing/head/helmet/sec
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/hats.dmi'
@@ -282,8 +292,8 @@
 
 //Need to quickly redefine this so the icon doesnt break
 /obj/item/clothing/head/hos/syndicate
-	icon = 'icons/obj/clothing/hats.dmi'
-	worn_icon = 'icons/mob/clothing/head.dmi'
+	icon = 'icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'icons/mob/clothing/head/hats.dmi'
 	icon_state = "hoscap"
 	current_skin = "hoscap" //Prevents reskinning
 
@@ -421,6 +431,9 @@
 		)
 	)
 
+/obj/item/clothing/suit/armor/hos
+	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
+
 //Standard Bulletproof Vest
 /obj/item/clothing/suit/armor/bulletproof
 	desc = "A Type-III-AD-P heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
@@ -450,7 +463,7 @@
 
 /obj/item/clothing/suit/hooded/wintercoat/security
 	name = "security winter coat" //TG has this as a Jacket now, so unless we update ours, this needs to be re-named as Coat
-	desc = "A blue, armour-padded winter coat. It glitters with a mild ablative coating and a robust air of authority.  The zipper tab is a small <b>\"Armadyne\"</b> logo."
+	desc = "A blue, armour-padded winter coat. It glitters with a mild ablative coating and a robust air of authority.  The zipper tab is a small <b>\"Lopland\"</b> logo."
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/suits.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/suit.dmi'
 	icon_state = "security_wintercoat"
@@ -516,7 +529,6 @@
 	name = "security jackboots"
 	desc = "Lopland's Peacekeeper-issue Security combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "security_boots"
-	inhand_icon_state = "security_boots"
 	icon = 'modular_skyrat/master_files/icons/obj/clothing/shoes.dmi'
 	worn_icon = 'modular_skyrat/master_files/icons/mob/clothing/feet.dmi'
 	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS) // We have other footsteps.
@@ -619,21 +631,21 @@
 */
 
 /obj/item/storage/backpack/security/redsec
-	icon = 'icons/obj/storage/storage.dmi'
-	worn_icon = 'icons/mob/clothing/back.dmi'
-	icon_state = "securitypack"
-	current_skin = "securitypack"	//prevents reskinning
+	icon = 'icons/obj/storage/backpack.dmi'
+	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
+	icon_state = "backpack-security"
+	current_skin = "backpack-security" //prevents reskinning
 
 /obj/item/storage/backpack/satchel/sec/redsec
-	icon = 'icons/obj/storage/storage.dmi'
-	worn_icon = 'icons/mob/clothing/back.dmi'
-	icon_state = "satchel-sec"
+	icon = 'icons/obj/storage/backpack.dmi'
+	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
+	icon_state = "satchel-security"
 
 /obj/item/storage/backpack/duffelbag/sec/redsec
-	icon = 'icons/obj/storage/storage.dmi'
-	worn_icon = 'icons/mob/clothing/back.dmi'
-	icon_state = "duffel-sec"
-	current_skin = "duffel-sec"	//prevents reskinning
+	icon = 'icons/obj/storage/backpack.dmi'
+	worn_icon = 'icons/mob/clothing/back/backpack.dmi'
+	icon_state = "duffel-security"
+	current_skin = "duffel-security" //prevents reskinning
 
 /*
 *	BELT
@@ -652,8 +664,8 @@
 */
 
 /obj/item/clothing/head/helmet/sec/redsec
-	icon = 'icons/obj/clothing/hats.dmi'
-	worn_icon = 'icons/mob/clothing/head.dmi'
+	icon = 'icons/obj/clothing/head/hats.dmi'
+	worn_icon = 'icons/mob/clothing/head/hats.dmi'
 	icon_state = "helmet"
 	actions_types = null
 	can_toggle = FALSE

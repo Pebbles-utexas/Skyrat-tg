@@ -6,7 +6,6 @@
 #define JOB_UNAVAILABLE_SLOTFULL 5
 /// Job unavailable due to incompatibility with an antag role.
 #define JOB_UNAVAILABLE_ANTAG_INCOMPAT 6
-#define JOB_UNAVAILABLE_FLAVOUR 7 // SKYRAT EDIT ADDITION
 #define DEFAULT_RELIGION "Christianity"
 #define DEFAULT_DEITY "Space Jesus"
 #define DEFAULT_BIBLE "Default Bible Name"
@@ -84,7 +83,7 @@
 #define JOB_CHAPLAIN "Chaplain"
 #define JOB_PSYCHOLOGIST "Psychologist"
 #define JOB_BARBER "Barber" // SKYRAT EDIT ADDITION
-#define JOB_BOUNCER "Bouncer" // SKYRAT EDIT ADDITION
+#define JOB_BOUNCER "Service Guard" // SKYRAT EDIT ADDITION
 //ERTs
 #define JOB_ERT_DEATHSQUAD "Death Commando"
 #define JOB_ERT_COMMANDER "Emergency Response Team Commander"

@@ -16,13 +16,15 @@
 	name = "Mouse Crate"
 	desc = "Good for snakes and lizards of all ages. Contains six feeder mice."
 	cost = CARGO_CRATE_VALUE * 6
-	contains = list(/mob/living/simple_animal/mouse,)
+	contains = list(
+		/mob/living/basic/mouse,
+	)
 	crate_name = "mouse crate"
 
 /datum/supply_pack/critter/mouse/generate()
 	. = ..()
 	for(var/i in 1 to 5)
-		new /mob/living/simple_animal/mouse(.)
+		new /mob/living/basic/mouse(.)
 
 /*
 *	MEDICAL
@@ -215,6 +217,19 @@
 	contains = list(/obj/item/summon_beacon/gas_miner)
 	cost = CARGO_CRATE_VALUE * 50
 	crate_name = "gas miner delivery beacon crate"
+	crate_type = /obj/structure/closet/crate/secure/engineering
+
+/datum/supply_pack/engineering/improved_rcd
+	name = "Improved RCD Crate"
+	desc = "Contains 3 upgraded RCDs featuring superior material storage. Each comes with complimentary frames and circuitry upgrades to boot!"
+	access = ACCESS_ENGINE_EQUIP
+	cost = CARGO_CRATE_VALUE * 18
+	contains = list(
+		/obj/item/construction/rcd/improved,
+		/obj/item/construction/rcd/improved,
+		/obj/item/construction/rcd/improved,
+	)
+	crate_name = "improved RCD crate"
 	crate_type = /obj/structure/closet/crate/secure/engineering
 
 /*
@@ -593,25 +608,25 @@
 	desc = "Good time of the day Mister Comrade! We have the most modern imperial military equipment our shop can offer, for the right price of course. Sadly, all our equipment is military-grade and mostly armored so we would kindly ask you not to show it off too much."
 	contraband = TRUE
 	cost = CARGO_CRATE_VALUE * 15
-	contains = list(/obj/item/storage/box/nri_rations,
+	contains = list(/obj/item/crucifix,
 					/obj/item/storage/box/nri_rations,
 					/obj/item/storage/box/nri_rations,
-					/obj/item/crucifix,
-					/obj/item/crucifix,
-					/obj/item/crucifix,
 					/obj/item/storage/toolbox/ammo,
 					/obj/item/storage/toolbox/maint_kit,
-					/obj/item/clothing/suit/armor/vest/russian,
+					/obj/item/gun/ballistic/rifle/boltaction,
+					/obj/item/ammo_box/a762,
+					/obj/item/ammo_box/a762,
+					/obj/item/gun/ballistic/automatic/plastikov,
+					/obj/item/ammo_box/magazine/plastikov9mm,
+					/obj/item/ammo_box/magazine/plastikov9mm,
+					/obj/item/gun/ballistic/automatic/pistol/makarov,
+					/obj/item/ammo_box/magazine/multi_sprite/makarov,
+					/obj/item/ammo_box/magazine/multi_sprite/makarov,
+					/obj/item/clothing/suit/armor/vest/russian/nri,
 					/obj/item/clothing/head/helmet/rus_helmet,
 					/obj/item/storage/backpack/nri,
 					/obj/item/storage/belt/military/nri,
 					/obj/item/clothing/gloves/tackler/combat,
 					/obj/item/clothing/under/costume/nri,
 					/obj/item/clothing/mask/gas/hecu2,
-					/obj/item/clothing/shoes/combat,
-					/obj/item/gun/ballistic/rifle/boltaction,
-					/obj/item/ammo_box/a762,
-					/obj/item/gun/ballistic/automatic/plastikov,
-					/obj/item/ammo_box/magazine/plastikov9mm,
-					/obj/item/gun/ballistic/automatic/pistol/makarov,
-					/obj/item/ammo_box/magazine/multi_sprite/makarov)
+					/obj/item/clothing/shoes/combat)
