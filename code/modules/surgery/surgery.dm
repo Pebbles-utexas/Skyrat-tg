@@ -1,6 +1,13 @@
 /datum/surgery
+	///The name of the surgery operation
 	var/name = "surgery"
-	var/desc = "surgery description"
+	///The description of the surgery, what it does.
+	var/desc
+
+	///From __DEFINES/surgery.dm
+	///Selection: SURGERY_IGNORE_CLOTHES | SURGERY_SELF_OPERABLE | SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB
+	var/surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB
+	///The surgery step we're currently on, increases each time we do a step.
 	var/status = 1
 	var/list/steps = list() //Steps in a surgery
 	var/step_in_progress = FALSE //Actively performing a Surgery
@@ -25,7 +32,7 @@
 	var/organ_to_manipulate
 
 /datum/surgery/New(atom/surgery_target, surgery_location, surgery_bodypart)
-	..()
+	. = ..()
 	if(!surgery_target)
 		return
 	target = surgery_target
@@ -117,8 +124,7 @@
 	if(status < steps.len)
 		var/step_type = steps[status + 1]
 		return new step_type
-	else
-		return null
+	return null
 
 /datum/surgery/proc/complete(mob/surgeon)
 	SSblackbox.record_feedback("tally", "surgeries_completed", 1, type)
