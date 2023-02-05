@@ -220,7 +220,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT
 	custom_materials = list(/datum/material/iron=75000, /datum/material/glass=37500)
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 100, ACID = 50)
+	armor_type = /datum/armor/item_pipe_dispenser
 	resistance_flags = FIRE_PROOF
 	///Sparks system used when changing device in the UI
 	var/datum/effect_system/spark_spread/spark_system
@@ -260,6 +260,10 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	var/mode = BUILD_MODE | DESTROY_MODE | WRENCH_MODE | REPROGRAM_MODE
 	/// Bitflags for upgrades
 	var/upgrade_flags
+
+/datum/armor/item_pipe_dispenser
+	fire = 100
+	acid = 50
 
 /obj/item/pipe_dispenser/Initialize(mapload)
 	. = ..()
@@ -313,7 +317,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	if(istype(target, /obj/machinery/air_sensor))
 		if(!do_after(user, destroy_speed, target))
 			return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-		
+
 		qdel(target)
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -397,7 +401,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 			if(info.type == /datum/pipe_info/sensor)
 				var/datum/pipe_info/sensor/sensor_info = info
 				var/obj/machinery/air_sensor/sensor = sensor_info.id
-				if(GLOB.objects_by_id_tag[initial(sensor.chamber_id) + "_sensor"] != null)
+				if(GLOB.objects_by_id_tag[CHAMBER_SENSOR_FROM_ID(initial(sensor.chamber_id))] != null)
 					continue
 
 			r += list(list("pipe_name" = info.name, "pipe_index" = i, "selected" = (info == recipe), "all_layers" = info.all_layers))
