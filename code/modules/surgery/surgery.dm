@@ -5,8 +5,8 @@
 	var/desc
 
 	///From __DEFINES/surgery.dm
-	///Selection: SURGERY_IGNORE_CLOTHES | SURGERY_SELF_OPERABLE | SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB
-	var/surgery_flags = SURGERY_REQUIRE_RESTING | SURGERY_REQUIRE_LIMB
+	///Selection: SURGERY_IGNORE_CLOTHES | SURGERY_SELF_OPERABLE | SURGERY_REQUIRE_LIMB | SURGERY_REQUIRES_REAL_LIMB
+	var/surgery_flags = SURGERY_REQUIRE_LIMB
 	///The surgery step we're currently on, increases each time we do a step.
 	var/status = 1
 	var/list/steps = list() //Steps in a surgery
@@ -16,7 +16,7 @@
 	var/location = BODY_ZONE_CHEST //Surgery location
 	var/requires_bodypart_type = BODYTYPE_ORGANIC //Prevents you from performing an operation on incorrect limbs. 0 for any limb type
 	var/list/possible_locs = list() //Multiple locations
-	var/ignore_clothes = FALSE //This surgery ignores clothes
+	var/ignore_clothes = TRUE //This surgery ignores clothes
 	var/mob/living/carbon/target //Operation target mob
 	var/obj/item/bodypart/operated_bodypart //Operable body part
 	var/datum/wound/operated_wound //The actual wound datum instance we're targeting
