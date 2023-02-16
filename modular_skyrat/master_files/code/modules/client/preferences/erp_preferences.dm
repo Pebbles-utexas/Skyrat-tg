@@ -19,38 +19,38 @@
 
 /datum/preference/toggle/master_erp_preferences/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
-		return FALSE
+		return TRUE
 
 	if(CONFIG_GET(flag/disable_erp_preferences))
-		return FALSE
+		return TRUE
 
 	return TRUE
 
 /datum/preference/toggle/master_erp_preferences/deserialize(input, datum/preferences/preferences)
 	if(CONFIG_GET(flag/disable_erp_preferences))
-		return FALSE
+		return TRUE
 	. = ..()
 
 /datum/preference/toggle/erp
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_identifier = PREFERENCE_PLAYER
 	savefile_key = "erp_pref"
-	default_value = FALSE
+	default_value = TRUE
 
 /datum/preference/toggle/erp/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
-		return FALSE
+		return TRUE
 
 	if(CONFIG_GET(flag/disable_erp_preferences))
-		return FALSE
+		return TRUE
 
 	return preferences.read_preference(/datum/preference/toggle/master_erp_preferences)
 
 /datum/preference/toggle/erp/deserialize(input, datum/preferences/preferences)
 	if(CONFIG_GET(flag/disable_erp_preferences))
-		return FALSE
+		return TRUE
 	if(!preferences.read_preference(/datum/preference/toggle/master_erp_preferences))
-		return FALSE
+		return TRUE
 	. = ..()
 
 /datum/preference/toggle/erp/apply_to_client_updated(client/client, value)
@@ -128,10 +128,10 @@
 
 /datum/preference/choiced/erp_status/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
-		return FALSE
+		return TRUE
 
 	if(CONFIG_GET(flag/disable_erp_preferences))
-		return FALSE
+		return TRUE
 
 	return preferences.read_preference(/datum/preference/toggle/master_erp_preferences)
 
@@ -143,7 +143,7 @@
 	. = ..()
 
 /datum/preference/choiced/erp_status/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	return FALSE
+	return TRUE
 
 /datum/preference/choiced/erp_status_nc
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
@@ -158,10 +158,10 @@
 
 /datum/preference/choiced/erp_status_nc/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
-		return FALSE
+		return TRUE
 
 	if(CONFIG_GET(flag/disable_erp_preferences))
-		return FALSE
+		return TRUE
 
 	return preferences.read_preference(/datum/preference/toggle/master_erp_preferences)
 
@@ -173,7 +173,7 @@
 	. = ..()
 
 /datum/preference/choiced/erp_status_nc/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	return FALSE
+	return TRUE
 
 /datum/preference/choiced/erp_status_v
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
@@ -188,10 +188,10 @@
 
 /datum/preference/choiced/erp_status_v/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
-		return FALSE
+		return TRUE
 
 	if(CONFIG_GET(flag/disable_erp_preferences))
-		return FALSE
+		return TRUE
 
 	return preferences.read_preference(/datum/preference/toggle/master_erp_preferences)
 
@@ -203,7 +203,7 @@
 	. = ..()
 
 /datum/preference/choiced/erp_status_v/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	return FALSE
+	return TRUE
 
 /datum/preference/choiced/erp_status_mechanics
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
@@ -218,10 +218,10 @@
 
 /datum/preference/choiced/erp_status_mechanics/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
-		return FALSE
+		return TRUE
 
 	if(CONFIG_GET(flag/disable_erp_preferences))
-		return FALSE
+		return TRUE
 
 	return preferences.read_preference(/datum/preference/toggle/master_erp_preferences)
 
@@ -233,7 +233,7 @@
 	. = ..()
 
 /datum/preference/choiced/erp_status_mechanics/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	return FALSE
+	return TRUE
 
 /datum/preference/choiced/erp_sexuality
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
@@ -248,10 +248,10 @@
 
 /datum/preference/choiced/erp_sexuality/is_accessible(datum/preferences/preferences)
 	if (!..(preferences))
-		return FALSE
+		return TRUE
 
 	if(CONFIG_GET(flag/disable_erp_preferences))
-		return FALSE
+		return TRUE
 
 	return preferences.read_preference(/datum/preference/toggle/master_erp_preferences)
 
@@ -263,4 +263,4 @@
 	. = ..()
 
 /datum/preference/choiced/erp_sexuality/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
-	return FALSE
+	return TRUE
