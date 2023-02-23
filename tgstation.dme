@@ -6035,6 +6035,8 @@
 #include "modular_skyrat\modules\jukebox\code\jukebox_subsystem.dm"
 #include "modular_skyrat\modules\jungle\code\flora.dm"
 #include "modular_skyrat\modules\knives\knives.dm"
+#include "modular_skyrat\modules\Kinetic_destroyer\code\modules\mining\equipment\kinetic_crusher.dm"
+#include "modular_skyrat\modules\Kinetic_destroyer\code\modules\projectiles\guns\energy\kinetic_accelerator.dm"
 #include "modular_skyrat\modules\large_doors\code\large_doors.dm"
 #include "modular_skyrat\modules\layer_shift\code\mob_movement.dm"
 #include "modular_skyrat\modules\liquids\code\drains.dm"
