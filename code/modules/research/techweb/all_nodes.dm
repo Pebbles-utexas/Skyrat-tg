@@ -614,6 +614,7 @@
 		"pneumatic_seal",
 		"power_control",
 		"powermonitor",
+		"rad_collector",
 		"recharger",
 		"recycler",
 		"rped",
