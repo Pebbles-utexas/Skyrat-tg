@@ -7,6 +7,9 @@
 	slot = ORGAN_SLOT_TONGUE
 	attack_verb_continuous = list("licks", "slobbers", "slaps", "frenches", "tongues")
 	attack_verb_simple = list("lick", "slobber", "slap", "french", "tongue")
+	/// what voice comes with this tongue. If this actually gets merged switch it to vocal cords or something.
+	var/tts_seed = DEFAULT_SEED
+
 	/**
 	 * A cached list of paths of all the languages this tongue is capable of speaking
 	 *
@@ -76,6 +79,11 @@
 
 /obj/item/organ/internal/tongue/proc/handle_speech(datum/source, list/speech_args)
 	SIGNAL_HANDLER
+	if(!iscarbon(owner))
+		return
+	var/mob/living/carbon/tts_man = owner
+	if(tts_man.client && speech_args[SPEECH_LANGUAGE] == /datum/language/common)
+		INVOKE_ASYNC(GLOBAL_PROC, /proc/play_tts_locally, tts_man, speech_args[SPEECH_MESSAGE], tts_seed)
 	if(speech_args[SPEECH_LANGUAGE] in languages_native)
 		return FALSE //no changes
 	modify_speech(source, speech_args)
@@ -86,8 +94,7 @@
 /obj/item/organ/internal/tongue/Insert(mob/living/carbon/tongue_owner, special = FALSE, drop_if_replaced = TRUE)
 	. = ..()
 	ADD_TRAIT(tongue_owner, TRAIT_SPEAKS_CLEARLY, SPEAKING_FROM_TONGUE)
-	if (modifies_speech)
-		RegisterSignal(tongue_owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+	RegisterSignal(tongue_owner, COMSIG_MOB_SAY, .proc/handle_speech, override = TRUE)
 
 	/* This could be slightly simpler, by making the removal of the
 	* NO_TONGUE_TRAIT conditional on the tongue's `sense_of_taste`, but

@@ -29,6 +29,8 @@
 	radio = /obj/item/radio/headset/silicon/pai
 	worn_slot_flags = ITEM_SLOT_HEAD
 
+	speaker_seed = PAI_VOICE_SEED
+
 	/// If someone has enabled/disabled the pAIs ability to holo
 	var/can_holo = TRUE
 	/// Whether this pAI can recieve radio messages
