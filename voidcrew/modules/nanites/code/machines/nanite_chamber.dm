@@ -228,8 +228,6 @@
 	toggle_open(user)
 
 /obj/machinery/nanite_chamber/MouseDrop_T(mob/target, mob/user)
-	if(!user.canUseTopic(src, be_close = TRUE, no_dexterity = FALSE, no_tk = TRUE) || !Adjacent(target) || !user.Adjacent(target) || !iscarbon(target))
-		return
-	if(close_machine(target))
+		if(close_machine(target))
 		log_combat(user, target, "inserted", null, "into [src].")
 	add_fingerprint(user)

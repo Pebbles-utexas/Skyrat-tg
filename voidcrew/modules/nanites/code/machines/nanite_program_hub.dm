@@ -54,7 +54,6 @@
 	disk = null
 
 /obj/machinery/nanite_program_hub/AltClick(mob/user)
-	if(disk && user.canUseTopic(src, !issilicon(user)))
 		to_chat(user, span_notice("You take out [disk] from [src]."))
 		eject(user)
 	return

@@ -27,8 +27,6 @@
 
 /obj/item/nanite_remote/AltClick(mob/user)
 	. = ..()
-	if(!user.canUseTopic(src, be_close = TRUE))
-		return
 	if(locked)
 		if(allowed(user))
 			to_chat(user, span_notice("You unlock [src]."))

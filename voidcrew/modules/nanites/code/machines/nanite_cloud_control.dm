@@ -51,7 +51,6 @@
 	return ..()
 
 /obj/machinery/computer/nanite_cloud_controller/AltClick(mob/user)
-	if(disk && user.canUseTopic(src, !issilicon(user)))
 		to_chat(user, span_notice("You take out [disk] from [src]."))
 		eject(user)
 	return
