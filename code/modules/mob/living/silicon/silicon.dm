@@ -70,16 +70,9 @@
 	if(speaker_seed)
 		AddElement(/datum/element/tts_speaker, speaker_seed)
 
-	var/static/list/traits_to_apply = list(
-		TRAIT_ADVANCEDTOOLUSER,
-		TRAIT_ASHSTORM_IMMUNE,
-		TRAIT_LITERATE,
-		TRAIT_MADNESS_IMMUNE,
-		TRAIT_MARTIAL_ARTS_IMMUNE,
-		TRAIT_NOFIRE_SPREAD,
-	)
-
-	add_traits(traits_to_apply, ROUNDSTART_TRAIT)
+	ADD_TRAIT(src, TRAIT_ASHSTORM_IMMUNE, ROUNDSTART_TRAIT)
+	ADD_TRAIT(src, TRAIT_MADNESS_IMMUNE, ROUNDSTART_TRAIT)
+	ADD_TRAIT(src, TRAIT_MARTIAL_ARTS_IMMUNE, ROUNDSTART_TRAIT)
 
 /mob/living/silicon/Destroy()
 	QDEL_NULL(radio)
