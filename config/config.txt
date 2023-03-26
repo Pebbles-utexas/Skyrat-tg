@@ -13,8 +13,7 @@ $include lua.txt
 # Example usage:
 # @SERVERNAME tgstation
 # Which sets the SERVERNAME, and disallows admins from being able to change it using View Variables.
-# @LOG_TWITTER 0
-# Which explicitly disables LOG_TWITTER, as well as locking it.
+# @LOG_TWITTER 0 
 # There are various options which are hard-locked for security reasons.
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
@@ -474,9 +473,9 @@ CLIENT_ERROR_BUILD 1421
 ## Admins are exempt from these limits.
 ## Hitting the minute limit notifies admins.
 ## Set to 0 or comment out to disable.
-SECOND_TOPIC_LIMIT 10
+SECOND_TOPIC_LIMIT 100
 
-MINUTE_TOPIC_LIMIT 100
+MINUTE_TOPIC_LIMIT 1000
 
 
 ## CLICK RATE LIMITING
