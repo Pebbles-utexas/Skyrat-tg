@@ -4322,8 +4322,6 @@
 #include "code\modules\movespeed\modifiers\reagent.dm"
 #include "code\modules\movespeed\modifiers\status_effects.dm"
 #include "code\modules\novel_tts\novel_tts.dm"
-#include "code\modules\NTNet\netdata.dm"
-#include "code\modules\NTNet\network.dm"
 #include "code\modules\NTNet\relays.dm"
 #include "code\modules\pai\actions.dm"
 #include "code\modules\pai\camera.dm"
