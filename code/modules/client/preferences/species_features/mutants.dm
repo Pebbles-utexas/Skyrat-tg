@@ -15,7 +15,7 @@
 	if (!..(value))
 		return FALSE
 
-	if (is_color_dark(value, 15))
+	if (is_color_dark(value))
 		return FALSE
 
 	return TRUE
