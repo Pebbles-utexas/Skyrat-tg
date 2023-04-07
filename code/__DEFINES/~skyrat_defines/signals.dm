@@ -64,6 +64,9 @@
 //when someone pulls back their fishing rod
 #define COMSIG_FINISH_FISHING "finish_fishing"
 
+/// /client/MouseMove(object, location, control, params)
+#define COMSIG_MOB_CLIENT_MOUSE_MOVE "client_mob_mouse_move"
+
 /// From mob/living/*/set_combat_mode(): (new_state)
 #define COMSIG_LIVING_COMBAT_MODE_TOGGLE "living_combat_mode_toggle"
 
