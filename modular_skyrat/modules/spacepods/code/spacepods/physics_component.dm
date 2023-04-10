@@ -322,22 +322,22 @@
 
 
 	// Automatic stabilization of the atom
-   if(SEND_SIGNAL(src, COMSIG_PHYSICS_AUTOSTABALISE_CHECK) & COMPONENT_PHYSICS_AUTO_STABALISATION)
-		// Calculate braking thrust based on current velocity and delta_time
-		var/braking_thrust_forward = -((forward_x * velocity_x) + (forward_y * velocity_y)) / delta_time
-		var/braking_thrust_right = -((side_x * velocity_x) + (side_y * velocity_y)) / delta_time
+if(SEND_SIGNAL(src, COMSIG_PHYSICS_AUTOSTABALISE_CHECK) & COMPONENT_PHYSICS_AUTO_STABALISATION)
+	// Calculate braking thrust based on current velocity and delta_time
+	var/braking_thrust_forward = -((forward_x * velocity_x) + (forward_y * velocity_y)) / delta_time
+	var/braking_thrust_right = -((side_x * velocity_x) + (side_y * velocity_y)) / delta_time
 
-		// Clamp braking thrust within acceptable limits
-		braking_thrust_forward = clamp(braking_thrust_forward, -backward_maxthrust, forward_maxthrust)
-		braking_thrust_right = clamp(braking_thrust_right, -side_maxthrust, side_maxthrust)
+	// Clamp braking thrust within acceptable limits
+	braking_thrust_forward = clamp(braking_thrust_forward, -backward_maxthrust, forward_maxthrust)
+	braking_thrust_right = clamp(braking_thrust_right, -side_maxthrust, side_maxthrust)
 
-		// Calculate total thrust by adding braking thrust to current thrust
-		total_thrust_x += braking_thrust_forward * forward_x + braking_thrust_right * side_x
-		total_thrust_y += braking_thrust_forward * forward_y + braking_thrust_right * side_y
+	// Calculate total thrust by adding braking thrust to current thrust
+	total_thrust_x += braking_thrust_forward * forward_x + braking_thrust_right * side_x
+	total_thrust_y += braking_thrust_forward * forward_y + braking_thrust_right * side_y
 
-		// Store the last braking thrust values
-		last_thrust_forward = braking_thrust_forward
-		last_thrust_right = braking_thrust_right
+	// Store the last braking thrust values
+	last_thrust_forward = braking_thrust_forward
+	last_thrust_right = braking_thrust_right
 
 	// Apply thrust based on the desired thrust direction
 	if(desired_thrust_dir & NORTH)
