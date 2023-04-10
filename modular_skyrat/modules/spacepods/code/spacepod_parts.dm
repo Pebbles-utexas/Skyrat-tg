@@ -68,13 +68,13 @@
 		pod.forceMove(loc)
 		switch(dir)
 			if(NORTH)
-				pod.set_angle(0)
+				pod.angle = 0
 			if(SOUTH)
-				pod.set_angle(180)
+				pod.angle = 180
 			if(WEST)
-				pod.set_angle(270)
+				pod.angle = 270
 			if(EAST)
-				pod.set_angle(90)
+				pod.angle = 90
 		pod.process(2)
 		to_chat(user, span_notice("You strut the pod frame together."))
 		for(var/obj/item/pod_parts/pod_frame/F in linkedparts)
@@ -89,9 +89,6 @@
 		attacking_item.play_tool_sound(src)
 		return TRUE
 
-/**
- * Frame parts
- */
 /obj/item/pod_parts/pod_frame/fore_port
 	name = "fore port pod frame"
 	icon_state = "pod_fp"
@@ -120,9 +117,6 @@
 	link_to = /obj/item/pod_parts/pod_frame/aft_port
 	link_angle = 270
 
-/**
- * Armor systems
- */
 /obj/item/pod_parts/armor
 	name = "civilian pod armor"
 	icon_state = "pod_armor_civ"
@@ -135,8 +129,6 @@
 	var/pod_desc = "A sleek civilian space pod."
 	/// The integrity that will be given to the pod upon completion.
 	var/pod_integrity = 250
-	/// How many slots does this armor type provide?
-	var/list/equipment_slot_limits = SPACEPOD_DEFAULT_EQUIPMENT_LIMITS_LIST
 
 /obj/item/pod_parts/armor/syndicate
 	name = "syndicate pod armor"
@@ -185,9 +177,6 @@
 	pod_desc = "An armed security spacepod with reinforced armor plating brandishing the Nanotrasen Military insignia"
 	pod_integrity = 350
 
-/**
- * Circuit board
- */
 /obj/item/circuitboard/mecha/pod
 	name = "Circuit board (Space Pod Mainboard)"
 	icon_state = "mainboard"

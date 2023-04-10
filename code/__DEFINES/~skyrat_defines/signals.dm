@@ -85,33 +85,3 @@
 
 /// Engineering Override Access manual toggle
 #define COMSIG_GLOB_FORCE_ENG_OVERRIDE "force_engineering_override"
-
-// Physics signals
-
-/// Used to set the direction in which we are going to apply thrust to an object.
-#define COMSIG_PHYSICS_SET_THRUST_DIR "physics_set_thrust_dir"
-
-/// Used to set the desired angle of a physics component.
-#define COMSIG_PHYSICS_SET_DESIRED_ANGLE "physics_set_desired_angle"
-
-/// Used to set the angle of a physics component. (new_angle)
-#define COMSIG_PHYSICS_SET_ANGLE "physics_set_angle"
-
-/// Sets the velocity of a physics component. (new_velocity_x, new_velocity_y)
-#define COMSIG_PHYSICS_SET_VELOCITY "physics_set_velocity"
-
-/// Sent when a physics component processes and updates itself. (updated_angle, updated_velocity_x, updated_velocity_y, updated_offset_x, updated_offset_y)
-#define COMSIG_PHYSICS_UPDATE_MOVEMENT "physics_update_movement"
-
-/// Sent when a physics component processes a physics based bump. (bump_velocity, bumped_atom)
-#define COMSIG_PHYSICS_PROCESSED_BUMP "physics_processed_bump"
-
-/// Sent to check if the physics component can apply thrust to the atom. (source, total_x, total_y, desired_thrust_dir, delta_time)
-#define COMSIG_PHYSICS_THRUST_CHECK "physics_thrust_check"
-	/// Return bitflag for enabled thrust.
-	#define COMPONENT_PHYSICS_THRUST (1<<0)
-
-/// Sent to check if the physics component can autostabalise. (source)
-#define COMSIG_PHYSICS_AUTOSTABALISE_CHECK "physics_autostabalise_check"
-	/// Return bitflag for enabled stabalisation.
-	#define COMPONENT_PHYSICS_AUTO_STABALISATION (1<<0)

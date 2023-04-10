@@ -3,13 +3,64 @@
  *
  * These are basic action types that the spacepod will give to it's controller.
  */
-/obj/spacepod/proc/generate_action_type(action_type)
-	var/new_action = new action_type
-	if(istype(new_action, /datum/action/spacepod))
-		var/datum/action/spacepod/spacepod_action = new_action
-		spacepod_action.spacepod_target = src
-	return new_action
+/obj/spacepod/proc/generate_action_type(actiontype)
+	var/datum/action/spacepod/action = new actiontype
+	if(!istype(action))
+		return
+	action.spacepod_target = src
+	return action
 
+/**
+ * Grants an action to a mob and adds it to the system.
+ */
+
+/obj/spacepod/proc/grant_action_type_to_mob(actiontype, mob/grant_to)
+	if(isnull(LAZYACCESS(occupants, grant_to)) || !actiontype)
+		return FALSE
+	LAZYINITLIST(occupant_actions[grant_to])
+	if(occupant_actions[grant_to][actiontype])
+		return TRUE
+	var/datum/action/action = generate_action_type(actiontype)
+	action.Grant(grant_to)
+	occupant_actions[grant_to][action.type] = action
+	return TRUE
+
+/obj/spacepod/proc/remove_action_type_from_mob(actiontype, mob/take_from)
+	if(isnull(LAZYACCESS(occupants, take_from)) || !actiontype)
+		return FALSE
+	LAZYINITLIST(occupant_actions[take_from])
+	if(occupant_actions[take_from][actiontype])
+		var/datum/action/action = occupant_actions[take_from][actiontype]
+		action.Remove(take_from)
+		occupant_actions[take_from] -= actiontype
+	return TRUE
+
+/obj/spacepod/proc/grant_passenger_actions(mob/grant_to)
+	for(var/action in passenger_actions)
+		grant_action_type_to_mob(action, grant_to)
+
+/obj/spacepod/proc/grant_pilot_actions(mob/grant_to)
+	for(var/action in pilot_actions)
+		grant_action_type_to_mob(action, grant_to)
+
+/obj/spacepod/proc/remove_pilot_actions(mob/take_from)
+	for(var/action in pilot_actions)
+		remove_action_type_from_mob(action, take_from)
+
+/obj/spacepod/proc/remove_passenger_actions(mob/take_from)
+	for(var/action in passenger_actions)
+		remove_action_type_from_mob(action, take_from)
+
+/obj/spacepod/proc/cleanup_actions_for_mob(mob/M)
+	if(!istype(M))
+		return FALSE
+	for(var/path in occupant_actions[M])
+		stack_trace("Leftover action type [path] in vehicle type [type] for mob type [M.type] - THIS SHOULD NOT BE HAPPENING!")
+		var/datum/action/action = occupant_actions[M][path]
+		action.Remove(M)
+		occupant_actions[M] -= path
+	occupant_actions -= M
+	return TRUE
 
 /**
  * ACTION TYPES
@@ -49,13 +100,14 @@
 		return
 	if(!spacepod_target || !(owner in spacepod_target.occupants))
 		return
-	if(spacepod_target.check_occupant(owner) != SPACEPOD_RIDER_TYPE_PILOT)
+	if(!spacepod_target.pilot)
 		to_chat(owner, span_warning("You are not in a pod."))
 		return
 	if(owner.incapacitated())
 		to_chat(owner, span_warning("You are incapacitated."))
 		return
 	spacepod_target.ui_interact(owner)
+
 
 /**
  * Moves the craft up a z-level if it can.
@@ -194,6 +246,7 @@
 	button_icon_state = "safety_[spacepod_target.weapon_safety ? "on" : "off"]"
 	build_all_button_icons()
 
+
 /**
  * Cycles through the weapons
  */
@@ -210,34 +263,3 @@
 
 	button_icon_state = "lights_[spacepod_target.light_toggle ? "on" : "off"]"
 	build_all_button_icons()
-
-/**
- * Stops angular movement
- */
-/datum/action/spacepod/toggle_gyroscope
-	name = "Toggle gyroscope"
-	button_icon_state = "gyroscope_on"
-
-
-/datum/action/spacepod/toggle_gyroscope/Trigger(trigger_flags)
-	if(!owner || !spacepod_target || !(owner in spacepod_target.occupants) || owner.incapacitated())
-		return
-
-	spacepod_target.toggle_gyroscope(owner)
-
-	button_icon_state = "gyroscope_[spacepod_target.gyroscope_enabled ? "on" : "off"]"
-	build_all_button_icons()
-
-/**
- * Opens any nearby pod doors
- */
-/datum/action/spacepod/open_poddoors
-	name = "Open Nearby Poddoors"
-	button_icon_state = "open_doors"
-
-
-/datum/action/spacepod/open_poddoors/Trigger(trigger_flags)
-	if(!owner || !spacepod_target || !(owner in spacepod_target.occupants) || owner.incapacitated())
-		return
-
-	spacepod_target.toggle_doors(owner)
