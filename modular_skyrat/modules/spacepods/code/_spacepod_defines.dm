@@ -21,25 +21,10 @@
 #define SPACEPOD_SLOT_LIGHT "light"
 #define SPACEPOD_SLOT_THRUSTER "thruster"
 
+#define SPACEPOD_LAYER 3.9
+
 #define SPACEPOD_WEAPON_SLOT_LEFT "Left Weapon Slot"
 #define SPACEPOD_WEAPON_SLOT_RIGHT "Right Weapon Slot"
 
-<<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/_spacepod_defines.dm
-========
-#define SPACEPOD_DEFAULT_EQUIPMENT_LIMITS_LIST list(SPACEPOD_SLOT_MISC = 5, SPACEPOD_SLOT_CARGO = 2, SPACEPOD_SLOT_WEAPON = 2, SPACEPOD_SLOT_LOCK = 1, SPACEPOD_SLOT_LIGHT = 1, SPACEPOD_SLOT_THRUSTER = 1)
-
-// Rider stuff
-#define SPACEPOD_RIDER_TYPE_PILOT "pilot"
-#define SPACEPOD_RIDER_TYPE_PASSENGER "passenger"
-
-#define SPACEPOD_RIDER_TYPE "type"
-#define SPACEPOD_RIDER_TRAITS "traits"
-#define SPACEPOD_RIDER_ACTIONS "actions"
-
-// Impact stuff
-#define SPACEPOD_IMPACT_HEAVY 10
-#define SPACEPOD_IMPACT_LIGHT 5
-
->>>>>>>> spaceballs:code/__DEFINES/~skyrat_defines/spacepod_defines.dm
 /// A list of lighthouses that enable the spacepods to teleport to.
 GLOBAL_LIST_EMPTY(spacepod_beacons)

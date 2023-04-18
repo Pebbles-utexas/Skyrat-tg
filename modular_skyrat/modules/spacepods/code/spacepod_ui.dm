@@ -103,11 +103,7 @@
 				"name" = uppertext(spacepod_equipment.name),
 				"desc" = spacepod_equipment.desc,
 				"slot" = capitalize(spacepod_equipment.slot) + " Slot",
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_ui.dm
 				"can_uninstall" = spacepod_equipment.can_uninstall(),
-=======
-				"can_uninstall" = spacepod_equipment.can_uninstall(src),
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_ui.dm
 				"ref" = REF(spacepod_equipment),
 			))
 	else

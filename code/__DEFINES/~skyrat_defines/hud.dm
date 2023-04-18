@@ -19,6 +19,3 @@
 
 //Families
 #define ui_wanted_lvl "NORTH,11"
-
-// Spacepods
-#define ui_spacepod "CENTER-1,CENTER+4"

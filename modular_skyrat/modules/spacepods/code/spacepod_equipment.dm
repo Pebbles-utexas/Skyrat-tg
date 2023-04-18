@@ -24,28 +24,10 @@
 	return ..()
 
 /obj/item/spacepod_equipment/proc/on_install(obj/spacepod/attaching_spacepod)
-	SHOULD_CALL_PARENT(TRUE)
 	spacepod = attaching_spacepod
-	attaching_spacepod.update_overlays()
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 /obj/item/spacepod_equipment/proc/on_uninstall(obj/spacepod/detatching_spacepod)
-=======
-/**
- * on uninstall
- *
- * Called when some piece of equipment is uninstalled.
- *
- * Forced: This should FORCE the uninstall and clear anything required.
- */
-/obj/item/spacepod_equipment/proc/on_uninstall(obj/spacepod/detatching_spacepod, mob/user, forced)
-	SHOULD_CALL_PARENT(TRUE)
-	if(!forced && !can_uninstall(detatching_spacepod))
-		to_chat(user, span_warning("Unable to uninstall [src]!"))
-		return
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 	spacepod = null
-	detatching_spacepod.update_overlays()
 
 /**
  * can_install
@@ -60,11 +42,7 @@
  *
  * Basic uninstall handler, place any unique behaviour here, return true or false.
  */
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 /obj/item/spacepod_equipment/proc/can_uninstall(obj/spacepod/detatching_spacepod, mob/user)
-=======
-/obj/item/spacepod_equipment/proc/can_uninstall(obj/spacepod/detatching_spacepod)
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 	return TRUE
 
 
@@ -89,23 +67,16 @@
 	RegisterSignal(attaching_spacepod, COMSIG_MOUSEDROPPED_ONTO, .proc/spacepod_mousedrop)
 	attaching_spacepod.cargo_bays += src
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 /obj/item/spacepod_equipment/cargo/large/on_uninstall(obj/spacepod/detatching_spacepod)
-=======
-/obj/item/spacepod_equipment/cargo/large/on_uninstall(obj/spacepod/detatching_spacepod, mob/user, forced)
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 	. = ..()
 	UnregisterSignal(detatching_spacepod, COMSIG_MOUSEDROPPED_ONTO)
 	detatching_spacepod.cargo_bays -= src
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 /obj/item/spacepod_equipment/cargo/large/can_uninstall(mob/user)
-=======
-/obj/item/spacepod_equipment/cargo/large/can_uninstall(obj/spacepod/detatching_spacepod)
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 	if(storage)
+		to_chat(user, span_warning("Unload the cargo first!"))
 		return FALSE
-	return TRUE
+	return ..()
 
 /obj/item/spacepod_equipment/cargo/large/proc/unload_cargo()
 	if(storage)
@@ -143,11 +114,7 @@
 	..()
 	RegisterSignal(attaching_spacepod, COMSIG_MOVABLE_MOVED, .proc/spacepod_moved)
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 /obj/item/spacepod_equipment/cargo/large/ore/on_uninstall(obj/spacepod/detatching_spacepod)
-=======
-/obj/item/spacepod_equipment/cargo/large/ore/on_uninstall(obj/spacepod/detatching_spacepod, mob/user, forced)
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 	. = ..()
 	UnregisterSignal(detatching_spacepod, COMSIG_MOVABLE_MOVED)
 
@@ -169,7 +136,6 @@
 	. = ..()
 	attaching_spacepod.max_passengers += occupant_mod
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 /obj/item/spacepod_equipment/cargo/chair/on_uninstall(obj/spacepod/detatching_spacepod)
 	. = ..()
 	detatching_spacepod.max_passengers -= occupant_mod
@@ -177,17 +143,8 @@
 /obj/item/spacepod_equipment/cargo/chair/can_uninstall(mob/user)
 	if(spacepod.passengers.len > (spacepod.max_passengers - occupant_mod))
 		to_chat(user, span_warning("You can't remove an occupied seat! Remove the occupant first."))
-=======
-/obj/item/spacepod_equipment/cargo/chair/on_uninstall(obj/spacepod/detatching_spacepod, mob/user, forced)
-	. = ..()
-	detatching_spacepod.remove_all_riders(forced = forced)
-	detatching_spacepod.occupant_slots[occupant_slot] -= occupant_mod
-
-/obj/item/spacepod_equipment/cargo/chair/can_uninstall(obj/spacepod/detatching_spacepod)
-	if(LAZYLEN(detatching_spacepod.get_all_occupants_by_type(SPACEPOD_RIDER_TYPE_PASSENGER)) > (LAZYLEN(detatching_spacepod.occupant_slots[occupant_slot]) - occupant_mod))
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 		return FALSE
-	return TRUE
+	return ..()
 
 /**
  * Weapon Systems
@@ -215,14 +172,7 @@
 
 /obj/item/spacepod_equipment/weaponry/on_install(obj/spacepod/attaching_spacepod)
 	. = ..()
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 	attaching_spacepod.update_icon()
-=======
-	if(!override_slot)
-		override_slot = pick(attaching_spacepod.get_free_weapon_slots())
-	attaching_spacepod.equipment[SPACEPOD_SLOT_WEAPON][src] = override_slot
-	attaching_spacepod.update_overlays()
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 
 
 /obj/item/spacepod_equipment/weaponry/proc/fire_weapon(target, x_offset, y_offset)
@@ -265,7 +215,7 @@
 	shot_cost = 1200
 	burst_fire = 3
 	fire_sound = 'sound/weapons/taser2.ogg'
-	fire_delay = 3 SECONDS
+	fire_delay = 30
 	overlay_icon = 'modular_skyrat/modules/spacepods/icons/pod2x2.dmi'
 	overlay_icon_state = "pod_weapon_disabler"
 
@@ -279,34 +229,14 @@
 	overlay_icon = 'modular_skyrat/modules/spacepods/icons/pod2x2.dmi'
 	overlay_icon_state = "pod_weapon_laser"
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
-=======
-
-/obj/item/spacepod_equipment/weaponry/pulse
-	name = "\improper NT-9 'Pulse' Disruptor"
-	desc = "An incredibly powerful pulse weapon system for pods, fires concentrated impulse rounds."
-	icon_state = "weapon_pulse"
-	projectile_type = /obj/projectile/beam/pulse
-	shot_cost = 1000
-	fire_delay = 2 SECONDS
-	fire_sound = 'modular_skyrat/modules/aesthetics/guns/sound/pulse.ogg'
-	overlay_icon = 'modular_skyrat/modules/spacepods/icons/pod2x2.dmi'
-	overlay_icon_state = "pod_weapon_pulse"
-
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 // MINING LASERS
 /obj/item/spacepod_equipment/weaponry/basic_pod_ka
 	name = "weak kinetic accelerator"
 	desc = "A weak kinetic accelerator for space pods, fires bursts of energy that cut through rock."
 	icon_state = "pod_taser"
 	projectile_type = /obj/projectile/kinetic/pod
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 	shot_cost = 300
 	fire_delay = 14
-=======
-	shot_cost = 50
-	fire_delay = 1.4 SECONDS
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 	fire_sound = 'sound/weapons/Kenetic_accel.ogg'
 
 /obj/item/spacepod_equipment/weaponry/pod_ka
@@ -314,13 +244,8 @@
 	desc = "A kinetic accelerator system for space pods, fires bursts of energy that cut through rock."
 	icon_state = "pod_m_laser"
 	projectile_type = /obj/projectile/kinetic/pod/regular
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 	shot_cost = 250
 	fire_delay = 10
-=======
-	shot_cost = 50
-	fire_delay = 1 SECONDS
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 	fire_sound = 'sound/weapons/Kenetic_accel.ogg'
 
 /obj/projectile/kinetic/pod
@@ -335,13 +260,8 @@
 	desc = "A plasma cutter system for space pods. It is capable of expelling concentrated plasma bursts to mine or cut off xeno limbs!"
 	icon_state = "pod_p_cutter"
 	projectile_type = /obj/projectile/plasma
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 	shot_cost = 250
 	fire_delay = 10
-=======
-	shot_cost = 150
-	fire_delay = 1 SECONDS
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
 	overlay_icon = 'modular_skyrat/modules/spacepods/icons/pod2x2.dmi'
 	overlay_icon_state = "pod_weapon_plasma"
@@ -351,49 +271,8 @@
 	desc = "An enhanced plasma cutter system for space pods. It is capable of expelling concentrated plasma bursts to mine or cut off xeno faces!"
 	icon_state = "pod_ap_cutter"
 	projectile_type = /obj/projectile/plasma/adv
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 	shot_cost = 200
 	fire_delay = 8
-=======
-	shot_cost = 50
-	fire_delay = 0.5 SECONDS
-
-
-/obj/item/spacepod_equipment/weaponry/railgun
-	name = "\improper Armadyne R-44 'Penetrator' Railgun"
-	desc = "A magnetic acceleration apparatus capable of firing projectiles at insane speeds."
-	icon_state = "weapon_railgun"
-	projectile_type = /obj/projectile/railgun
-	shot_cost = 1000
-	fire_delay = 10 SECONDS
-	fire_sound = 'modular_skyrat/modules/spacepods/sound/railgun.ogg'
-
-/obj/projectile/railgun
-	name = "railgun projectile"
-
-/obj/item/spacepod_equipment/weaponry/rocket_launcher
-	name = "\improper Armadyne 'STRATOS' Rocket Launcher"
-	desc = "A basic rocket launcher that fires basic rockets."
-	icon_state = "weapon_launcher"
-	projectile_type = /obj/physics_rocket
-	shot_cost = 2000
-	fire_delay = 10 SECONDS
-	fire_sound = 'sound/weapons/gun/general/rocket_launch.ogg'
-
-/obj/item/spacepod_equipment/weaponry/rocket_launcher/fire_weapon(target, x_offset, y_offset)
-	var/turf/our_turf = get_turf(spacepod)
-	new projectile_type(our_turf, start_angle = spacepod.component_angle, start_velocity_x = spacepod.component_velocity_x, start_velocity_y = spacepod.component_velocity_x, start_offset_x = x_offset, start_offset_y = y_offset, target_to_set = target, incoming_firer = spacepod)
-
-/obj/item/spacepod_equipment/weaponry/missile_launcher
-	name = "\improper Armadyne 'ANGELFALL' Missile Launcher"
-	desc = "A target locking missile launcher."
-	icon_state = "pod_launcher"
-	projectile_type = /obj/physics_missile
-	shot_cost = 4000
-	fire_delay = 12 SECONDS
-	fire_sound = 'sound/weapons/gun/general/rocket_launch.ogg'
-
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 
 /**
  * Thruster Types
@@ -419,11 +298,7 @@
 	attaching_spacepod.backward_maxthrust = max_backwards_speed
 	attaching_spacepod.side_maxthrust = max_sideways_speed
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 /obj/item/spacepod_equipment/thruster/on_uninstall(obj/spacepod/detatching_spacepod)
-=======
-/obj/item/spacepod_equipment/thruster/on_uninstall(obj/spacepod/detatching_spacepod, mob/user, forced)
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 	. = ..()
 	detatching_spacepod.forward_maxthrust = 0
 	detatching_spacepod.backward_maxthrust = 0
@@ -450,11 +325,7 @@
 	/// The color of the light
 	var/color_to_set = COLOR_WHITE
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 /obj/item/spacepod_equipment/thruster/on_uninstall(obj/spacepod/detatching_spacepod)
-=======
-/obj/item/spacepod_equipment/thruster/on_uninstall(obj/spacepod/detatching_spacepod, mob/user, forced)
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 	. = ..()
 	detatching_spacepod.set_light_on(FALSE)
 
@@ -497,11 +368,6 @@
 	icon_state = "cargo_blank"
 	slot = SPACEPOD_SLOT_MISC
 
-/obj/item/spacepod_equipment/flare
-	name = "\improper Decoy Flare System"
-	desc = "Deploys flares that can decoy missiles."
-	icon_state = "cargo_blank"
-
 /**
  * Lock Systems
  */
@@ -514,11 +380,7 @@
 	..()
 	RegisterSignal(attaching_spacepod, COMSIG_PARENT_ATTACKBY, .proc/spacepod_attackby)
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 /obj/item/spacepod_equipment/lock/on_uninstall(obj/spacepod/detatching_spacepod)
-=======
-/obj/item/spacepod_equipment/lock/on_uninstall(obj/spacepod/detatching_spacepod, mob/user, forced)
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 	. = ..()
 	UnregisterSignal(detatching_spacepod, COMSIG_PARENT_ATTACKBY)
 	detatching_spacepod.locked = FALSE

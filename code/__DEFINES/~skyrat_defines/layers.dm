@@ -1,1 +1,0 @@
-#define SPACEPOD_LAYER 3.9

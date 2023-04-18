@@ -48,13 +48,8 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	var/weapon_safety = FALSE
 	/// A list of our weapon slots, the association is the offset for pixel shooting.
 	var/list/weapon_slots = list(
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
 		SPACEPOD_WEAPON_SLOT_LEFT = list(-16, 0),
 		SPACEPOD_WEAPON_SLOT_RIGHT = list(16, 0),
-=======
-		SPACEPOD_WEAPON_SLOT_LEFT = list(30, 16),
-		SPACEPOD_WEAPON_SLOT_RIGHT = list(30, -16),
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 	)
 	/// A list of installed cargo bays
 	var/list/cargo_bays = list()
@@ -82,7 +77,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	/// Total occupants
 	var/list/occupants = list()
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
 	/// US!
 	var/mob/living/pilot
 	/// OUR FRIENDS!
@@ -92,39 +86,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	/// List of action types for passengers
 	var/list/passenger_actions = list(
 		/datum/action/spacepod/exit,
-=======
-	/// A list of our slots, and how many people can fit in said slot.
-	var/list/occupant_slots = list(
-		SPACEPOD_RIDER_TYPE_PILOT = 1,
-		SPACEPOD_RIDER_TYPE_PASSENGER = 0
-	)
-
-	/// A list of action types to grant depending on rider type.
-	var/list/action_types_to_grant = list(
-		SPACEPOD_RIDER_TYPE_PILOT = list(
-			/datum/action/spacepod/controls,
-			/datum/action/spacepod/exit,
-			/datum/action/spacepod/toggle_lights,
-			/datum/action/spacepod/toggle_brakes,
-			/datum/action/spacepod/toggle_gyroscope,
-			/datum/action/spacepod/thrust_up,
-			/datum/action/spacepod/thrust_down,
-			/datum/action/spacepod/quantum_entangloporter,
-			/datum/action/spacepod/open_poddoors,
-			/datum/action/spacepod/cycle_weapons,
-			/datum/action/spacepod/toggle_safety,
-			/datum/action/spacepod/deploy_flare,
-		),
-		SPACEPOD_RIDER_TYPE_PASSENGER = list(
-			/datum/action/spacepod/exit,
-		),
-	)
-
-	/// A list of traits that we will grant to the rider, as well as the trait acquirement type
-	var/list/traits_to_grant = list(
-		SPACEPOD_RIDER_TYPE_PILOT = list(
-			TRAIT_HANDS_BLOCKED = VEHICLE_TRAIT,
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 		)
 	/// List of action types for the pilot
 	var/list/pilot_actions = list(
@@ -163,7 +124,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	var/brakes = TRUE
 	/// A system for preventing any thrust from being applied.
 	var/thrust_lockout = FALSE
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
 	/// Users thrust direction
 	var/user_thrust_dir = 0
 	/// Max forward thrust, in tiles per second
@@ -181,18 +141,12 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	var/lateral_bounce_factor = 0.95
 	/// Our icon direction number.
 	var/icon_dir_num = 1
-=======
-
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 	/// Our looping alarm sound for something bad happening.
 	var/datum/looping_sound/spacepod_alarm/alarm_sound
 	/// Have we muted the alarm?
 	var/alarm_muted = FALSE
 	/// Our looping thrust sound.
 	var/datum/looping_sound/spacepod_thrust/thrust_sound
-
-	/// Our looping missile lock sound.
-	var/datum/looping_sound/missile_lock/missile_lock_sound
 
 	/// Our teleporter warp effect
 	var/atom/movable/warp_effect/warp
@@ -201,53 +155,9 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	/// Our follow trail
 	var/datum/effect_system/trail_follow/ion/grav_allowed/trail
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
 
 /obj/spacepod/Initialize()
 	. = ..()
-=======
-	/// Are we dirty?
-	var/dirty = FALSE
-	/// What dirt overlay do we add?
-	var/dirt_overlay = "pod_dirt_1"
-
-	/// Component physics values
-	var/component_angle = 0
-	var/component_velocity_x = 0
-	var/component_velocity_y = 0
-	var/component_offset_x = 0
-	var/component_offset_y = 0
-	var/component_last_rotate = 0
-	var/component_last_thrust_right = 0
-	var/component_last_thrust_forward = 0
-
-	// Overlay stuff
-	/// Our image overlay for the back thrusters.
-	var/image/back_thrust_overlay
-	/// Our image overlay for the front thrusters.
-	var/image/front_thrust_overlay
-	/// Our image overlay for the
-
-	var/image/left_thrust_overlay
-
-	var/image/right_thrust_overlay
-
-	var/atom/movable/screen/spacepod/spacepod_hud
-
-	var/flare_reload_time = 10 SECONDS
-	COOLDOWN_DECLARE(flare_reload_cooldown)
-
-/obj/spacepod/Initialize()
-	. = ..()
-	var/datum/component/physics/physics_component = AddComponent(/datum/component/physics)
-	RegisterSignal(physics_component, COMSIG_PHYSICS_UPDATE_MOVEMENT, PROC_REF(physics_component_update_movement))
-	RegisterSignal(physics_component, COMSIG_PHYSICS_PROCESSED_BUMP, PROC_REF(process_physics_bump))
-	RegisterSignal(physics_component, COMSIG_PHYSICS_THRUST_CHECK, PROC_REF(check_thrust))
-	RegisterSignal(physics_component, COMSIG_PHYSICS_AUTOSTABILISE_CHECK, PROC_REF(check_autostabilisation))
-	RegisterSignal(src, COMSIG_MISSILE_LOCK, PROC_REF(missile_lock))
-	RegisterSignal(src, COMSIG_MISSILE_LOCK_LOST, PROC_REF(missile_lock_lost))
-
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 	active_weapon_slot = pick(weapon_slots)
 	GLOB.spacepods_list += src
 	START_PROCESSING(SSfastprocess, src)
@@ -257,12 +167,9 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	RegisterSignal(src, COMSIG_ATOM_INTEGRITY_CHANGED, PROC_REF(process_integrity))
 	alarm_sound = new(src)
 	thrust_sound = new(src)
-	missile_lock_sound = new(src)
 	trail = new(src)
 	trail.set_up(src)
 	trail.start()
-	spacepod_hud = new()
-
 
 /obj/spacepod/Destroy()
 	GLOB.spacepods_list -= src
@@ -280,62 +187,14 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	QDEL_NULL(pod_armor)
 	QDEL_NULL(alarm_sound)
 	QDEL_NULL(thrust_sound)
-	QDEL_NULL(missile_lock_sound)
 	QDEL_NULL(trail)
 	UnregisterSignal(src, COMSIG_ATOM_INTEGRITY_CHANGED)
 	return ..()
 
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
 // We want the pods to have gravity all the time to prevent them being touched by spacedrift.
 /obj/spacepod/has_gravity(turf/gravity_turf)
 	return TRUE
-=======
-
-/**
- * process
- *
- * Processes the atmospherics of the pod.
- */
-/obj/spacepod/process(seconds_per_tick)
-	// Cool the cabin air to T20C if it's not empty
-	if(cabin_air && cabin_air.return_volume() > 0)
-		var/temperature_delta = cabin_air.return_temperature() - T20C
-		cabin_air.temperature -= max(-10, min(10, round(temperature_delta / 4, 0.1)))
-
-	// Process internal air tank and cabin air interactions
-	if(internal_tank && cabin_air)
-		var/datum/gas_mixture/tank_air = internal_tank.return_air()
-		var/release_pressure = ONE_ATMOSPHERE
-		var/cabin_pressure = cabin_air.return_pressure()
-		var/pressure_delta = min(release_pressure - cabin_pressure, (tank_air.return_pressure() - cabin_pressure) / 2)
-		var/transfer_moles = 0
-
-		// Cabin pressure lower than release pressure
-		if(pressure_delta > 0 && tank_air.return_temperature() > 0)
-			transfer_moles = pressure_delta * cabin_air.return_volume() / (cabin_air.return_temperature() * R_IDEAL_GAS_EQUATION)
-			var/datum/gas_mixture/removed = tank_air.remove(transfer_moles)
-			cabin_air.merge(removed)
-
-		// Cabin pressure higher than release pressure
-		else if(pressure_delta < 0)
-			var/turf/our_turf = get_turf(src)
-			var/datum/gas_mixture/turf_air = our_turf.return_air()
-			pressure_delta = cabin_pressure - release_pressure
-
-			if(turf_air)
-				pressure_delta = min(cabin_pressure - turf_air.return_pressure(), pressure_delta)
-
-			// If location pressure is lower than cabin pressure
-			if(pressure_delta > 0)
-				transfer_moles = pressure_delta * cabin_air.return_volume() / (cabin_air.return_temperature() * R_IDEAL_GAS_EQUATION)
-				var/datum/gas_mixture/removed = cabin_air.remove(transfer_moles)
-
-				if(our_turf)
-					our_turf.assume_air(removed)
-				else // Delete the cabin gas if we're in space or a similar environment
-					qdel(removed)
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 
 /obj/spacepod/attackby(obj/item/attacking_item, mob/living/user)
 	if(user.combat_mode)
@@ -376,20 +235,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		if(istype(attacking_item, /obj/item/device/lock_buster))
 			try_to_break_lock(attacking_item, user)
 			return TRUE
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
-=======
-		if(istype(attacking_item, /obj/item/soap))
-			var/obj/item/soap/soap = attacking_item
-			if(!dirty)
-				to_chat(user, span_notice("The pod is not dirty!"))
-				return TRUE
-			to_chat(user, span_notice("You start cleaning the pod..."))
-			if(do_after(soap.cleanspeed))
-				dirty = FALSE
-				update_overlays()
-				to_chat(user, span_notice("You clean the pod."))
-			return TRUE
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 		if(attacking_item.tool_behaviour == TOOL_WELDER)
 			var/obj_integrity = get_integrity()
 			var/repairing = cell || internal_tank || equipment.len || (obj_integrity < max_integrity) || pilot || passengers.len
@@ -449,17 +294,17 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	return cabin_air.remove(amount)
 
 
-/obj/spacepod/ex_act(severity, target)
+/obj/spacepod/ex_act(severity)
 	switch(severity)
-		if(EXPLODE_DEVASTATE)
+		if(1)
 			for(var/mob/living/living_mob in contents)
-				living_mob.ex_act(severity + 1)
+				living_mob.ex_act(severity+1)
 			deconstruct()
-		if(EXPLODE_HEAVY)
-			take_damage(100, BRUTE, BOMB)
-		if(EXPLODE_LIGHT)
+		if(2)
+			take_damage(100, BRUTE, "bomb", 0)
+		if(3)
 			if(prob(40))
-				take_damage(40, BRUTE, BOMB)
+				take_damage(40, BRUTE, "bomb", 0)
 
 /**
  * We handle our own atom breaking.
@@ -469,7 +314,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	if(get_integrity() <= 0)
 		return ..()
 	play_alarm(FALSE)
-	missile_lock_sound.stop()
 	if(construction_state < SPACEPOD_ARMOR_LOOSE)
 		return
 	if(pod_armor)
@@ -488,7 +332,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	cell = null
 	internal_tank = null
 	// Remove everything inside us.
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
 	for(var/atom/movable/iterating_movable_atom in contents)
 		if(iterating_movable_atom in equipment)
 			var/obj/item/spacepod_equipment/spacepod_equipment = check_equipment(iterating_movable_atom)
@@ -501,11 +344,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 			remove_rider(iterating_movable_atom)
 			continue
 
-=======
-	detach_all_equipment()
-	remove_all_riders()
-	for(var/atom/movable/iterating_movable_atom in contents)
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 		if(prob(60))
 			iterating_movable_atom.forceMove(loc)
 		else if(isitem(iterating_movable_atom) || !isobj(iterating_movable_atom))
@@ -559,7 +397,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	qdel(src)
 
 /obj/spacepod/update_overlays()
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
 	. = ..()
 	cut_overlays()
 	// Initial check, make sure it's not in construction
@@ -642,60 +479,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	if(construction_state != SPACEPOD_ARMOR_WELDED)
 		icon = 'modular_skyrat/modules/spacepods/icons/construction2x2.dmi'
 		icon_state = "pod_[construction_state]"
-=======
-	. = ..()
-	cut_overlays()
-	if(construction_state != SPACEPOD_ARMOR_WELDED && pod_armor && construction_state >= SPACEPOD_ARMOR_LOOSE)
-		var/mutable_appearance/masked_armor = mutable_appearance(icon = 'modular_skyrat/modules/spacepods/icons/construction2x2.dmi', icon_state = "armor_mask")
-		var/mutable_appearance/armor = mutable_appearance(pod_armor.pod_icon, pod_armor.pod_icon_state)
-		armor.blend_mode = BLEND_MULTIPLY
-		masked_armor.overlays = list(armor)
-		masked_armor.appearance_flags = KEEP_TOGETHER
-		add_overlay(masked_armor)
-		return
-
-	// Dirt overlays
-	if(dirty)
-		add_overlay(image(overlay_file, dirt_overlay))
-
-	// Weapon overlays
-	if(LAZYLEN(equipment[SPACEPOD_SLOT_WEAPON]))
-		for(var/obj/item/spacepod_equipment/weaponry/iterating_weaponry in equipment[SPACEPOD_SLOT_WEAPON])
-			var/mutable_appearance/weapon_overlay = mutable_appearance(iterating_weaponry.overlay_icon, iterating_weaponry.overlay_icon_state) // Default state should fill in the left gunpod.
-			if(equipment[SPACEPOD_SLOT_WEAPON][iterating_weaponry])
-				var/weapon_offset_y = weapon_slots[equipment[SPACEPOD_SLOT_WEAPON][iterating_weaponry]][2]
-				if(weapon_offset_y < 0) // Positive value means it's supposed to be overlayed on the right side of the pod, thus, flip le image so it fits.
-					var/matrix/flip_matrix = matrix(-1, 0, 0, 0, 1, 0)
-					weapon_overlay.transform = flip_matrix
-
-			add_overlay(weapon_overlay)
-
-
-	// Now do actual equipment overlays
-
-	for(var/key_type in equipment)
-		if(key_type == SPACEPOD_SLOT_WEAPON)
-			continue
-		for(var/obj/item/spacepod_equipment/iterating_equipment as anything in equipment[key_type])
-			if(iterating_equipment.overlay_icon && iterating_equipment.overlay_icon_state)
-				add_overlay(mutable_appearance(iterating_equipment.overlay_icon, iterating_equipment.overlay_icon_state))
-
-
-	// Damage overlays
-	var/obj_integrity = get_integrity()
-	if(obj_integrity <= max_integrity / 2)
-		add_overlay(image(overlay_file, "pod_damage"))
-		if(obj_integrity <= max_integrity / 4)
-			add_overlay(image(overlay_file, "pod_fire"))
-
-
-/obj/spacepod/update_icon()
-	. = ..()
-	if(construction_state != SPACEPOD_ARMOR_WELDED)
-		icon = 'modular_skyrat/modules/spacepods/icons/construction2x2.dmi'
-		icon_state = "pod_[construction_state]"
-		thrust_sound.stop()
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 		return
 
 	if(pod_armor)
@@ -705,72 +488,10 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 		icon = initial(icon)
 		icon_state = initial(icon_state)
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
-=======
-
-/obj/spacepod/proc/handle_thruster_effects()
-	cut_overlay(list(back_thrust_overlay, front_thrust_overlay, left_thrust_overlay, right_thrust_overlay))
-	// Initialize left and right thrust lists with zeros
-	var/list/left_thrusts = list(0, 0, 0, 0, 0, 0, 0, 0)
-	var/list/right_thrusts = list(0, 0, 0, 0, 0, 0, 0, 0)
-	var/back_thrust = 0
-	var/front_thrust = 0
-
-	// Calculate left and right thrusts based on last_thrust_right
-	if(component_last_thrust_right != 0)
-		var/tdir = component_last_thrust_right > 0 ? WEST : EAST
-		var/thrust_val = abs(component_last_thrust_right)
-		left_thrusts[tdir] = thrust_val
-		right_thrusts[tdir] = thrust_val
-
-	// Calculate front and back thrusts based on last_thrust_forward
-	if(component_last_thrust_forward > 0)
-		back_thrust = component_last_thrust_forward
-	else
-		front_thrust = -component_last_thrust_forward
-
-	// Update left and right thrust overlays based on calculated values
-	for(var/cardinal_direction in GLOB.cardinals)
-		var/left_thrust = left_thrusts[cardinal_direction]
-		var/right_thrust = right_thrusts[cardinal_direction]
-		if(left_thrust)
-			if(!left_thrust_overlay)
-				left_thrust_overlay = image(icon = overlay_file, icon_state = "rcs_left", dir = cardinal_direction)
-			left_thrust_overlay.dir = cardinal_direction
-			add_overlay(left_thrust_overlay)
-		if(right_thrust)
-			if(!right_thrust_overlay)
-				right_thrust_overlay = image(icon = overlay_file, icon_state = "rcs_right", dir = cardinal_direction)
-			right_thrust_overlay.dir = cardinal_direction
-			add_overlay(right_thrust_overlay)
-
-	// Update back thrust overlay and play thrust sound if back_thrust is not 0
-	if(back_thrust)
-		if(!back_thrust_overlay)
-			back_thrust_overlay = image(icon = overlay_file, icon_state = "thrust")
-			back_thrust_overlay.transform = matrix(1, 0, 0, 0, 1, -32)
-		add_overlay(back_thrust_overlay)
-		thrust_sound.start()
-	else
-		thrust_sound.stop()
-
-	// Update front thrust overlay if front_thrust is not 0
-	if(front_thrust)
-		if(!front_thrust_overlay)
-			front_thrust_overlay = image(icon = overlay_file, icon_state = "front_thrust")
-		add_overlay(front_thrust_overlay)
-
-
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 /obj/spacepod/relaymove(mob/user, direction)
 	if(user != pilot || pilot.incapacitated())
 		return
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
 	user_thrust_dir = direction
-=======
-
-	SEND_SIGNAL(src, COMSIG_PHYSICS_SET_THRUST_DIR, direction)
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 
 /obj/spacepod/MouseDrop_T(atom/movable/dropped_atom, mob/living/user)
 	if(user == pilot || (user in passengers) || construction_state != SPACEPOD_ARMOR_WELDED)
@@ -815,7 +536,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	brakes = !brakes
 	to_chat(usr, span_notice("You toggle the brakes [brakes ? "on" : "off"]."))
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
 // EQUIPMENT PROCS
 
 /**
@@ -943,31 +663,10 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 			return TRUE
 
 	return FALSE
-=======
-// PHYSICS PROCS
-/**
- * physics_component_update_movement
- *
- * Updates the corresponding component values for each time the physics component is processed.
- */
-/obj/spacepod/proc/physics_component_update_movement(datum/source, updated_angle, updated_velocity_x, updated_velocity_y, updated_offset_x, updated_offset_y, updated_last_rotate, updated_last_thrust_forward, updated_last_thrust_right)
-	SIGNAL_HANDLER
-	component_angle = updated_angle
-	component_velocity_x = updated_velocity_x
-	component_velocity_y = updated_velocity_y
-	component_offset_x = updated_offset_x
-	component_offset_y = updated_offset_y
-	component_last_rotate = updated_last_rotate
-	component_last_thrust_forward = updated_last_thrust_forward
-	component_last_thrust_right = updated_last_thrust_right
-
-	handle_thruster_effects()
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 
 // MISC PROCS
 
 /**
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
  * Slowprocess
  *
  * This is the slower, more intensive version of process. It's slower.
@@ -1003,8 +702,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 					qdel(removed)
 
 /**
-=======
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
  * try to break lock
  *
  * Attempts to break a spacepod lock.
@@ -1033,10 +730,7 @@ GLOBAL_LIST_INIT(spacepods_list, list())
  */
 /obj/spacepod/proc/on_mouse_moved(mob/user, object, location, control, params)
 	SIGNAL_HANDLER
-
-	// Parse the input parameters
 	var/list/modifiers = params2list(params)
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
 	if(object == src ||  (object && (object in user.get_all_contents())) || user != pilot)
 		return
 	var/list/sl_list = splittext(modifiers["screen-loc"],",")
@@ -1047,31 +741,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	var/dy = text2num(sl_y_list[1]) + (text2num(sl_y_list[2]) / world.icon_size) - 1 - text2num(view_list[2]) / 2
 	if(sqrt(dx * dx + dy * dy) > 1)
 		desired_angle = 90 - ATAN2(dx, dy)
-=======
-
-	// Return if the object is the spacepod itself, the object is in the user's contents, or the user is not the pilot
-	if(object == src || (object && (object in user.get_all_contents())) || check_occupant(user) != SPACEPOD_RIDER_TYPE_PILOT)
-		return
-
-	// Split the "screen-loc" parameter into its X and Y components
-	var/list/screen_loc_list = splittext(modifiers["screen-loc"], ",")
-	var/list/screen_loc_x_list = splittext(screen_loc_list[1], ":")
-	var/list/screen_loc_y_list = splittext(screen_loc_list[2], ":")
-
-	// Get the view dimensions of the user's client
-	var/list/view_dimensions_list = isnum(user.client.view) ? list("[user.client.view * 2 + 1]", "[user.client.view * 2 + 1]") : splittext(user.client.view, "x")
-
-	// Calculate the difference between the mouse position and the center of the screen
-	var/delta_x = text2num(screen_loc_x_list[1]) + (text2num(screen_loc_x_list[2]) / world.icon_size) - 1 - text2num(view_dimensions_list[1]) / 2
-	var/delta_y = text2num(screen_loc_y_list[1]) + (text2num(screen_loc_y_list[2]) / world.icon_size) - 1 - text2num(view_dimensions_list[2]) / 2
-
-	// Calculate the distance between the mouse position and the center of the screen
-	var/distance = sqrt(delta_x * delta_x + delta_y * delta_y)
-
-	// Set the desired angle of the spacepod based on the mouse position
-	if(distance > 1)
-		SEND_SIGNAL(src, COMSIG_PHYSICS_SET_DESIRED_ANGLE, 90 - ATAN2(delta_x, delta_y))
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 	else
 		desired_angle = null
 
@@ -1095,13 +764,14 @@ GLOBAL_LIST_INIT(spacepods_list, list())
  * Process Integrity
  *
  * This is used for any unique behaviour as the pod is damaged, so far it is used for alarms.
+ *
+ * TODO: Convert this alarm sound to a looping sound
  */
 /obj/spacepod/proc/process_integrity(obj/source, old_value, new_value)
 	if(new_value < (max_integrity / 4)) // Less than a quarter health.
 		play_alarm(TRUE)
 	else
 		play_alarm(FALSE)
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
 
 
 // ARMOR PROCS
@@ -1355,9 +1025,6 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	var/obj/item/spacepod_equipment/weaponry/selected_weapon = get_weapon_in_slot(active_weapon_slot)
 	items += "Spacepod Weapon: [active_weapon_slot] ([selected_weapon ? selected_weapon.name : "Empty"])"
 	items += ""
-=======
-	update_overlays()
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 
 
 // TELEPORTATION
@@ -1399,70 +1066,27 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 	QDEL_NULL(warp)
 	thrust_lockout = FALSE
 
-// MOVEMENT PROCS
+// TOGGLES
 
 /**
- * check_thrust
+ * Togggle weapon lock
  *
- * checks if the thrusters can be fired.
+ * Toggles the weapon lock systems of the pod.
  */
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
 /obj/spacepod/proc/toggle_weapon_lock(mob/user)
 	weapon_safety = !weapon_safety
 	to_chat(user, span_notice("Weapon lock is now [weapon_safety ? "on" : "off"]."))
 
-=======
-/obj/spacepod/proc/check_thrust(datum/component/physics/source_component, total_x, total_y, desired_thrust_dir, seconds_per_tick)
-	SIGNAL_HANDLER
-	if(!cell)
-		if(desired_thrust_dir)
-			to_chat_to_riders(SPACEPOD_RIDER_TYPE_PILOT, span_warning("No powercell installed!"))
-		return FALSE
-	if(!check_has_equipment(/obj/item/spacepod_equipment/thruster))
-		if(desired_thrust_dir)
-			to_chat_to_riders(SPACEPOD_RIDER_TYPE_PILOT, span_warning("No thrusters installed!"))
-		return FALSE
-	if(thrust_lockout)
-		if(desired_thrust_dir)
-			to_chat_to_riders(SPACEPOD_RIDER_TYPE_PILOT, span_warning("Unable to comply due to thruster lockout."))
-		return FALSE
-	if(desired_thrust_dir && brakes && !check_has_equipment(/obj/item/spacepod_equipment/rcs_upgrade))
-		to_chat_to_riders(SPACEPOD_RIDER_TYPE_PILOT, span_warning("Brakes are enabled!"))
-		return FALSE
-	if(!cell.use(10 * sqrt((total_x * total_x) + (total_y * total_y)) * seconds_per_tick))
-		if(desired_thrust_dir)
-			to_chat_to_riders(SPACEPOD_RIDER_TYPE_PILOT, span_warning("Insufficient power!"))
-		return FALSE
-	handle_thruster_effects()
-	return COMPONENT_PHYSICS_THRUST
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 
 /**
- * check_autostabilisation
+ * toggle lights
  *
- * checks if autostabilisation is enabled.
+ * Toggles the spacepod lights and sets them accordingly, if a light system is present.
  */
-/obj/spacepod/proc/check_autostabilisation(datum/component/physics/source_component)
-	SIGNAL_HANDLER
-	if(brakes)
-		return COMPONENT_PHYSICS_AUTO_STABILISATION
-	return FALSE
-
-/obj/spacepod/proc/missile_lock()
-	SIGNAL_HANDLER
-	missile_lock_sound.start()
-	spacepod_hud.invisibility = 0
-
-/obj/spacepod/proc/missile_lock_lost()
-	SIGNAL_HANDLER
-	missile_lock_sound.stop()
-	spacepod_hud.invisibility = INVISIBILITY_ABSTRACT
-
-/obj/spacepod/proc/deploy_flare()
-	if(!check_has_equipment(/obj/item/spacepod_equipment/flare))
-		to_chat_to_riders(SPACEPOD_RIDER_TYPE_PILOT, span_warning("No flare module!"))
+/obj/spacepod/proc/toggle_lights(mob/user)
+	if(!LAZYLEN(equipment[SPACEPOD_SLOT_LIGHT]))
+		to_chat(user, span_warning("No lights installed!"))
 		return
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod.dm
 
 	var/obj/item/spacepod_equipment/lights/light_equipment = equipment[SPACEPOD_SLOT_LIGHT][1]
 	light_color = light_equipment.color_to_set
@@ -1511,14 +1135,17 @@ GLOBAL_LIST_INIT(spacepods_list, list())
 					P.close()
 					return TRUE
 		to_chat(user, span_warning("Access denied."))
-=======
-	if(!COOLDOWN_FINISHED(src, flare_reload_cooldown))
-		to_chat_to_riders(SPACEPOD_RIDER_TYPE_PILOT, span_warning("Flares recharging!"))
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod.dm
 		return
-	new /obj/physics_decoy_flare(get_turf(src), component_angle, component_velocity_x, component_velocity_y)
-	playsound(src, 'sound/items/match_strike.ogg', 100)
-	to_chat_to_riders(SPACEPOD_RIDER_TYPE_PILOT, span_notice("Flare deployed!"))
 
-	COOLDOWN_START(src, flare_reload_cooldown, flare_reload_time)
+	to_chat(user, span_warning("You are not close to any pod doors."))
+
+/**
+ * mute alarm
+ *
+ * Mutes the alarm and prevents it from starting. Provides feedback.
+ */
+/obj/spacepod/proc/mute_alarm(mob/user)
+	alarm_muted = !alarm_muted
+	play_alarm(FALSE)
+	to_chat(user, span_notice("System alarm [alarm_muted ? "muted" : "enabled"]."))
 
