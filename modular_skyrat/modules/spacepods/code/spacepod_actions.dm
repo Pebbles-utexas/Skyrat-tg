@@ -263,3 +263,52 @@
 
 	button_icon_state = "lights_[spacepod_target.light_toggle ? "on" : "off"]"
 	build_all_button_icons()
+<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_actions.dm
+=======
+
+/**
+ * Stops angular movement
+ */
+/datum/action/spacepod/toggle_gyroscope
+	name = "Toggle gyroscope"
+	button_icon_state = "gyroscope_on"
+
+
+/datum/action/spacepod/toggle_gyroscope/Trigger(trigger_flags)
+	if(!owner || !spacepod_target || !(owner in spacepod_target.occupants) || owner.incapacitated())
+		return
+
+	spacepod_target.toggle_gyroscope(owner)
+
+	button_icon_state = "gyroscope_[spacepod_target.gyroscope_enabled ? "on" : "off"]"
+	build_all_button_icons()
+
+/**
+ * Opens any nearby pod doors
+ */
+/datum/action/spacepod/open_poddoors
+	name = "Open Nearby Poddoors"
+	button_icon_state = "open_doors"
+
+
+/datum/action/spacepod/open_poddoors/Trigger(trigger_flags)
+	if(!owner || !spacepod_target || !(owner in spacepod_target.occupants) || owner.incapacitated())
+		return
+
+	spacepod_target.toggle_doors(owner)
+
+
+/**
+ * Opens any nearby pod doors
+ */
+/datum/action/spacepod/deploy_flare
+	name = "Deploy Flare"
+	button_icon_state = "deploy_flare"
+
+
+/datum/action/spacepod/deploy_flare/Trigger(trigger_flags)
+	if(!owner || !spacepod_target || !(owner in spacepod_target.occupants) || owner.incapacitated())
+		return
+
+	spacepod_target.deploy_flare()
+>>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_actions.dm
