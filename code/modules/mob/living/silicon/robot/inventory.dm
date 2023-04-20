@@ -282,8 +282,6 @@
 /mob/living/silicon/robot/proc/activated(obj/item/item_module)
 	if(item_module in held_items)
 		return TRUE
-	if(item_module.loc in held_items) //Apparatus check
-		return TRUE
 	return FALSE
 
 /**
