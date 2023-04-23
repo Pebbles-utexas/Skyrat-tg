@@ -1312,8 +1312,8 @@
 #include "code\datums\elements\tenacious.dm"
 #include "code\datums\elements\tiny_mob_hunter.dm"
 #include "code\datums\elements\tool_flash.dm"
-#include "code\datums\elements\tts_speaker.dm"
 #include "code\datums\elements\trait_loc.dm"
+#include "code\datums\elements\tts_speaker.dm"
 #include "code\datums\elements\turf_transparency.dm"
 #include "code\datums\elements\undertile.dm"
 #include "code\datums\elements\unfriend_attacker.dm"
@@ -7011,5 +7011,5 @@
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\sentinel.dm"
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\spitter.dm"
 #include "modular_skyrat\modules\xenos_skyrat_redo\code\xeno_types\warrior.dm"
-#include "voidcrew\modules\whosedrone\WhosDrone.dm"
+//#include "voidcrew\modules\whosedrone\WhosDrone.dm"
 // END_INCLUDE

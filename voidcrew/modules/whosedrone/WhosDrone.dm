@@ -39,8 +39,8 @@ SUBSYSTEM_DEF(Whoscifer_descends)
 /mob/living/simple_animal/drone/whoscifer_drone
 	name = "Whoscifer Drone"
 	desc = "The Whoscifer Drone, the shell of a machine intelligence.."
-	health = 3072
-	maxHealth = 3072
+	health = 300
+	maxHealth = 300
 	status_flags = (CANPUSH | CANKNOCKDOWN)
 	speak_emote = list("skitters")
 	damage_coeff = list(BRUTE = 1, BURN = 0, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
