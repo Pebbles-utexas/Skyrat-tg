@@ -6,6 +6,8 @@
 /obj/item/spacepod_equipment
 	name = "error"
 	icon = 'modular_skyrat/modules/spacepods/icons/parts.dmi'
+	w_class = WEIGHT_CLASS_GIGANTIC
+	flags_1 = CONDUCT_1
 	/// The spacepod we are attached to.
 	var/obj/spacepod/spacepod
 	/// The slot in which we take
@@ -24,10 +26,22 @@
 	return ..()
 
 /obj/item/spacepod_equipment/proc/on_install(obj/spacepod/attaching_spacepod)
+	SHOULD_CALL_PARENT(TRUE)
 	spacepod = attaching_spacepod
 	attaching_spacepod.update_appearance()
 
-/obj/item/spacepod_equipment/proc/on_uninstall(obj/spacepod/detatching_spacepod)
+/**
+ * on uninstall
+ *
+ * Called when some piece of equipment is uninstalled.
+ *
+ * Forced: This should FORCE the uninstall and clear anything required.
+ */
+/obj/item/spacepod_equipment/proc/on_uninstall(obj/spacepod/detatching_spacepod, mob/user, forced)
+	SHOULD_CALL_PARENT(TRUE)
+	if(!forced && !can_uninstall(detatching_spacepod))
+		to_chat(user, span_warning("Unable to uninstall [src]!"))
+		return
 	spacepod = null
 	detatching_spacepod.update_appearance()
 
@@ -43,8 +57,10 @@
  * can_uninstall
  *
  * Basic uninstall handler, place any unique behaviour here, return true or false.
+ *
+ * forced: This will FORCE the item to uninstall
  */
-/obj/item/spacepod_equipment/proc/can_uninstall(obj/spacepod/detatching_spacepod, mob/user)
+/obj/item/spacepod_equipment/proc/can_uninstall(obj/spacepod/detatching_spacepod)
 	return TRUE
 
 
@@ -69,16 +85,17 @@
 	RegisterSignal(attaching_spacepod, COMSIG_MOUSEDROPPED_ONTO, .proc/spacepod_mousedrop)
 	attaching_spacepod.cargo_bays += src
 
-/obj/item/spacepod_equipment/cargo/large/on_uninstall(obj/spacepod/detatching_spacepod)
+/obj/item/spacepod_equipment/cargo/large/on_uninstall(obj/spacepod/detatching_spacepod, mob/user, forced)
 	. = ..()
+	if(forced)
+		unload_cargo()
 	UnregisterSignal(detatching_spacepod, COMSIG_MOUSEDROPPED_ONTO)
 	detatching_spacepod.cargo_bays -= src
 
-/obj/item/spacepod_equipment/cargo/large/can_uninstall(mob/user)
+/obj/item/spacepod_equipment/cargo/large/can_uninstall(obj/spacepod/detatching_spacepod)
 	if(storage)
-		to_chat(user, span_warning("Unload the cargo first!"))
 		return FALSE
-	return ..()
+	return TRUE
 
 /obj/item/spacepod_equipment/cargo/large/proc/unload_cargo()
 	if(storage)
@@ -90,7 +107,7 @@
 	INVOKE_ASYNC(src, .proc/spacepod_mousedrop_async, attaching_spacepod, inserting_item, user)
 
 /obj/item/spacepod_equipment/cargo/large/proc/spacepod_mousedrop_async(obj/spacepod/attaching_spacepod, obj/inserting_item, mob/user)
-	if(user == attaching_spacepod.pilot || (user in attaching_spacepod.passengers))
+	if(attaching_spacepod.check_occupant(user))
 		return FALSE
 	if(istype(inserting_item, storage_type) && attaching_spacepod.Adjacent(inserting_item)) // For loading ore boxes
 		if(!storage)
@@ -116,7 +133,7 @@
 	..()
 	RegisterSignal(attaching_spacepod, COMSIG_MOVABLE_MOVED, .proc/spacepod_moved)
 
-/obj/item/spacepod_equipment/cargo/large/ore/on_uninstall(obj/spacepod/detatching_spacepod)
+/obj/item/spacepod_equipment/cargo/large/ore/on_uninstall(obj/spacepod/detatching_spacepod, mob/user, forced)
 	. = ..()
 	UnregisterSignal(detatching_spacepod, COMSIG_MOVABLE_MOVED)
 
@@ -132,21 +149,25 @@
 	name = "passenger seat"
 	desc = "A passenger seat for a spacepod."
 	icon_state = "sec_cargo_chair"
+	// How many occupant slots this chair adds.
 	var/occupant_mod = 1
+	// What slot we add to
+	var/occupant_slot = SPACEPOD_RIDER_TYPE_PASSENGER
+
 
 /obj/item/spacepod_equipment/cargo/chair/on_install(obj/spacepod/attaching_spacepod)
 	. = ..()
-	attaching_spacepod.max_passengers += occupant_mod
+	attaching_spacepod.occupant_slots[occupant_slot] += occupant_mod
 
-/obj/item/spacepod_equipment/cargo/chair/on_uninstall(obj/spacepod/detatching_spacepod)
+/obj/item/spacepod_equipment/cargo/chair/on_uninstall(obj/spacepod/detatching_spacepod, mob/user, forced)
 	. = ..()
-	detatching_spacepod.max_passengers -= occupant_mod
+	detatching_spacepod.remove_all_riders(forced = forced)
+	detatching_spacepod.occupant_slots[occupant_slot] -= occupant_mod
 
-/obj/item/spacepod_equipment/cargo/chair/can_uninstall(mob/user)
-	if(spacepod.passengers.len > (spacepod.max_passengers - occupant_mod))
-		to_chat(user, span_warning("You can't remove an occupied seat! Remove the occupant first."))
+/obj/item/spacepod_equipment/cargo/chair/can_uninstall(obj/spacepod/detatching_spacepod)
+	if(LAZYLEN(detatching_spacepod.get_all_occupants_by_type(SPACEPOD_RIDER_TYPE_PASSENGER)) > (LAZYLEN(detatching_spacepod.occupant_slots[occupant_slot]) - occupant_mod))
 		return FALSE
-	return ..()
+	return TRUE
 
 /**
  * Weapon Systems
@@ -172,7 +193,7 @@
 	var/fire_delay = 1.5 SECONDS
 	overlay_icon_state = "pod_weapon_laser"
 
-/obj/item/spacepod_equipment/weaponry/on_install(obj/spacepod/attaching_spacepod)
+/obj/item/spacepod_equipment/weaponry/on_install(obj/spacepod/attaching_spacepod, override_slot)
 	. = ..()
 	if(!override_slot)
 		override_slot = pick(attaching_spacepod.get_free_weapon_slots())
@@ -186,12 +207,12 @@
 		playsound(src, 'sound/weapons/gun/general/dry_fire.ogg', 30, TRUE)
 		return
 	if(!spacepod.cell || !spacepod.cell.use(shot_cost))
-		to_chat(usr, span_warning("Insufficient charge to fire the weapons"))
+		to_chat(usr, span_warning("Insufficient charge to fire the weapons!"))
 		playsound(src, 'sound/weapons/gun/general/dry_fire.ogg', 30, TRUE)
 		return
 	spacepod.next_firetime = world.time + fire_delay
-	for(var/I in 1 to burst_fire)
-		addtimer(CALLBACK(src, PROC_REF(actually_fire_weapons), target, x_offset, y_offset), burst_fire_delay * I)
+	for(var/i in 1 to burst_fire)
+		addtimer(CALLBACK(src, PROC_REF(actually_fire_weapons), target, x_offset, y_offset), burst_fire_delay * i)
 
 /**
  * actually fire weapons
@@ -203,33 +224,44 @@
 	playsound(src, fire_sound, 50, TRUE)
 
 /obj/item/spacepod_equipment/weaponry/disabler
-	name = "disabler system"
+	name = "\improper Armadyne S1 Disabler"
 	desc = "A weak disabler system for space pods, fires disabler beams."
 	icon_state = "weapon_taser"
 	projectile_type = /obj/projectile/beam/disabler
-	shot_cost = 400
+	shot_cost = 100
 	fire_sound = 'sound/weapons/taser2.ogg'
 	overlay_icon = 'modular_skyrat/modules/spacepods/icons/pod2x2.dmi'
 	overlay_icon_state = "pod_weapon_disabler"
 
 /obj/item/spacepod_equipment/weaponry/burst_disabler
-	name = "burst disabler system"
+	name = "\improper Armadyne S3 BURST Disabler"
 	desc = "A weak disabler system for space pods, this one fires 3 at a time."
 	icon_state = "weapon_burst_taser"
 	projectile_type = /obj/projectile/beam/disabler
-	shot_cost = 1200
+	shot_cost = 300
 	burst_fire = 3
 	fire_sound = 'sound/weapons/taser2.ogg'
-	fire_delay = 30
+	fire_delay = 3 SECONDS
 	overlay_icon = 'modular_skyrat/modules/spacepods/icons/pod2x2.dmi'
 	overlay_icon_state = "pod_weapon_disabler"
 
 /obj/item/spacepod_equipment/weaponry/laser
-	name = "laser system"
+	name = "\improper Armadyne MK1 'Photon Cannon' Laser System"
 	desc = "A weak laser system for space pods, fires concentrated bursts of energy."
 	icon_state = "weapon_laser"
 	projectile_type = /obj/projectile/beam/laser
+	shot_cost = 200
+	fire_sound = 'sound/weapons/Laser.ogg'
+	overlay_icon = 'modular_skyrat/modules/spacepods/icons/pod2x2.dmi'
+	overlay_icon_state = "pod_weapon_laser"
+
+/obj/item/spacepod_equipment/weaponry/burst_laser
+	name = "\improper Armadyne MK1 'Photon Cannon' Burst Laser System"
+	desc = "A weak laser system for space pods, fires concentrated bursts of energy. This one fires 3 at once."
+	icon_state = "weapon_laser"
+	projectile_type = /obj/projectile/beam/laser
 	shot_cost = 600
+	burst_fire = 3
 	fire_sound = 'sound/weapons/Laser.ogg'
 	overlay_icon = 'modular_skyrat/modules/spacepods/icons/pod2x2.dmi'
 	overlay_icon_state = "pod_weapon_laser"
@@ -262,21 +294,21 @@
 
 // MINING LASERS
 /obj/item/spacepod_equipment/weaponry/basic_pod_ka
-	name = "weak kinetic accelerator"
+	name = "\improper MINEALOT 'Basic' Kinetic Accelerator"
 	desc = "A weak kinetic accelerator for space pods, fires bursts of energy that cut through rock."
 	icon_state = "pod_taser"
 	projectile_type = /obj/projectile/kinetic/pod
-	shot_cost = 300
-	fire_delay = 14
+	shot_cost = 50
+	fire_delay = 1.4 SECONDS
 	fire_sound = 'sound/weapons/Kenetic_accel.ogg'
 
 /obj/item/spacepod_equipment/weaponry/pod_ka
-	name = "kinetic accelerator system"
+	name = "\improper MINEALOT 'Better' Kinetic Accelerator"
 	desc = "A kinetic accelerator system for space pods, fires bursts of energy that cut through rock."
 	icon_state = "pod_m_laser"
 	projectile_type = /obj/projectile/kinetic/pod/regular
-	shot_cost = 250
-	fire_delay = 10
+	shot_cost = 50
+	fire_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/Kenetic_accel.ogg'
 
 /obj/projectile/kinetic/pod
@@ -287,23 +319,59 @@
 	pressure_decrease = 0.5
 
 /obj/item/spacepod_equipment/weaponry/plasma_cutter
-	name = "plasma cutter system"
+	name = "\improper SEEGSON MK1 Plasma Cutter"
 	desc = "A plasma cutter system for space pods. It is capable of expelling concentrated plasma bursts to mine or cut off xeno limbs!"
 	icon_state = "pod_p_cutter"
 	projectile_type = /obj/projectile/plasma
-	shot_cost = 250
-	fire_delay = 10
+	shot_cost = 150
+	fire_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/plasma_cutter.ogg'
 	overlay_icon = 'modular_skyrat/modules/spacepods/icons/pod2x2.dmi'
 	overlay_icon_state = "pod_weapon_plasma"
 
 /obj/item/spacepod_equipment/weaponry/plasma_cutter/adv
-	name = "enhanced plasma cutter system"
+	name = "\improper SEEGSON MK2 Plasma Cutter"
 	desc = "An enhanced plasma cutter system for space pods. It is capable of expelling concentrated plasma bursts to mine or cut off xeno faces!"
 	icon_state = "pod_ap_cutter"
 	projectile_type = /obj/projectile/plasma/adv
-	shot_cost = 200
-	fire_delay = 8
+	shot_cost = 50
+	fire_delay = 0.5 SECONDS
+
+
+/obj/item/spacepod_equipment/weaponry/railgun
+	name = "\improper Armadyne R-44 'Penetrator' Railgun"
+	desc = "A magnetic acceleration apparatus capable of firing projectiles at insane speeds."
+	icon_state = "weapon_railgun"
+	projectile_type = /obj/projectile/railgun
+	shot_cost = 1000
+	fire_delay = 10 SECONDS
+	fire_sound = 'modular_skyrat/modules/spacepods/sound/railgun.ogg'
+
+/obj/projectile/railgun
+	name = "railgun projectile"
+
+/obj/item/spacepod_equipment/weaponry/rocket_launcher
+	name = "\improper Armadyne 'STRATOS' Rocket Launcher"
+	desc = "A basic rocket launcher that fires basic rockets."
+	icon_state = "weapon_launcher"
+	projectile_type = /obj/physics_rocket
+	shot_cost = 2000
+	fire_delay = 10 SECONDS
+	fire_sound = 'sound/weapons/gun/general/rocket_launch.ogg'
+
+/obj/item/spacepod_equipment/weaponry/rocket_launcher/fire_weapon(target, x_offset, y_offset)
+	var/turf/our_turf = get_turf(spacepod)
+	new projectile_type(our_turf, start_angle = spacepod.component_angle, start_velocity_x = spacepod.component_velocity_x, start_velocity_y = spacepod.component_velocity_x, start_offset_x = x_offset, start_offset_y = y_offset, target_to_set = target, incoming_firer = spacepod)
+
+/obj/item/spacepod_equipment/weaponry/missile_launcher
+	name = "\improper Armadyne 'ANGELFALL' Missile Launcher"
+	desc = "A target locking missile launcher."
+	icon_state = "pod_launcher"
+	projectile_type = /obj/physics_missile
+	shot_cost = 4000
+	fire_delay = 12 SECONDS
+	fire_sound = 'sound/weapons/gun/general/rocket_launch.ogg'
+
 
 /**
  * Thruster Types
@@ -330,7 +398,7 @@
 	SEND_SIGNAL(attaching_spacepod, COMSIG_PHYSICS_SET_MAX_THRUST, thrust_power_forwards, thrust_power_backwards, thrust_power_sideways)
 	SEND_SIGNAL(attaching_spacepod, COMSIG_PHYSICS_SET_MAX_THRUST_VELOCITY, max_velocity)
 
-/obj/item/spacepod_equipment/thruster/on_uninstall(obj/spacepod/detatching_spacepod)
+/obj/item/spacepod_equipment/thruster/on_uninstall(obj/spacepod/detatching_spacepod, mob/user, forced)
 	. = ..()
 	SEND_SIGNAL(detatching_spacepod, COMSIG_PHYSICS_SET_MAX_THRUST, 0, 0, 0)
 	SEND_SIGNAL(detatching_spacepod, COMSIG_PHYSICS_SET_MAX_THRUST_VELOCITY, 0)
@@ -369,14 +437,14 @@
  */
 
 /obj/item/spacepod_equipment/lights
-	name = "pod light system"
+	name = "\improper SEETECH Light System"
 	desc = "Lights for a spacepod, they allow you to see where you are going. In theory."
 	icon_state = "lights"
 	slot = SPACEPOD_SLOT_LIGHT
 	/// The color of the light
 	var/color_to_set = COLOR_WHITE
 
-/obj/item/spacepod_equipment/thruster/on_uninstall(obj/spacepod/detatching_spacepod)
+/obj/item/spacepod_equipment/thruster/on_uninstall(obj/spacepod/detatching_spacepod, mob/user, forced)
 	. = ..()
 	detatching_spacepod.set_light_on(FALSE)
 
@@ -393,7 +461,7 @@
 	color_to_set = COLOR_RED
 
 /obj/item/spacepod_equipment/lights/custom
-	name = "custom pod light system"
+	name = "\improper SEETECH Custom Light System"
 	desc = "Lights for a spacepod, you can use a screwdriver on this to change the color of the lights."
 
 /obj/item/spacepod_equipment/lights/custom/screwdriver_act(mob/living/user, obj/item/tool)
@@ -414,10 +482,19 @@
 	icon_state = "pod_locator"
 
 /obj/item/spacepod_equipment/teleport
-	name = "quantum entangloporter"
+	name = "\improper SEEGSON Quantum Entangloporter"
 	desc = "Enables faster than light travel using a quantum entangloporter."
 	icon_state = "cargo_blank"
-	slot = SPACEPOD_SLOT_MISC
+
+/obj/item/spacepod_equipment/rcs_upgrade
+	name = "\improper RCS Vector Thrust Modulator"
+	desc = "Enables better control of the spacepod by allowing constant RCS course corrections."
+	icon_state = "cargo_blank"
+
+/obj/item/spacepod_equipment/flare
+	name = "\improper Decoy Flare System"
+	desc = "Deploys flares that can decoy missiles."
+	icon_state = "cargo_blank"
 
 /**
  * Lock Systems
@@ -431,7 +508,7 @@
 	..()
 	RegisterSignal(attaching_spacepod, COMSIG_PARENT_ATTACKBY, .proc/spacepod_attackby)
 
-/obj/item/spacepod_equipment/lock/on_uninstall(obj/spacepod/detatching_spacepod)
+/obj/item/spacepod_equipment/lock/on_uninstall(obj/spacepod/detatching_spacepod, mob/user, forced)
 	. = ..()
 	UnregisterSignal(detatching_spacepod, COMSIG_PARENT_ATTACKBY)
 	detatching_spacepod.locked = FALSE
@@ -443,7 +520,7 @@
 
 // Key and Tumbler System
 /obj/item/spacepod_equipment/lock/keyed
-	name = "spacepod tumbler lock"
+	name = "\improper Sasterlock Tumbler Locking System"
 	desc = "A locking system to stop podjacking. This version uses a standalone key."
 	icon_state = "lock_tumbler"
 	/// Our unique ID identifier, to prevent duplicate locks.
