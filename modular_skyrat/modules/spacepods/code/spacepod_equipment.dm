@@ -25,9 +25,17 @@
 
 /obj/item/spacepod_equipment/proc/on_install(obj/spacepod/attaching_spacepod)
 	spacepod = attaching_spacepod
+<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
+=======
+	attaching_spacepod.update_appearance()
+>>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 
 /obj/item/spacepod_equipment/proc/on_uninstall(obj/spacepod/detatching_spacepod)
 	spacepod = null
+<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
+=======
+	detatching_spacepod.update_appearance()
+>>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 
 /**
  * can_install
@@ -172,7 +180,14 @@
 
 /obj/item/spacepod_equipment/weaponry/on_install(obj/spacepod/attaching_spacepod)
 	. = ..()
+<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 	attaching_spacepod.update_icon()
+=======
+	if(!override_slot)
+		override_slot = pick(attaching_spacepod.get_free_weapon_slots())
+	attaching_spacepod.equipment[SPACEPOD_SLOT_WEAPON][src] = override_slot
+	attaching_spacepod.update_appearance()
+>>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 
 
 /obj/item/spacepod_equipment/weaponry/proc/fire_weapon(target, x_offset, y_offset)
@@ -229,6 +244,35 @@
 	overlay_icon = 'modular_skyrat/modules/spacepods/icons/pod2x2.dmi'
 	overlay_icon_state = "pod_weapon_laser"
 
+<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
+=======
+
+/obj/item/spacepod_equipment/weaponry/pulse
+	name = "\improper NT-9 'Pulse' Disruptor"
+	desc = "An incredibly powerful pulse weapon system for pods, fires concentrated impulse rounds."
+	icon_state = "weapon_pulse"
+	projectile_type = /obj/projectile/beam/pulse
+	shot_cost = 1000
+	fire_delay = 2 SECONDS
+	fire_sound = 'modular_skyrat/modules/aesthetics/guns/sound/pulse.ogg'
+	overlay_icon = 'modular_skyrat/modules/spacepods/icons/pod2x2.dmi'
+	overlay_icon_state = "pod_weapon_pulse"
+
+/obj/item/spacepod_equipment/weaponry/pulse/adminbuse
+	fire_delay = 0.1 SECONDS
+
+/obj/item/spacepod_equipment/weaponry/fiftycal
+	name = "\improper 50 Caliber Machine Gun"
+	desc = "It shoots really fucking big rounds."
+	icon_state = "weapon_railgun"
+	projectile_type = /obj/projectile/bullet/a50ae
+	shot_cost = 1000
+	fire_delay = 0.5 SECONDS
+	fire_sound = 'modular_skyrat/modules/spacepods/sound/fiftycal.ogg'
+	overlay_icon = 'modular_skyrat/modules/spacepods/icons/pod2x2.dmi'
+	overlay_icon_state = "pod_weapon_railgun"
+
+>>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 // MINING LASERS
 /obj/item/spacepod_equipment/weaponry/basic_pod_ka
 	name = "weak kinetic accelerator"
@@ -281,6 +325,7 @@
  */
 
 /obj/item/spacepod_equipment/thruster
+<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 	name = "pod thruster system"
 	desc = "The engine system for a spacepod, makes the pod go."
 	icon_state = "thrusters"
@@ -289,17 +334,35 @@
 	var/max_forward_speed = 3
 	/// The max speed that the pod can move backwards. In tiles per second.
 	var/max_backwards_speed = 1.5
+=======
+	name = "\improper Rolls-Royce RS-200 Sublight Thrusters"
+	desc = "The R-200 series of sublight thrusters are as basic as you can get, they aren't very fast."
+	icon_state = "engine_basic"
+	slot = SPACEPOD_SLOT_THRUSTER
+	/// The max speed that the pod can move forwards. In tiles per second.
+	var/thrust_power_forwards = 2
+	/// The max speed that the pod can move backwards. In tiles per second.
+	var/thrust_power_backwards = 1
+>>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 	/// The max speed that the pod can move sidways. In tiles per second.
-	var/max_sideways_speed = 0.5
+	var/thrust_power_sideways = 0.5
+	/// The max velocity we can go at. In tiles per second.
+	var/max_velocity = 6
 
 /obj/item/spacepod_equipment/thruster/on_install(obj/spacepod/attaching_spacepod)
 	. = ..()
+<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 	attaching_spacepod.forward_maxthrust = max_forward_speed
 	attaching_spacepod.backward_maxthrust = max_backwards_speed
 	attaching_spacepod.side_maxthrust = max_sideways_speed
+=======
+	SEND_SIGNAL(attaching_spacepod, COMSIG_PHYSICS_SET_MAX_THRUST, thrust_power_forwards, thrust_power_backwards, thrust_power_sideways)
+	SEND_SIGNAL(attaching_spacepod, COMSIG_PHYSICS_SET_MAX_THRUST_VELOCITY, max_velocity)
+>>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 
 /obj/item/spacepod_equipment/thruster/on_uninstall(obj/spacepod/detatching_spacepod)
 	. = ..()
+<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepod_equipment.dm
 	detatching_spacepod.forward_maxthrust = 0
 	detatching_spacepod.backward_maxthrust = 0
 	detatching_spacepod.side_maxthrust = 0
@@ -311,6 +374,38 @@
 	max_backwards_speed = 2
 	max_sideways_speed = 1
 
+=======
+	SEND_SIGNAL(detatching_spacepod, COMSIG_PHYSICS_SET_MAX_THRUST, 0, 0, 0)
+	SEND_SIGNAL(detatching_spacepod, COMSIG_PHYSICS_SET_MAX_THRUST_VELOCITY, 0)
+
+/obj/item/spacepod_equipment/thruster/upgraded
+	name = "\improper Rolls-Royce RS-400 Sublight Thrusters"
+	desc = "The R-400 series of sublight thrusters provide a slightly better power output of the smaller R-200 series."
+	icon_state = "engine_upgraded"
+	thrust_power_forwards = 4
+	thrust_power_backwards = 2
+	thrust_power_sideways = 1
+	max_velocity = 8
+
+/obj/item/spacepod_equipment/thruster/advanced
+	name = "\improper SAB-R Mark 9 Superlight Impulse Thrust System"
+	desc = "These bad boys make your shuttle go really really fast."
+	icon_state = "engine_advanced"
+	thrust_power_forwards = 6
+	thrust_power_backwards = 3
+	thrust_power_sideways = 2
+	max_velocity = 10
+
+/obj/item/spacepod_equipment/thruster/ultimate
+	name = "\improper Valkyrie Mark X Bluespace Thruster System"
+	desc = "These bad boys make your shuttle go STUPIDLY FAST."
+	icon_state = "engine_bluespace"
+	thrust_power_forwards = 8
+	thrust_power_backwards = 4
+	thrust_power_sideways = 4
+	max_velocity = 20
+
+>>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/spacepods/spacepod_equipment.dm
 /**
  * Lights
  *
