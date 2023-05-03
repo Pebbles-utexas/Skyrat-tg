@@ -52,6 +52,58 @@
 	icon_state = "pod_synd"
 	spacepod_armor_type = /obj/item/pod_parts/armor/security/red
 
+
+/obj/spacepod/prebuilt/military
+	name = "military pod"
+	icon_state = "pod_mil"
+	spacepod_armor_type = /obj/item/pod_parts/armor/security
+	cell_type = /obj/item/stock_parts/cell/hyper
+	equipment_types = list(
+		/obj/item/spacepod_equipment/thruster/upgraded,
+		/obj/item/spacepod_equipment/weaponry/burst_disabler,
+		/obj/item/spacepod_equipment/cargo,
+		/obj/item/spacepod_equipment/lock/keyed/military,
+		/obj/item/spacepod_equipment/cargo/chair,
+		/obj/item/spacepod_equipment/teleport,
+		/obj/item/spacepod_equipment/lights/military,
+		)
+
+/obj/spacepod/prebuilt/sooked_up
+	name = "sooked up pod"
+	icon_state = "pod_mil"
+	spacepod_armor_type = /obj/item/pod_parts/armor/security
+	cell_type = /obj/item/stock_parts/cell/bluespace
+	equipment_types = list(
+		/obj/item/spacepod_equipment/thruster/advanced,
+		/obj/item/spacepod_equipment/rcs_upgrade,
+		/obj/item/spacepod_equipment/weaponry/burst_laser,
+		/obj/item/spacepod_equipment/weaponry/pulse,
+		/obj/item/spacepod_equipment/cargo,
+		/obj/item/spacepod_equipment/lock/keyed/military,
+		/obj/item/spacepod_equipment/cargo/chair,
+		/obj/item/spacepod_equipment/teleport,
+		/obj/item/spacepod_equipment/lights/military,
+		/obj/item/spacepod_equipment/flare,
+		)
+
+/obj/spacepod/prebuilt/adminbuse
+	name = "admin bus"
+	icon_state = "pod_mil"
+	spacepod_armor_type = /obj/item/pod_parts/armor/security
+	cell_type = /obj/item/stock_parts/cell/infinite
+	equipment_types = list(
+		/obj/item/spacepod_equipment/thruster/ultimate,
+		/obj/item/spacepod_equipment/rcs_upgrade,
+		/obj/item/spacepod_equipment/weaponry/fiftycal,
+		/obj/item/spacepod_equipment/weaponry/pulse/adminbuse,
+		/obj/item/spacepod_equipment/cargo,
+		/obj/item/spacepod_equipment/lock/keyed/military,
+		/obj/item/spacepod_equipment/cargo/chair,
+		/obj/item/spacepod_equipment/teleport,
+		/obj/item/spacepod_equipment/lights/military,
+		/obj/item/spacepod_equipment/flare,
+		)
+
 /obj/spacepod/random
 	icon = 'modular_skyrat/modules/spacepods/icons/pod2x2.dmi'
 	icon_state = "pod_civ"
