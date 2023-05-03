@@ -45,50 +45,11 @@
 	/// Last rotation value for the atom
 	var/last_rotate = 0
 	/// Our maximum velocity_x in tiles per second
-	var/max_velocity_x = DEFAULT_MAX_VELOCITY
+	var/max_velocity_x = INFINITY
 	/// Our maximum velocity_y in tiles per second
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepods/physics_component.dm
 	var/max_velocity_y = INFINITY
 
 
-=======
-	var/max_velocity_y = DEFAULT_MAX_VELOCITY
-	/// The maximum velocity the thrusters can push us to, this does not prevent the atom going faster through other means though.
-	var/max_thrust_velocity = DEFAULT_MAX_THRUST_VELOCITY
-	/// Do we require a thrust check?
-	var/thrust_check_required = TRUE
-	/// Do we require a stabilistaion check?
-	var/stabilisation_check_required = TRUE
-	/// Do we reset thrust dir each cycle?
-	var/reset_thrust_dir = TRUE
-	/// Do we skip angular momentum calculations and just set the angle?
-	var/skip_angular_calculations = FALSE
-	/// What directions did we fail to move in last cycle?
-	var/last_failed_dirs = NONE
-	/// Is the component currently sleeping, and not processing?
-	var/sleeping = FALSE
-	/// DO we take damage while in an atmosphere?
-	var/takes_atmos_damage = TRUE
-
-
-/datum/component/physics/Initialize(
-	_forward_maxthrust,
-	_backward_maxthrust,
-	_side_maxthrust,
-	_max_angular_acceleration,
-	_max_velocity_x,
-	_max_velocity_y,
-	_thrust_check_required = TRUE,
-	_stabilisation_check_required = TRUE,
-	_reset_thrust_dir = TRUE,
-	_skip_angular_calculations = FALSE,
-	starting_angle,
-	starting_velocity_x,
-	starting_velocity_y,
-	_takes_atmos_damage = TRUE,
-	_max_thrust_velocity,
-	)
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/physics/physics_component.dm
 
 /datum/component/physics/Initialize(_forward_maxthrust, _backward_maxthrust, _side_maxthrust, _max_angular_acceleration, _max_velocity_x, _max_velocity_y)
 	// We can only control movable atoms.
@@ -107,8 +68,6 @@
 		max_velocity_x = max_velocity_x
 	if(_max_velocity_y)
 		max_velocity_y = _max_velocity_y
-	if(_max_thrust_velocity)
-		max_thrust_velocity = _max_thrust_velocity
 
 	parent_atom = parent
 
@@ -123,12 +82,6 @@
 	RegisterSignal(parent, COMSIG_PHYSICS_SET_DESIRED_ANGLE, PROC_REF(set_desired_angle))
 	RegisterSignal(parent, COMSIG_PHYSICS_SET_ANGLE, PROC_REF(set_angle))
 	RegisterSignal(parent, COMSIG_PHYSICS_SET_VELOCITY, PROC_REF(set_velocity))
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepods/physics_component.dm
-=======
-	RegisterSignal(parent, COMSIG_PHYSICS_SET_MAX_VELOCITY, PROC_REF(set_max_velocity))
-	RegisterSignal(parent, COMSIG_PHYSICS_SET_MAX_THRUST, PROC_REF(set_max_thrust))
-	RegisterSignal(parent, COMSIG_PHYSICS_SET_MAX_THRUST_VELOCITY, PROC_REF(set_max_thrust_velocity))
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/physics/physics_component.dm
 	RegisterSignal(parent, COMSIG_ATOM_BUMPED, PROC_REF(process_bumped))
 	RegisterSignal(parent, COMSIG_MOVABLE_BUMP, PROC_REF(process_bump))
 
@@ -139,12 +92,6 @@
 		COMSIG_PHYSICS_SET_DESIRED_ANGLE,
 		COMSIG_PHYSICS_SET_ANGLE,
 		COMSIG_PHYSICS_SET_VELOCITY,
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepods/physics_component.dm
-=======
-		COMSIG_PHYSICS_SET_MAX_VELOCITY,
-		COMSIG_PHYSICS_SET_MAX_THRUST,
-		COMSIG_PHYSICS_SET_MAX_THRUST_VELOCITY,
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/physics/physics_component.dm
 		COMSIG_ATOM_BUMPED,
 		COMSIG_MOVABLE_BUMP,
 		))
@@ -156,20 +103,6 @@
 
 /datum/component/physics/process(delta_time)
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepods/physics_component.dm
-=======
-/obj/effect/temp_visual/turf_visual
-	icon = 'modular_skyrat/modules/spacepods/icons/objects.dmi'
-	icon_state = "turf_test"
-	duration = 0.5 SECONDS
-
-/datum/component/physics/process(seconds_per_tick)
-	if(QDELETED(parent_atom))
-		STOP_PROCESSING(SSphysics, src)
-		return
-	if(sleeping)
-		return
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/physics/physics_component.dm
 	// Initialization of variables for position and angle calculations
 	var/last_offset_x = offset_x
 	var/last_offset_y = offset_y
@@ -265,28 +198,6 @@
 				offset_y = 0
 	parent_atom.dir = NORTH
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepods/physics_component.dm
-=======
-	update_sprite(seconds_per_tick, last_angle, last_offset_x, last_offset_y)
-
-	if(reset_thrust_dir)
-		desired_thrust_dir = 0
-
-	if(!velocity_x && !velocity_y && !angular_velocity)
-		last_thrust_forward = 0
-		last_thrust_right = 0
-		pause()
-
-	SEND_SIGNAL(src, COMSIG_PHYSICS_UPDATE_MOVEMENT, angle, velocity_x, velocity_y, offset_x, offset_y, last_rotate, last_thrust_forward, last_thrust_right)
-
-
-/**
- * update_sprite
- *
- * Updates the controlled atoms sprite according to specification of the current physics cycle.
- */
-/datum/component/physics/proc/update_sprite(seconds_per_tick, last_angle, last_offset_x, last_offset_y)
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/physics/physics_component.dm
 	var/matrix/mat_from = new()
 	var/matrix/mat_to = new()
 	if(icon_dir_num == 1)
@@ -446,18 +357,8 @@ if(SEND_SIGNAL(src, COMSIG_PHYSICS_AUTOSTABALISE_CHECK) & COMPONENT_PHYSICS_AUTO
 		total_thrust_y -= side_y * side_maxthrust
 		last_thrust_right = -side_maxthrust
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepods/physics_component.dm
 	if(!(SEND_SIGNAL(src, COMSIG_PHYSICS_THRUST_CHECK, total_thrust_x, total_thrust_y, desired_thrust_dir, delta_time) & COMPONENT_PHYSICS_THRUST))
 		return
-=======
-	if(thrust_check_required && !(SEND_SIGNAL(src, COMSIG_PHYSICS_THRUST_CHECK, total_thrust_x, total_thrust_y, desired_thrust_dir, seconds_per_tick) & COMPONENT_PHYSICS_THRUST))
-		last_thrust_right = 0
-		last_thrust_forward = 0
-	else
-		// Calculate the adjusted thrust for both X and Y axes and clamp it within the maximum and minimum allowed limits
-		velocity_x = min(max(velocity_x + (total_thrust_x * seconds_per_tick), -max_thrust_velocity), max_thrust_velocity)
-		velocity_y = min(max(velocity_y + (total_thrust_y * seconds_per_tick), -max_thrust_velocity), max_thrust_velocity)
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/physics/physics_component.dm
 
 	// Update velocity based on the calculated thrust and delta_time
 	velocity_x += total_thrust_x * delta_time
@@ -483,27 +384,6 @@ if(SEND_SIGNAL(src, COMSIG_PHYSICS_AUTOSTABALISE_CHECK) & COMPONENT_PHYSICS_AUTO
 	velocity_x = new_velocity_x
 	velocity_y = new_velocity_y
 
-<<<<<<< HEAD:modular_skyrat/modules/spacepods/code/spacepods/physics_component.dm
-=======
-/datum/component/physics/proc/set_max_velocity(datum/source, new_max_velocity_x, new_max_velocity_y)
-	SIGNAL_HANDLER
-	wake_up()
-	max_velocity_x = new_max_velocity_x
-	max_velocity_y = new_max_velocity_y
-
-/datum/component/physics/proc/set_max_thrust(datum/source, new_forward_maxthrust, new_backward_maxthrust, new_side_maxthrust)
-	SIGNAL_HANDLER
-	wake_up()
-	forward_maxthrust = new_forward_maxthrust
-	backward_maxthrust = new_backward_maxthrust
-	side_maxthrust = new_side_maxthrust
-
-/datum/component/physics/proc/set_max_thrust_velocity(datum/source, new_max_thrust_velocity)
-	SIGNAL_HANDLER
-	wake_up()
-	max_thrust_velocity = new_max_thrust_velocity
-
->>>>>>> spaceballs:modular_skyrat/modules/spacepods/code/physics/physics_component.dm
 /datum/component/physics/proc/process_bumped(datum/source, atom/movable/hit_object)
 	SIGNAL_HANDLER
 	if(hit_object.dir & NORTH)
