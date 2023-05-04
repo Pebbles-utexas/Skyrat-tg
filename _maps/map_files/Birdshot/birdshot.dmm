@@ -2509,9 +2509,6 @@
 /area/station/security/prison/mess)
 "bhG" = (
 /obj/effect/turf_decal/siding/wood,
-/mob/living/simple_animal/hostile/russian/ranged{
-	loot = null
-	},
 /turf/open/floor/wood,
 /area/station/service/abandoned_gambling_den)
 "bhI" = (
@@ -13736,6 +13733,7 @@
 	dir = 5;
 	network = list("ss13","engineering")
 	},
+/obj/machinery/atmospherics/miner/plasma,
 /turf/open/floor/engine/plasma,
 /area/station/engineering/atmos)
 "ftX" = (
@@ -16505,6 +16503,7 @@
 	dir = 5;
 	network = list("ss13","engineering")
 	},
+/obj/machinery/atmospherics/miner/nitrogen,
 /turf/open/floor/engine/n2,
 /area/station/engineering/atmos)
 "gsf" = (
@@ -16566,6 +16565,7 @@
 	dir = 5;
 	network = list("ss13","engineering")
 	},
+/obj/machinery/atmospherics/miner/oxygen,
 /turf/open/floor/engine/o2,
 /area/station/engineering/atmos)
 "gtJ" = (
@@ -19205,10 +19205,6 @@
 /area/station/ai_monitored/command/nuke_storage)
 "hkY" = (
 /obj/machinery/atmospherics/pipe/smart/simple/purple/visible,
-/obj/machinery/airalarm/mixingchamber{
-	dir = 4;
-	pixel_x = 25
-	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/freezerchamber)
 "hlg" = (
@@ -37318,9 +37314,6 @@
 /area/station/maintenance/department/science/xenobiology)
 "nIu" = (
 /obj/structure/chair/stool/directional/west,
-/mob/living/simple_animal/hostile/russian/ranged{
-	loot = null
-	},
 /turf/open/floor/carpet/orange,
 /area/station/service/abandoned_gambling_den)
 "nIC" = (
@@ -37580,10 +37573,6 @@
 "nOz" = (
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/airalarm/mixingchamber{
-	dir = 4;
-	pixel_x = 25
-	},
 /turf/open/floor/iron/dark,
 /area/station/science/ordnance/burnchamber)
 "nOI" = (
@@ -53392,10 +53381,6 @@
 /area/station/science/cytology)
 "sYf" = (
 /obj/machinery/atmospherics/pipe/smart/simple/green/visible,
-/obj/machinery/airalarm/engine{
-	dir = 8;
-	pixel_x = -24
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -67241,6 +67226,7 @@
 	dir = 4;
 	name = "Gas to Filter"
 	},
+/obj/machinery/airalarm/directional/north,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter)
 "xmd" = (
