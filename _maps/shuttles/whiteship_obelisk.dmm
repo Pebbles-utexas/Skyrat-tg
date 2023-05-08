@@ -397,7 +397,6 @@
 	},
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/structure/cable,
-/obj/machinery/chem_dispenser,
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/bridge)
 "dF" = (
