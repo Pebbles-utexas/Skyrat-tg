@@ -17,6 +17,7 @@
 "ag" = (
 /obj/machinery/atmospherics/pipe/smart/simple/cyan/visible,
 /obj/machinery/meter,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "aj" = (
@@ -99,17 +100,15 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/door/firedoor,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "be" = (
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "bf" = (
-/obj/machinery/power/shuttle_engine/heater{
+/obj/machinery/power/shuttle_engine/propulsion/left{
 	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
@@ -437,16 +436,14 @@
 /turf/open/floor/glass/reinforced,
 /area/shuttle/abandoned/crew)
 "eo" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
+/obj/structure/window/reinforced{
+	dir = 4
 	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
+/obj/machinery/power/shuttle_engine/heater{
+	dir = 8
 	},
-/obj/machinery/power/bluespace_minerII,
-/obj/structure/cable,
-/turf/open/floor/wood,
-/area/shuttle/abandoned/cargo)
+/turf/open/floor/plating,
+/area/shuttle/abandoned/engine)
 "ep" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 1
@@ -490,6 +487,7 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/warm/directional/east,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "eL" = (
@@ -543,11 +541,8 @@
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/engine)
 "fl" = (
-/obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
+/obj/machinery/power/bluespace_minerII,
+/turf/open/floor/iron/dark,
 /area/shuttle/abandoned/cargo)
 "fp" = (
 /turf/open/floor/engine/air,
@@ -606,6 +601,7 @@
 "gn" = (
 /obj/machinery/space_heater,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "gr" = (
@@ -630,7 +626,8 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/poddoor{
-	id = "whiteship_BridgeW"
+	id = "whiteship_BridgeW";
+	state_open = 1
 	},
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/bridge)
@@ -669,6 +666,7 @@
 "gN" = (
 /obj/structure/closet/emcloset/anchored,
 /obj/machinery/airalarm/directional/east,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "gO" = (
@@ -701,6 +699,7 @@
 "gX" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "gZ" = (
@@ -813,6 +812,7 @@
 "ie" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "if" = (
@@ -896,10 +896,8 @@
 /turf/open/floor/carpet/blue,
 /area/shuttle/abandoned/bridge)
 "iQ" = (
-/obj/machinery/power/shuttle_engine/huge{
-	dir = 8
-	},
-/turf/template_noop,
+/obj/structure/cable,
+/turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "iR" = (
 /obj/effect/turf_decal/tile/blue/fourcorners,
@@ -931,6 +929,12 @@
 /obj/effect/turf_decal/tile/purple/opposingcorners,
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/medbay)
+"jg" = (
+/obj/machinery/power/shuttle_engine/propulsion/right{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/shuttle/abandoned/engine)
 "jh" = (
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
@@ -988,6 +992,7 @@
 /obj/machinery/power/rtg/advanced,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/firealarm/directional/east,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "jX" = (
@@ -1048,8 +1053,12 @@
 /turf/open/floor/circuit/red,
 /area/shuttle/abandoned/medbay)
 "kF" = (
-/turf/template_noop,
-/area/shuttle/abandoned/engine)
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/shuttle/abandoned/cargo)
 "kH" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron/dark,
@@ -1423,7 +1432,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
 	},
-/obj/machinery/rnd/production/protolathe/department/engineering,
+/obj/machinery/rnd/production/techfab/department/engineering,
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/engine)
 "oh" = (
@@ -1633,20 +1642,20 @@
 /turf/open/floor/carpet/blue,
 /area/shuttle/abandoned/bridge)
 "qy" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
-/obj/structure/cable,
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
 /turf/open/floor/engine,
-/area/shuttle/abandoned/engine)
+/area/shuttle/abandoned/cargo)
 "qC" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
+/obj/machinery/power/shuttle_engine/heater{
 	dir = 8
 	},
-/obj/structure/table/reinforced,
-/obj/item/clothing/glasses/meson/engine,
-/obj/item/clothing/suit/utility/radiation,
-/obj/item/clothing/head/utility/radiation,
-/obj/item/geiger_counter,
-/turf/open/floor/iron/dark,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "qK" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -1654,6 +1663,7 @@
 /area/shuttle/abandoned/crew)
 "qQ" = (
 /obj/structure/closet/crate,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "qS" = (
@@ -1694,6 +1704,7 @@
 /obj/machinery/atmospherics/components/binary/valve,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/warm/directional/east,
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/shuttle/abandoned/engine)
 "rj" = (
@@ -1761,7 +1772,7 @@
 /obj/structure/window/reinforced,
 /obj/machinery/computer/cargo/express{
 	dir = 8;
-	podType = /obj/structure/closet/supplypod/bluespace
+	podType = /obj/structure/closet/supplypod/podspawn
 	},
 /turf/open/floor/carpet/blue,
 /area/shuttle/abandoned/bridge)
@@ -1775,6 +1786,7 @@
 /area/shuttle/abandoned/cargo)
 "rV" = (
 /obj/machinery/firealarm/directional/west,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "rW" = (
@@ -1816,6 +1828,7 @@
 /area/shuttle/abandoned/crew)
 "sj" = (
 /obj/machinery/light/warm/directional/south,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "sl" = (
@@ -1908,6 +1921,7 @@
 /area/shuttle/abandoned/crew)
 "sU" = (
 /obj/machinery/portable_atmospherics/canister/air,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "sY" = (
@@ -2054,6 +2068,7 @@
 /area/shuttle/abandoned/crew)
 "un" = (
 /obj/structure/closet/emcloset/anchored,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "uq" = (
@@ -2072,6 +2087,7 @@
 "uv" = (
 /obj/structure/closet/crate,
 /obj/machinery/light/warm/directional/east,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "ux" = (
@@ -2103,6 +2119,7 @@
 	dir = 4;
 	name = "Air to Distro"
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "uK" = (
@@ -2318,6 +2335,7 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/supply/hidden{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "wv" = (
@@ -2410,7 +2428,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/poddoor/shutters{
-	id = "Whiteship_dorm3"
+	id = "Whiteship_dorm3";
+	state_open = 1
 	},
 /turf/open/floor/carpet/orange,
 /area/shuttle/abandoned/crew)
@@ -2499,6 +2518,7 @@
 /area/shuttle/abandoned/medbay)
 "yk" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/cyan/visible,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "yl" = (
@@ -2524,6 +2544,7 @@
 	},
 /obj/structure/fans/tiny,
 /obj/machinery/door/firedoor,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "yp" = (
@@ -2554,6 +2575,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/engine)
 "yM" = (
@@ -2800,7 +2822,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/poddoor/shutters{
-	id = "Whiteship_dorm4"
+	id = "Whiteship_dorm4";
+	state_open = 1
 	},
 /turf/open/floor/carpet/orange,
 /area/shuttle/abandoned/crew)
@@ -2980,6 +3003,7 @@
 /obj/machinery/power/port_gen/pacman/pre_loaded,
 /obj/item/stack/sheet/mineral/plasma/thirty,
 /obj/machinery/light/warm/directional/east,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "Cw" = (
@@ -3087,8 +3111,11 @@
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/medbay)
 "Dy" = (
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
-/turf/open/floor/engine,
+/obj/machinery/atmospherics/pipe/smart/simple/cyan/visible{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "Dz" = (
 /obj/machinery/door/firedoor/border_only{
@@ -3297,6 +3324,7 @@
 "Fl" = (
 /obj/structure/extinguisher_cabinet/directional/west,
 /obj/machinery/light/warm/directional/west,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "Fn" = (
@@ -3485,6 +3513,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/engine)
 "Hq" = (
@@ -3503,6 +3532,7 @@
 "HA" = (
 /obj/machinery/power/rtg/advanced,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "HN" = (
@@ -3539,11 +3569,8 @@
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/medbay)
 "Ig" = (
-/obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/turf/open/floor/engine,
+/obj/machinery/mineral/ore_redemption/offstation,
+/turf/open/floor/iron/dark,
 /area/shuttle/abandoned/cargo)
 "Ih" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
@@ -3742,6 +3769,7 @@
 /obj/machinery/button/door/directional/west{
 	id = "whiteship_Reactor"
 	},
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/shuttle/abandoned/engine)
 "Kc" = (
@@ -3950,6 +3978,7 @@
 /obj/machinery/space_heater,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/warm/directional/east,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "LT" = (
@@ -4051,6 +4080,7 @@
 /area/shuttle/abandoned/engine)
 "Mx" = (
 /obj/structure/extinguisher_cabinet/directional/west,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "MB" = (
@@ -4097,6 +4127,7 @@
 /area/shuttle/abandoned/medbay)
 "Nh" = (
 /obj/machinery/airalarm/directional/west,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "Nj" = (
@@ -4253,7 +4284,14 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/iron/dark,
+/area/shuttle/abandoned/engine)
+"OS" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
+/obj/machinery/light/warm/directional/west,
+/obj/structure/cable,
+/turf/open/floor/engine,
 /area/shuttle/abandoned/engine)
 "OU" = (
 /obj/structure/closet/firecloset/wall{
@@ -4264,8 +4302,9 @@
 /turf/open/floor/carpet/black,
 /area/shuttle/abandoned/crew)
 "Pa" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/structure/cable,
-/turf/open/floor/engine,
+/turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "Pc" = (
 /obj/structure/extinguisher_cabinet/directional/east,
@@ -4348,6 +4387,13 @@
 /obj/machinery/power/energy_accumulator/grounding_rod/anchored,
 /obj/structure/window/reinforced/plasma/spawner/directional/south,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/shuttle/abandoned/engine)
+"Qs" = (
+/obj/effect/spawner/structure/window/reinforced/plasma,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
+/obj/machinery/door/firedoor,
 /obj/structure/cable,
 /turf/open/floor/engine,
 /area/shuttle/abandoned/engine)
@@ -4436,7 +4482,8 @@
 /obj/effect/spawner/structure/window/reinforced/shuttle,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/poddoor{
-	id = "whiteship_BridgeW"
+	id = "whiteship_BridgeW";
+	state_open = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/bridge)
@@ -4454,6 +4501,7 @@
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/engine)
 "Rn" = (
@@ -4470,7 +4518,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/poddoor{
-	id = "whiteship_BridgeW"
+	id = "whiteship_BridgeW";
+	state_open = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
@@ -4733,9 +4782,9 @@
 /turf/open/floor/iron/dark/smooth_edge,
 /area/shuttle/abandoned/crew)
 "TP" = (
-/obj/machinery/rnd/production/protolathe/department/science,
 /obj/effect/turf_decal/tile/purple/opposingcorners,
 /obj/machinery/light/warm/directional/north,
+/obj/machinery/rnd/production/techfab/department/science,
 /turf/open/floor/iron/dark,
 /area/shuttle/abandoned/medbay)
 "TV" = (
@@ -4757,6 +4806,7 @@
 	dir = 6
 	},
 /obj/machinery/meter/layer2,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "Ue" = (
@@ -4798,6 +4848,11 @@
 "Uv" = (
 /turf/open/floor/carpet/black,
 /area/shuttle/abandoned/crew)
+"Uz" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/green/visible,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/shuttle/abandoned/engine)
 "UF" = (
 /obj/machinery/newscaster/directional/north,
 /obj/effect/turf_decal/tile/blue/half{
@@ -4825,7 +4880,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/poddoor/shutters{
-	id = "Whiteship_dorm2"
+	id = "Whiteship_dorm2";
+	state_open = 1
 	},
 /turf/open/floor/carpet/stellar,
 /area/shuttle/abandoned/crew)
@@ -4888,6 +4944,7 @@
 "Vw" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "Vy" = (
@@ -4901,7 +4958,8 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/door/poddoor/shutters{
-	id = "Whiteship_dorm1"
+	id = "Whiteship_dorm1";
+	state_open = 1
 	},
 /turf/open/floor/carpet/purple,
 /area/shuttle/abandoned/crew)
@@ -5130,6 +5188,7 @@
 "XH" = (
 /obj/machinery/power/port_gen/pacman/pre_loaded,
 /obj/item/stack/sheet/mineral/plasma/thirty,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "XL" = (
@@ -5211,11 +5270,8 @@
 /turf/open/floor/carpet/black,
 /area/shuttle/abandoned/crew)
 "YM" = (
-/obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/engine,
+/obj/machinery/computer/order_console/mining,
+/turf/open/floor/iron/dark,
 /area/shuttle/abandoned/cargo)
 "YO" = (
 /obj/effect/turf_decal/tile/blue/half/contrasted{
@@ -5344,6 +5400,10 @@
 /obj/structure/extinguisher_cabinet/directional/east,
 /turf/open/floor/iron/dark/textured_large,
 /area/shuttle/abandoned/medbay)
+"ZD" = (
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/shuttle/abandoned/engine)
 "ZE" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
@@ -5387,108 +5447,108 @@
 (1,1,1) = {"
 aa
 aa
-kF
-kF
-iQ
 aa
 aa
 aa
-kF
-kF
-iQ
 aa
 aa
 aa
-kF
-kF
-iQ
 aa
 aa
 aa
-kF
-kF
-iQ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 "}
 (2,1,1) = {"
 aa
 Ib
-be
-be
-be
+bf
+bf
+bf
 Ib
 aa
 Ib
-be
-be
-be
+bf
+bf
+bf
 Ib
 aa
 Ib
-be
-be
-be
+jg
+jg
+jg
 Ib
 aa
 Ib
-be
-be
-be
+jg
+jg
+jg
 Ib
 aa
 "}
 (3,1,1) = {"
 aa
 Ib
-be
-be
-be
+eo
+eo
+eo
 Ib
 aa
 Ib
-be
-be
-be
+qC
+qC
+qC
 Ib
 aa
 Ib
-be
-be
-be
+eo
+eo
+eo
 Ib
 aa
 Ib
-be
-be
-be
+qC
+qC
+qC
 Ib
 aa
 "}
 (4,1,1) = {"
 aa
 Ib
-bf
-bf
-bf
 Ib
 Ib
 Ib
-bf
-bf
-bf
 Ib
 Ib
 Ib
-bf
-bf
-bf
 Ib
 Ib
 Ib
-bf
-bf
-bf
+Ib
+Ib
+Ib
+Ib
+Ib
+Ib
+Ib
+Ib
+Ib
+Ib
+Ib
+Ib
 Ib
 aa
 "}
@@ -5523,7 +5583,7 @@ aa
 aa
 Ib
 be
-be
+iQ
 uv
 qQ
 XH
@@ -5577,8 +5637,8 @@ aa
 aa
 Ib
 be
-be
-be
+iQ
+iQ
 Nh
 Fl
 Mx
@@ -5591,10 +5651,10 @@ nj
 lQ
 rZ
 Wn
-rZ
-lQ
-lQ
-pz
+OS
+Uz
+Uz
+Qs
 Rk
 OM
 Ib
@@ -5615,11 +5675,11 @@ al
 ak
 Ib
 LI
-qy
+lQ
 By
 oQ
 sY
-Pa
+tT
 lQ
 pz
 tF
@@ -5636,7 +5696,7 @@ be
 be
 be
 XM
-be
+iQ
 Ib
 Ib
 Ib
@@ -5663,7 +5723,7 @@ be
 be
 be
 XM
-be
+iQ
 vR
 AD
 Su
@@ -5727,7 +5787,7 @@ Co
 Ib
 Sk
 Ib
-tT
+ZD
 HU
 Zr
 FV
@@ -5751,8 +5811,8 @@ nO
 Ib
 Lz
 EB
-Dy
-Dy
+EB
+EB
 Kb
 rg
 SP
@@ -5771,7 +5831,7 @@ vR
 be
 be
 be
-ad
+Dy
 aj
 ZV
 fp
@@ -5826,8 +5886,8 @@ be
 be
 be
 wq
-be
-mb
+iQ
+Pa
 GB
 Ib
 Zi
@@ -5854,7 +5914,7 @@ be
 be
 me
 mb
-mb
+Pa
 Rq
 Ib
 qV
@@ -5936,7 +5996,7 @@ aJ
 ZE
 AX
 yJ
-qC
+WE
 Kf
 WE
 qp
@@ -6172,7 +6232,7 @@ aa
 bq
 Jy
 fl
-Vh
+fl
 Jy
 WP
 vP
@@ -6198,8 +6258,8 @@ aa
 aa
 bq
 Jy
-fl
-Vh
+Jy
+Jy
 bn
 Ou
 yY
@@ -6225,8 +6285,8 @@ aa
 aa
 bq
 Jy
-fl
-Vh
+kF
+qy
 Jy
 AH
 kH
@@ -6469,7 +6529,7 @@ aa
 bq
 Jy
 Jy
-eo
+OD
 RA
 Fr
 LZ
