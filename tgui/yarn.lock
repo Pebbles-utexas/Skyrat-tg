@@ -6741,7 +6741,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:^4.2.12":
+"marked@npm:^4.0.10, marked@npm:^4.2.12":
   version: 4.2.12
   resolution: "marked@npm:4.2.12"
   bin:
@@ -9937,6 +9937,24 @@ resolve@^2.0.0-next.3:
   checksum: a97865b852df90a755f2d18dcc12f08be185150b3961c7d5f4f952df392cdbbf97ac2ccc8939db744148feccb55ebfa5b6a5e83c88107500e3cae2d9e8ba7f68
   languageName: node
   linkType: hard
+
+"voidcrew_tgui@workspace:packages/voidcrew_tgui":
+  version: 0.0.0-use.local
+  resolution: "voidcrew_tgui@workspace:packages/voidcrew_tgui"
+  dependencies:
+    "@popperjs/core": ^2.9.3
+    common: "workspace:*"
+    dateformat: ^4.5.1
+    dompurify: ^2.3.1
+    inferno: ^7.4.8
+    inferno-vnode-flags: ^7.4.8
+    js-yaml: ^4.1.0
+    marked: ^4.0.10
+    tgui: "workspace:*"
+    tgui-dev-server: "workspace:*"
+    tgui-polyfill: "workspace:*"
+  languageName: unknown
+  linkType: soft
 
 "w3c-hr-time@npm:^1.0.2":
   version: 1.0.2

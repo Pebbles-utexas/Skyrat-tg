@@ -7,6 +7,9 @@
 	slot = ORGAN_SLOT_TONGUE
 	attack_verb_continuous = list("licks", "slobbers", "slaps", "frenches", "tongues")
 	attack_verb_simple = list("lick", "slobber", "slap", "french", "tongue")
+	/// what voice comes with this tongue. If this actually gets merged switch it to vocal cords or something.
+	var/tts_seed = DEFAULT_SEED
+
 	/**
 	 * A cached list of paths of all the languages this tongue is capable of speaking
 	 *
@@ -76,6 +79,11 @@
 
 /obj/item/organ/internal/tongue/proc/handle_speech(datum/source, list/speech_args)
 	SIGNAL_HANDLER
+	if(!iscarbon(owner))
+		return
+	var/mob/living/carbon/tts_man = owner
+	if(tts_man.client && speech_args[SPEECH_LANGUAGE] == /datum/language/common)
+		INVOKE_ASYNC(GLOBAL_PROC, /proc/play_tts_locally, tts_man, speech_args[SPEECH_MESSAGE], tts_seed)
 	if(speech_args[SPEECH_LANGUAGE] in languages_native)
 		return FALSE //no changes
 	modify_speech(source, speech_args)
@@ -88,8 +96,7 @@
 	if(!.)
 		return
 	ADD_TRAIT(tongue_owner, TRAIT_SPEAKS_CLEARLY, SPEAKING_FROM_TONGUE)
-	if (modifies_speech)
-		RegisterSignal(tongue_owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+	RegisterSignal(tongue_owner, COMSIG_MOB_SAY, .proc/handle_speech, override = TRUE)
 
 	/* This could be slightly simpler, by making the removal of the
 	* NO_TONGUE_TRAIT conditional on the tongue's `sense_of_taste`, but
@@ -469,15 +476,6 @@ GLOBAL_LIST_INIT(english_to_zombie, list())
 	desc = "A fleshy muscle mostly used for meowing."
 	say_mod = "meows"
 
-/obj/item/organ/internal/tongue/bananium
-	name = "bananium tongue"
-	desc = "A bananium geode mostly used for honking."
-	say_mod = "honks"
-	icon = 'icons/obj/weapons/horn.dmi'
-	icon_state = "gold_horn"
-	lefthand_file = 'icons/mob/inhands/equipment/horns_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/horns_righthand.dmi'
-
 /obj/item/organ/internal/tongue/jelly
 	name = "jelly tongue"
 	desc = "Ah... That's not the sound I expected it to make. Sounds like a Space Autumn Bird."
@@ -505,3 +503,11 @@ GLOBAL_LIST_INIT(english_to_zombie, list())
 
 	icon = 'icons/obj/hydroponics/seeds.dmi'
 	icon_state = "mycelium-angel"
+
+/obj/item/organ/internal/tongue/golem
+	name = "golem tongue"
+	color = COLOR_WEBSAFE_DARK_GRAY
+	desc = "This silicate plate doesn't seem particularly mobile, but golems use it to form sounds."
+	say_mod = "rumbles"
+	sense_of_taste = FALSE
+	status = ORGAN_MINERAL

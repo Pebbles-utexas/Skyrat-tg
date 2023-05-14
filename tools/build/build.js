@@ -75,6 +75,7 @@ export const DmTarget = new Juke.Target({
     'html/**',
     'icons/**',
     'interface/**',
+    'voidcrew/**', //voidcrew edit: adds our folder to build
     'modular_skyrat/**', ///SKYRAT EDIT ADDITION - Making the CBT work
     `${DME_NAME}.dme`,
     NamedVersionFile,

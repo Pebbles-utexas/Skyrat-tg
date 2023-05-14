@@ -338,7 +338,7 @@
 	weight = MIN_EVENT_FREQ
 	intensity_restriction = TRUE
 
-/datum/round_event_control/meteor_wave/custom
+/datum/round_event_control/meteor_wave/ices
 	max_occurrences = 1
 	weight = MED_EVENT_FREQ
 
@@ -577,11 +577,12 @@
 	max_occurrences = 2
 	weight = VERY_HIGH_EVENT_FREQ
 
-/**
- * Wall Fungus
- */
-/datum/round_event_control/wall_fungus
-	weight = MED_EVENT_FREQ
+///**
+// * Wall Fungus
+// */
+///datum/round_event_control/wall_fungus
+//	weight = MED_EVENT_FREQ
+//	max_occurrences = 1
 
 /**
  * Wisdom Cow

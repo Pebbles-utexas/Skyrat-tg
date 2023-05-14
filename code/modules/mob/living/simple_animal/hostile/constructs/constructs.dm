@@ -52,6 +52,7 @@
 
 /mob/living/simple_animal/hostile/construct/Initialize(mapload)
 	. = ..()
+	AddElement(/datum/element/tts_speaker, PAI_VOICE_SEED)
 	AddElement(/datum/element/simple_flying)
 	add_traits(list(TRAIT_HEALS_FROM_CULT_PYLONS, TRAIT_SPACEWALK), INNATE_TRAIT)
 	for(var/spell in construct_spells)

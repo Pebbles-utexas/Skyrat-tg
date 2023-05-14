@@ -6,6 +6,7 @@ $include comms.txt
 $include resources.txt
 $include skyrat/skyrat_config.txt
 $include interviews.txt
+$include novel_tts.txt
 $include lua.txt
 $include auxtools.txt
 
@@ -13,8 +14,7 @@ $include auxtools.txt
 # Example usage:
 # @SERVERNAME tgstation
 # Which sets the SERVERNAME, and disallows admins from being able to change it using View Variables.
-# @LOG_TWITTER 0
-# Which explicitly disables LOG_TWITTER, as well as locking it.
+# @LOG_TWITTER 0 
 # There are various options which are hard-locked for security reasons.
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
@@ -35,14 +35,17 @@ STATIONNAME Space Station 13
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
 #HUB
 
+## Enable server swapping, uncomment to enable reading of server_ips.txt
+#SERVER_SWAP_ENABLED
+
 ## Once the server population reaches this number, it will be taken off the byond hub. 0 disables.
 #MAX_HUB_POP 100
 
 ## Lobby time: This is the amount of time between rounds that players have to setup their characters and be ready.
-LOBBY_COUNTDOWN 120
+LOBBY_COUNTDOWN 1200
 
 ## Round End Time: This is the amount of time after the round ends that players have to murder death kill each other.
-ROUND_END_COUNTDOWN 90
+ROUND_END_COUNTDOWN 900
 
 ## Comment this out if you want to use the SQL based admin system, the legacy system uses admins.txt.
 ## You need to set up your database to use the SQL based system.
@@ -209,10 +212,10 @@ ALLOW_ADMIN_ASAYCOLOR
 ID_CONSOLE_JOBSLOT_DELAY 30
 
 ## allow players to initiate a restart vote
-#ALLOW_VOTE_RESTART
+ALLOW_VOTE_RESTART
 
 ## allow players to initiate a map-change vote
-#ALLOW_VOTE_MAP
+ALLOW_VOTE_MAP
 
 ## allow players to rock the vote, or to vote on the map again if they didn't like the last results
 #ALLOW_ROCK_THE_VOTE
@@ -233,10 +236,10 @@ VOTE_PERIOD 600
 # DEFAULT_NO_VOTE
 
 ## disable abandon mob
-NORESPAWN
+#NORESPAWN
 
 ## set a hosted by name for unix platforms
-HOSTEDBY Yournamehere
+HOSTEDBY Olop
 
 ## Uncomment this to stop people connecting to your server without a registered ckey. (i.e. guest-* are all blocked from connecting)
 GUEST_BAN
@@ -485,9 +488,9 @@ CLIENT_ERROR_BUILD 1421
 ## Admins are exempt from these limits.
 ## Hitting the minute limit notifies admins.
 ## Set to 0 or comment out to disable.
-SECOND_TOPIC_LIMIT 10
+SECOND_TOPIC_LIMIT 100
 
-MINUTE_TOPIC_LIMIT 100
+MINUTE_TOPIC_LIMIT 1000
 
 
 ## CLICK RATE LIMITING
@@ -496,9 +499,9 @@ MINUTE_TOPIC_LIMIT 100
 ## Admins are exempt from these limits.
 ## Hitting the minute limit notifies admins.
 ## Set to 0 to disable.
-SECOND_CLICK_LIMIT 15
+SECOND_CLICK_LIMIT 150
 
-MINUTE_CLICK_LIMIT 400
+MINUTE_CLICK_LIMIT 4000
 
 ##Error handling related options
 ## The "cooldown" time for each occurence of a unique error

@@ -613,6 +613,14 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
 
+/datum/design/board/bluespace_minerII
+	name = "Machine Design (Bluespace MinerII)"
+	desc = "The circuit board for a Bluespace MinerII."
+	id = "bluespace_minerII"
+	build_path = /obj/item/circuitboard/machine/bluespace_minerII
+	category = list ("Misc. Machinery")
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_CARGO | DEPARTMENT_BITFLAG_ENGINEERING
+
 /datum/design/board/mining_equipment_vendor
 	name = "Mining Rewards Vendor Board"
 	desc = "The circuit board for a Mining Rewards Vendor."
@@ -641,6 +649,14 @@
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING
 	)
+	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
+
+/datum/design/board/rad_collector
+	name = "Machine Design (Radiation Collector Board)"
+	desc = "The circuit board for a radiation collector array."
+	id = "rad_collector"
+	build_path = /obj/item/circuitboard/machine/rad_collector
+	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENT_BITFLAG_ENGINEERING | DEPARTMENT_BITFLAG_SCIENCE
 
 /datum/design/board/grounding_rod

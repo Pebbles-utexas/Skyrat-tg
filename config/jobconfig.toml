@@ -118,6 +118,12 @@
 "Spawn Positions" = 1
 "Total Positions" = 1
 
+[CORONER]
+"# Playtime Requirements" = 0
+"# Required Account Age" = 0
+"# Spawn Positions" = 1
+"# Total Positions" = 1
+
 [CURATOR]
 "Playtime Requirements" = 0
 "Required Account Age" = 0
@@ -252,6 +258,12 @@
 
 [SECURITY_MEDIC]
 "Playtime Requirements" = 180
+"Required Account Age" = 7
+"Spawn Positions" = 1
+"Total Positions" = 1
+
+[SPACEPOD_PILOT]
+"Playtime Requirements" = 400
 "Required Account Age" = 7
 "Spawn Positions" = 1
 "Total Positions" = 1

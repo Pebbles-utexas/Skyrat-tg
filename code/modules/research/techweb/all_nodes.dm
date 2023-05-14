@@ -68,7 +68,7 @@
 		"light_replacer",
 		"light_tube",
 		"mechfab",
-		"micro_mani",
+		"micro_servo",
 		"miniature_power_cell",
 		"newscaster_frame",
 		"oven_tray",
@@ -431,6 +431,7 @@
 	description = "Advanced Biotechnology"
 	prereq_ids = list("biotech")
 	design_ids = list(
+		"autopsyscanner",
 		"crewpinpointer",
 		"defibrillator_compact",
 		"harvester",
@@ -609,7 +610,7 @@
 		"high_cell",
 		"high_micro_laser",
 		"mesons",
-		"nano_mani",
+		"nano_servo",
 		"oxygen_tank",
 		"pacman",
 		"plasma_tank",
@@ -617,6 +618,7 @@
 		"pneumatic_seal",
 		"power_control",
 		"powermonitor",
+		"rad_collector",
 		"recharger",
 		"recycler",
 		"rped",
@@ -687,7 +689,7 @@
 	description = "Finely-tooled manufacturing techniques allowing for picometer-perfect precision levels."
 	prereq_ids = list("engineering", "datatheory")
 	design_ids = list(
-		"pico_mani",
+		"pico_servo",
 		"super_matter_bin",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
@@ -750,7 +752,7 @@
 	design_ids = list(
 		"bluespace_matter_bin",
 		"bluespacebodybag",
-		"femto_mani",
+		"femto_servo",
 		"quantum_keycard",
 		"swapper",
 		"triphasic_scanning",
@@ -1500,6 +1502,16 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 	discount_experiments = list(/datum/experiment/scanning/random/material/hard/one = 5000)
 
+/datum/techweb_node/bluespace_miningII
+	id = "bluespace_miningII"
+	display_name = "Bluespace MiningII Technology"
+	description = "Efficiency Level 254" //dumb mc references
+	prereq_ids = list("adv_mining")
+	design_ids = list(
+		"bluespace_minerII",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
+
 /datum/techweb_node/janitor
 	id = "janitor"
 	display_name = "Advanced Sanitation Technology"
@@ -1766,6 +1778,7 @@
 		"mod_injector",
 		"mod_organ_thrower",
 		"mod_dna_lock",
+		"mod_auto_doc",
 		"mod_patienttransport",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)

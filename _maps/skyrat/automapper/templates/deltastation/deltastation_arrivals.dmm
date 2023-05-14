@@ -143,6 +143,9 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/entry)
+"gG" = (
+/turf/template_noop,
+/area/template_noop)
 "hG" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -357,6 +360,16 @@
 	},
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/iron/smooth,
+/area/station/hallway/secondary/entry)
+"nD" = (
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/station_map/directional/west,
+/turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "nL" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
@@ -734,6 +747,13 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
+"Dv" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/station_map/directional/west,
+/turf/open/floor/iron,
+/area/station/hallway/secondary/entry)
 "Dy" = (
 /obj/effect/turf_decal/delivery,
 /obj/item/kirbyplants/random,
@@ -848,6 +868,13 @@
 	},
 /obj/machinery/status_display/evac/directional/west,
 /turf/open/floor/iron/smooth,
+/area/station/hallway/secondary/entry)
+"HG" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/station_map/directional/east,
+/turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "HM" = (
 /obj/docking_port/stationary{
@@ -1151,6 +1178,130 @@
 /area/station/hallway/secondary/entry)
 
 (1,1,1) = {"
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+"}
+(2,1,1) = {"
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+Mv
+gG
+gG
+gG
+"}
+(3,1,1) = {"
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+nD
+gG
+gG
+gG
+"}
+(4,1,1) = {"
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+"}
+(5,1,1) = {"
 Ym
 Ym
 Ym
@@ -1176,12 +1327,12 @@ LF
 LF
 lf
 Ue
-LF
+HG
 LF
 cW
 NS
 "}
-(2,1,1) = {"
+(6,1,1) = {"
 Ym
 Ym
 KL
@@ -1207,12 +1358,12 @@ kk
 wN
 wN
 Mv
-wN
+Mv
 wN
 Mv
 Mv
 "}
-(3,1,1) = {"
+(7,1,1) = {"
 Ym
 Ym
 Ym
@@ -1243,7 +1394,7 @@ Ym
 Ym
 Mv
 "}
-(4,1,1) = {"
+(8,1,1) = {"
 Ym
 Ym
 Ym
@@ -1274,7 +1425,7 @@ mA
 mA
 wN
 "}
-(5,1,1) = {"
+(9,1,1) = {"
 Ym
 Ym
 Ym
@@ -1305,130 +1456,6 @@ Ym
 Ym
 Mv
 "}
-(6,1,1) = {"
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-fo
-Ym
-mA
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-HM
-Ym
-Ym
-Ym
-Ym
-wN
-"}
-(7,1,1) = {"
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-fo
-Ym
-mA
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-wN
-"}
-(8,1,1) = {"
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-fo
-Ym
-mA
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-wN
-"}
-(9,1,1) = {"
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-fo
-mA
-mA
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-Ym
-wN
-"}
 (10,1,1) = {"
 Ym
 Ym
@@ -1453,7 +1480,7 @@ Ym
 Ym
 Ym
 Ym
-Ym
+HM
 Ym
 Ym
 Ym
@@ -1530,7 +1557,7 @@ Ym
 Ym
 Ym
 fo
-Ym
+mA
 mA
 Ym
 Ym
@@ -1551,7 +1578,7 @@ Ym
 Ym
 Ym
 Ym
-Mv
+wN
 "}
 (14,1,1) = {"
 Ym
@@ -1560,28 +1587,28 @@ Ym
 Ym
 Ym
 Ym
-mA
-mA
-mA
-mA
-mA
-mA
-wN
-DT
-wN
+fo
+Ym
 mA
 Ym
 Ym
 Ym
-mA
-wN
-DT
-wN
-mA
-mA
-mA
-mA
-mA
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
 wN
 "}
 (15,1,1) = {"
@@ -1589,6 +1616,130 @@ Ym
 Ym
 Ym
 Ym
+Ym
+Ym
+fo
+Ym
+mA
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+wN
+"}
+(16,1,1) = {"
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+fo
+Ym
+mA
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+wN
+"}
+(17,1,1) = {"
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+fo
+Ym
+mA
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+Mv
+"}
+(18,1,1) = {"
+Ym
+Ym
+Ym
+Ym
+Ym
+Ym
+mA
+mA
+mA
+mA
+mA
+mA
+wN
+DT
+wN
+mA
+Ym
+Ym
+Ym
+mA
+wN
+DT
+wN
+mA
+mA
+mA
+mA
+mA
+wN
+"}
+(19,1,1) = {"
+Ym
+Ym
+Ym
+Ym
 mA
 mA
 mA
@@ -1615,7 +1766,7 @@ Ym
 Ym
 Mv
 "}
-(16,1,1) = {"
+(20,1,1) = {"
 Ym
 Ym
 KL
@@ -1646,7 +1797,7 @@ wN
 Mv
 jc
 "}
-(17,1,1) = {"
+(21,1,1) = {"
 Ym
 Ym
 Ym
@@ -1677,7 +1828,7 @@ QS
 rt
 De
 "}
-(18,1,1) = {"
+(22,1,1) = {"
 Uy
 Ym
 Ym
@@ -1708,7 +1859,7 @@ vz
 wk
 Cy
 "}
-(19,1,1) = {"
+(23,1,1) = {"
 Ym
 Ym
 Ym
@@ -1728,7 +1879,7 @@ LF
 LF
 qb
 qb
-LF
+HG
 hG
 LF
 LF
@@ -1739,7 +1890,7 @@ vU
 tT
 yH
 "}
-(20,1,1) = {"
+(24,1,1) = {"
 Ym
 Ym
 KL
@@ -1770,7 +1921,7 @@ wN
 Mv
 Mv
 "}
-(21,1,1) = {"
+(25,1,1) = {"
 Ym
 Ym
 Ym
@@ -1801,7 +1952,7 @@ Ym
 Ym
 Mv
 "}
-(22,1,1) = {"
+(26,1,1) = {"
 Ym
 Ym
 Ym
@@ -1832,7 +1983,7 @@ Ym
 Ym
 wN
 "}
-(23,1,1) = {"
+(27,1,1) = {"
 Ym
 Ym
 Ym
@@ -1863,7 +2014,7 @@ Ym
 Ay
 wN
 "}
-(24,1,1) = {"
+(28,1,1) = {"
 Ym
 Ym
 Ym
@@ -1894,7 +2045,7 @@ Ym
 Ym
 Mv
 "}
-(25,1,1) = {"
+(29,1,1) = {"
 Ym
 Ym
 Ym
@@ -1925,7 +2076,7 @@ Ym
 Ym
 wN
 "}
-(26,1,1) = {"
+(30,1,1) = {"
 Ym
 Ym
 Ym
@@ -1956,7 +2107,7 @@ Ym
 Ym
 wN
 "}
-(27,1,1) = {"
+(31,1,1) = {"
 Ym
 Ym
 Ym
@@ -1987,7 +2138,7 @@ Ym
 Ym
 wN
 "}
-(28,1,1) = {"
+(32,1,1) = {"
 Ym
 Ym
 Ym
@@ -2018,7 +2169,7 @@ Ym
 Ym
 Mv
 "}
-(29,1,1) = {"
+(33,1,1) = {"
 Ym
 Ym
 Ym
@@ -2049,7 +2200,7 @@ Ym
 Ay
 wN
 "}
-(30,1,1) = {"
+(34,1,1) = {"
 Ym
 Ym
 Ym
@@ -2080,7 +2231,7 @@ Ym
 Ym
 wN
 "}
-(31,1,1) = {"
+(35,1,1) = {"
 Ym
 Ym
 Ym
@@ -2111,7 +2262,7 @@ Ym
 Ym
 Mv
 "}
-(32,1,1) = {"
+(36,1,1) = {"
 Ym
 Ym
 Ym
@@ -2142,7 +2293,7 @@ wN
 Mv
 Mv
 "}
-(33,1,1) = {"
+(37,1,1) = {"
 Ym
 Ym
 Ym
@@ -2162,7 +2313,7 @@ sp
 sp
 UZ
 Ha
-sp
+Dv
 sp
 sp
 jn
@@ -2173,7 +2324,7 @@ sp
 sd
 yn
 "}
-(34,1,1) = {"
+(38,1,1) = {"
 Ym
 Ym
 Ym
@@ -2204,7 +2355,7 @@ cF
 wk
 yn
 "}
-(35,1,1) = {"
+(39,1,1) = {"
 Ym
 Ym
 Ym

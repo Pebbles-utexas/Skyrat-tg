@@ -382,6 +382,13 @@
 /obj/item/surgical_processor/mod
 	name = "MOD surgical processor"
 
+/obj/item/mod/module/status_readout/generic
+	name = "MOD status readout module"
+	desc = "A once-common module, this technology went unfortunately out of fashion; \
+		but still remaining in older suit variations. This hooks into the suit's spine, \
+		capable of capturing and displaying all possible biometric data of the wearer; sleep, nutrition, fitness, fingerprints, \
+		and even useful information such as their overall health and wellness."
+		
 /obj/item/mod/module/surgical_processor/preloaded
 	desc = "A module using an onboard surgical computer which can be connected to other computers to download and \
 		perform advanced surgeries on the go. This one came pre-loaded with some advanced surgeries."

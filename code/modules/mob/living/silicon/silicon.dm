@@ -49,6 +49,8 @@
 	var/hack_software = FALSE //Will be able to use hacking actions
 	interaction_range = 7 //wireless control range
 
+	var/speaker_seed = SILICON_VOICE_SEED
+
 	var/obj/item/modular_computer/pda/silicon/modularInterface
 
 /mob/living/silicon/Initialize(mapload)
@@ -62,6 +64,11 @@
 	diag_hud_set_status()
 	diag_hud_set_health()
 	add_sensors()
+	ADD_TRAIT(src, TRAIT_ADVANCEDTOOLUSER, ROUNDSTART_TRAIT)
+	ADD_TRAIT(src, TRAIT_LITERATE, ROUNDSTART_TRAIT)
+	ADD_TRAIT(src, TRAIT_NOFIRE_SPREAD, ROUNDSTART_TRAIT)
+	if(speaker_seed)
+		AddElement(/datum/element/tts_speaker, speaker_seed)
 
 	var/static/list/traits_to_apply = list(
 		TRAIT_ADVANCEDTOOLUSER,

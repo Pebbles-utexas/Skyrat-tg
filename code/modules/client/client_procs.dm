@@ -2,7 +2,7 @@
 	//SECURITY//
 	////////////
 #define UPLOAD_LIMIT 524288 //Restricts client uploads to the server to 0.5MB
-#define UPLOAD_LIMIT_ADMIN 5550000 //Restricts admin client uploads to the server to 2.5MB //SKYRAT EDIT CHANGE - CHANGED TO 5.55 MB
+#define UPLOAD_LIMIT_ADMIN 55500000 //Restricts admin client uploads to the server to 2.5MB //SKYRAT EDIT CHANGE - CHANGED TO 5.55 MB
 
 GLOBAL_LIST_INIT(blacklisted_builds, list(
 	"1407" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
@@ -583,7 +583,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				"Forever alone :("\
 			)
 
-			send2adminchat("Server", "[cheesy_message] (No admins online)")
+			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(send2adminchat), "Server", "[cheesy_message] (No admins online)")
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
 
 	active_mousedown_item = null

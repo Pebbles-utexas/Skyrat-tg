@@ -1,0 +1,35 @@
+{
+	"name": "Slit Fucking",
+	"description": "A penis penetrating a Slit",
+	"usage": "other",
+	"category": "Miscellaneous",
+	"distance_allowed": 0,
+	"message": [
+		"%USER% SLAMS their Dick into %TARGET%'s Slit."
+	],
+	"sound_use": 1,
+	"sound_possible": [
+		"modular_skyrat\modules\modular_items\lewd_items\sounds\squelch2.ogg"
+	],
+	"sound_cache":  "modular_skyrat\modules\modular_items\lewd_items\sounds\squelch2.ogg",
+    "user_messages": [
+        "You SLAM your Dick into %TARGET%'s Slit.",
+        "You THRUST your Penis into %TARGET%'s Slit."
+    ],
+    "target_messages": [
+        "%USER% SLAMS their Dick into your Slit.",
+        "%USER% THRUSTS their Dick into your Slit."
+    ],
+	"sound_range": 1,
+    "user_required_parts": [
+        "penis"
+    ],
+    "user_pleasure": 15,
+    "user_arousal": 13,
+    "target_pleasure": 15,
+    "target_arousal": 13,
+    "target_pain": 7,
+    "user_pain": 6,
+    "lewd": 1,
+    "color": "pink"
+}

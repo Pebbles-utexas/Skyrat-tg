@@ -1,5 +1,5 @@
-#define OVERSIZED_SPEED_SLOWDOWN 0.5
-#define OVERSIZED_HUNGER_MOD 1.5
+#define OVERSIZED_SPEED_SLOWDOWN 0
+#define OVERSIZED_HUNGER_MOD 1
 
 // Before making any changes to oversized, please see the module's readme.md file
 
@@ -9,7 +9,7 @@
 	gain_text = span_notice("That airlock looks small...")
 	lose_text = span_notice("Is it still the same size...?") //Lol
 	medical_record_text = "Patient is abnormally tall."
-	value = 0
+	value = -100
 	mob_trait = TRAIT_OVERSIZED
 	icon = FA_ICON_EXPAND_ARROWS_ALT
 	veteran_only = TRUE

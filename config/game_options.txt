@@ -45,6 +45,7 @@ WALK_DELAY 4
 ##MULTIPLICATIVE_MOVESPEED /mob/living/carbon/alien 0
 ##MULTIPLICATIVE_MOVESPEED /mob/living/simple_animal/slime 0
 MULTIPLICATIVE_MOVESPEED /mob/living/simple_animal 0
+MULTIPLICATIVE_MOVESPEED /mob/living/basic 0
 
 
 ## NAMES ###
@@ -78,7 +79,7 @@ ALERT_RED_DOWNTO The station's destruction has been averted. There is still howe
 ALERT_DELTA Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.
 
 ## The total weight of station goals possible for a round (allows multiple goals)
-STATION_GOAL_BUDGET 1
+STATION_GOAL_BUDGET 10
 
 ## GAME MODES ###
 
@@ -111,7 +112,7 @@ BROTHER_OBJECTIVES_AMOUNT 2
 
 ## Uncomment to prohibit jobs that start with loyalty
 ## implants from being most antagonists.
-PROTECT_ROLES_FROM_ANTAGONIST
+#PROTECT_ROLES_FROM_ANTAGONIST
 
 ## Uncomment to prohibit assistants from becoming most antagonists.
 #PROTECT_ASSISTANT_FROM_ANTAGONIST
@@ -166,7 +167,7 @@ ALLOW_AI_MULTICAM
 ## AWAY MISSIONS ###
 
 ## Uncomment to load one of the missions from awaymissionconfig.txt or away_missions/ at roundstart.
-#ROUNDSTART_AWAY
+ROUNDSTART_AWAY
 
 ## How long the delay is before the Away Mission gate opens. Default is half an hour.
 ## 600 is one minute.
@@ -195,7 +196,7 @@ MINIMAL_ACCESS_THRESHOLD 20
 #SECURITY_HAS_MAINT_ACCESS
 
 ## Uncomment to give everyone maint access.
-#EVERYONE_HAS_MAINT_ACCESS
+EVERYONE_HAS_MAINT_ACCESS
 
 ## Comment this out this to make security officers spawn in departmental security posts
 #SEC_START_BRIG
@@ -204,12 +205,12 @@ MINIMAL_ACCESS_THRESHOLD 20
 ## Set to 0/commented out for "off", Departmental Security Officers will never get additional room-specific access (beyond general departmental doors).
 ## Set to 1 if you want to enable "Scaling Access", where Departmental Security Officers will get access to most rooms within a department depending on how many security officers there are relative to the number of people on a station.
 ## Set to 2 if you want Departmental Security Officers to always have access to all rooms in a department.
-DEPSEC_ACCESS_LEVEL 1
+DEPSEC_ACCESS_LEVEL 2
 
 
 ## GHOST INTERACTION ###
 ## Uncomment to let ghosts spin chairs. You may be wondering why this is a config option. Don't ask.
-#GHOST_INTERACTION
+GHOST_INTERACTION
 
 ## NEAR-DEATH EXPERIENCE ###
 ## Comment this out to disable mobs hearing ghosts when unconscious and very close to death
@@ -441,7 +442,7 @@ MORGUE_CADAVER_OTHER_SPECIES_PROBABILITY 50
 ## Set MORGUE_CADAVER_OTHER_SPECIES_PROBABILITY to determine the chances between being a human and this specific species.
 ## Only used if MORGUE_CADAVER_DISABLE_NONHUMANS is commented out
 ## Prob = 100 means all corpses will be this race.
-#MORGUE_CADAVER_OVERRIDE_SPECIES lizard
+MORGUE_CADAVER_OVERRIDE_SPECIES lizard
 
 
 ##Overflow job. Default is assistant
@@ -449,6 +450,10 @@ OVERFLOW_JOB Assistant
 
 ## Overflow slot cap. Set to -1 for unlimited. If limited, it will still open up if every other job is full.
 OVERFLOW_CAP -1
+
+## Starlight for exterior walls and breaches. Uncomment for starlight!
+## This is disabled by default to make testing quicker, should be enabled on production servers or testing servers messing with lighting
+STARLIGHT
 
 ## Uncomment to bring back old grey suit assistants instead of the now default rainbow colored assistants.
 #GREY_ASSISTANTS
@@ -473,9 +478,9 @@ REACTIONARY_EXPLOSIONS
 ## Small (3, 7, 14)
 #BOMBCAP 14
 ## Default (5, 10, 20) (recommended if you enable REACTIONARY_EXPLOSIONS above)
-BOMBCAP 20
+#BOMBCAP 20
 ## LagHell (7, 14, 28)
-#BOMBCAP 28
+BOMBCAP 28
 
 
 ## Lavaland "Budget"
@@ -483,16 +488,16 @@ BOMBCAP 20
 ## a less lootfilled or smaller or less round effecting ruin costs less to
 ## spawn, while the converse is true. Alter this number to affect the amount
 ## of ruins.
-LAVALAND_BUDGET 60
+LAVALAND_BUDGET 180
 
 ## Ice Moon Budget
-ICEMOON_BUDGET 90
+ICEMOON_BUDGET 270
 
 ## Ocean Budget
-OCEAN_BUDGET 60
+OCEAN_BUDGET 240
 
 ## Space Ruin Budget
-Space_Budget 16
+Space_Budget 160
 
 ## Time in ds from when a player latejoins till the arrival shuttle docks at the station
 ## Must be at least 30. At least 55 recommended to be visually/aurally appropriate
@@ -506,7 +511,7 @@ ARRIVALS_SHUTTLE_DOCK_WINDOW 55
 
 ## How many wirechewing rodents you want to spawn on exposed maintenane wires at the start of the round. You may wish to set this to 0 if you're testing powernets.
 
-MICE_ROUNDSTART 10
+MICE_ROUNDSTART 2
 
 ## If the percentage of players alive (doesn't count conversions) drops below this threshold the emergency shuttle will be forcefully called (provided it can be)
 #EMERGENCY_SHUTTLE_AUTOCALL_THRESHOLD 0.2
@@ -519,7 +524,7 @@ ROUNDSTART_TRAITS
 #DISABLE_HUMAN_MOOD
 
 ## Enable night shifts
-#ENABLE_NIGHT_SHIFTS
+ENABLE_NIGHT_SHIFTS
 
 ## The shift start hour in 24-hour (0-23) notation
 SHIFT_TIME_START_HOUR 7
@@ -528,16 +533,16 @@ SHIFT_TIME_START_HOUR 7
 #SHIFT_TIME_REALTIME
 
 ## Enable randomized shift start times. Overrides SHIFT_TIME_REALTIME and SHIFT_TIME_START_HOUR
-#RANDOMIZE_SHIFT_TIME
+RANDOMIZE_SHIFT_TIME
 
 ## A cap on how many monkeys may be created via monkey cubes
-MONKEYCAP 64
+MONKEYCAP 640
 
 ## A cap on how many mice can be bred via cheese wedges
 RATCAP 64
 
 ## Maximum fine for a citation
-MAXFINE 2000
+MAXFINE 20000
 
 ## Which role is required of playtime to be eligible for Maintenance Drones
 ## See code/__DEFINES/preferences.dm for available options, use the string portion without quotes
