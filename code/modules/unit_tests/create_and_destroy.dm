@@ -110,6 +110,8 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	// These two are locked to one type only, and shouldn't be widely available, hence why they runtime otherwise.
 	// Can't be bothered adding more to them.
 	ignore += list(/obj/item/organ/external/neck_accessory, /obj/item/organ/external/head_accessory)
+	//Fireplumes delete themselves, not supposed to be deleted. Causes runtimes.
+	ignore += typesof(/obj/effect/abstract/fireplume)
 	//SKYRAT EDIT END
 	//Needs cards passed into the initilazation args
 	ignore += typesof(/obj/item/toy/cards/cardhand)

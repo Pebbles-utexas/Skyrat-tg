@@ -113,6 +113,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/datum/admins/proc/station_traits_panel,
 // Client procs
 	/client/proc/admin_away,
+	/client/proc/fire_bsa, // SKYRAT EDIT ADDITION
 	/client/proc/add_mob_ability,
 	/client/proc/admin_change_sec_level,
 	/client/proc/cinematic,

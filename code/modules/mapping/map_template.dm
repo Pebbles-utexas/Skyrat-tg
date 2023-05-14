@@ -28,6 +28,11 @@
 	///What baseturfs to set when replacing openspace when has_ceiling is true
 	var/list/ceiling_baseturfs = list()
 
+	//SKYRAT EDIT ADDITION
+	/// The type of the overmap object that will be created
+	var/datum/overmap_object/overmap_type
+	//SKYRAT EDIT END
+
 /datum/map_template/New(path = null, rename = null, cache = FALSE)
 	if(path)
 		mappath = path
@@ -131,8 +136,12 @@
 /datum/map_template/proc/load_new_z(secret = FALSE)
 	var/x = round((world.maxx - width) * 0.5) + 1
 	var/y = round((world.maxy - height) * 0.5) + 1
-
-	var/datum/space_level/level = SSmapping.add_new_zlevel(name, secret ? ZTRAITS_AWAY_SECRET : ZTRAITS_AWAY, contain_turfs = FALSE)
+	//SKYRAT EDIT ADDITION
+	var/coordinate_x = rand(5, 25)
+	var/coordinate_y = rand(5, 25)
+	var/datum/overmap_object/linked_overmap_object = new /datum/overmap_object/shuttle/planet/gateway(SSovermap.main_system, coordinate_x, coordinate_y)
+	var/datum/space_level/level = SSmapping.add_new_zlevel(name, secret ? ZTRAITS_AWAY_SECRET : ZTRAITS_AWAY, contain_turfs = FALSE, overmap_obj = linked_overmap_object)
+	//SKYRAT EDIT END
 	var/datum/parsed_map/parsed = load_map(file(mappath), x, y, level.z_value, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop=should_place_on_top, new_z = TRUE)
 	var/list/bounds = parsed.bounds
 	if(!bounds)

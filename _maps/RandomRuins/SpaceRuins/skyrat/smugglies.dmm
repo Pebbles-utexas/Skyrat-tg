@@ -44,6 +44,12 @@
 "o" = (
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/powered/skyrat/smugglies)
+"r" = (
+/obj/structure/table,
+/obj/effect/spawner/random/entertainment/money,
+/obj/effect/spawner/random/entertainment/money,
+/turf/open/floor/iron,
+/area/ruin/space/has_grav/powered/skyrat/smugglies)
 "t" = (
 /obj/machinery/light/directional/east,
 /turf/open/floor/iron,
@@ -294,7 +300,7 @@ z
 z
 z
 O
-y
+r
 Z
 U
 u

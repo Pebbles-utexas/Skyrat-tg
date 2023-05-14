@@ -212,6 +212,8 @@
 	var/parallax_movedir = 0
 	/// How many parallax layers to show our client
 	var/parallax_layers_max = 4
+	var/parallax_throttle
+	var/last_parallax_shift = 0
 	/// Timer for the area directional animation
 	var/parallax_animate_timer
 	/// Do we want to do parallax animations at all?

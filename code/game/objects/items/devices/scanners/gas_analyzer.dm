@@ -43,6 +43,7 @@
 	user.visible_message(span_suicide("[user] begins to analyze [user.p_them()]self with [src]! The display shows that [user.p_theyre()] dead!"))
 	return BRUTELOSS
 
+/* //SKYRAT EDIT REMOVAL - THIS IS COMMENTED UNTIL I FIGURE OUT A CLEAN WAY TO MAKE THIS WORK
 /obj/item/analyzer/AltClick(mob/user) //Barometer output for measuring when the next storm happens
 	..()
 
@@ -88,6 +89,7 @@
 			to_chat(user, span_warning("[src]'s barometer function says a storm will land in approximately [butchertime(fixed)]."))
 	cooldown = TRUE
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/analyzer, ping)), cooldown_time)
+*/
 
 /obj/item/analyzer/proc/ping()
 	if(isliving(loc))

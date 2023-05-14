@@ -1,3 +1,4 @@
+/* SKYRAT EDIT REMOVAL - MOVED TO MODULAR OVERMAPS
 //This file is used to contain unique properties of every map, and how we wish to alter them on a per-map basis.
 //Use JSON files that match the datum layout and you should be set from there.
 //Right now, we default to MetaStation to ensure something does indeed load by default.
@@ -214,3 +215,4 @@
 
 /datum/map_config/proc/MakeNextMap()
 	return config_filename == PATH_TO_NEXT_MAP_JSON || fcopy(config_filename, PATH_TO_NEXT_MAP_JSON)
+*/

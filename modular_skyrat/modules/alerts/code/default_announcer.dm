@@ -41,6 +41,8 @@
 		ANNOUNCER_MUTANTS = 'modular_skyrat/modules/alerts/sound/alerts/hazdet.ogg',
 		ANNOUNCER_KLAXON = 'modular_skyrat/modules/black_mesa/sound/siren1_long.ogg',
 		ANNOUNCER_ICARUS = 'modular_skyrat/modules/assault_operatives/sound/icarus_alarm.ogg',
+		ANNOUNCER_BLUESPACEARTY_2 = 'modular_skyrat/modules/alerts/sound/artillery.ogg',
+		ANNOUNCER_CME = 'modular_skyrat/modules/cme/sound/cme_warning.ogg',
 		ANNOUNCER_NRI_RAIDERS = 'modular_skyrat/modules/encounters/sounds/morse.ogg',
 		ANNOUNCER_FUNGI = 'modular_skyrat/modules/alerts/sound/alerts/fungi.ogg',
 		)

@@ -12,4 +12,5 @@
 
 #define RESTRICTED_QUIRKS_EXCEPTIONS list("Mute" = "Signer")
 
+#define FACTION_TRADERSHIP "Tradership"
 #define FLAVOR_TEXT_CHAR_REQUIREMENT 150

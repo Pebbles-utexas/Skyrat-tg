@@ -34,6 +34,8 @@
 
 	///Used by Stray Meteor event to indicate meteor type (the type of sensor that "detected" it) in announcement
 	var/signature = "motion"
+	/// How much damage the meteor would need to deal to the shields to be completely dispersed
+	var/shield_damage = 5
 
 /obj/effect/meteor/Initialize(mapload, turf/target)
 	. = ..()
@@ -211,6 +213,7 @@
 	meteorsound = 'sound/weapons/gun/smg/shot.ogg'
 	meteordrop = list(/obj/item/stack/ore/glass)
 	threat = 1
+	shield_damage = 2
 
 //Medium-sized
 /obj/effect/meteor/medium
@@ -230,6 +233,7 @@
 	heavy = TRUE
 	dropamt = 4
 	threat = 10
+	shield_damage = 10
 
 /obj/effect/meteor/big/meteor_effect()
 	..()
@@ -246,6 +250,7 @@
 	meteordrop = list(/obj/item/stack/ore/plasma)
 	threat = 20
 	signature = "thermal"
+	shield_damage = 15
 
 /obj/effect/meteor/flaming/meteor_effect()
 	..()
@@ -260,6 +265,7 @@
 	meteordrop = list(/obj/item/stack/ore/uranium)
 	threat = 15
 	signature = "radiation"
+	shield_damage = 15
 
 /obj/effect/meteor/irradiated/meteor_effect()
 	..()
@@ -439,6 +445,7 @@
 	meteordrop = list(/obj/item/stack/ore/plasma)
 	threat = 50
 	signature = "armageddon"
+	shield_damage = 30
 
 /obj/effect/meteor/tunguska/Move()
 	. = ..()

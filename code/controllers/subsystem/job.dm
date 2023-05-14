@@ -650,11 +650,13 @@ SUBSYSTEM_DEF(job)
 		var/job_config = rustg_read_toml_file(toml_file)
 
 		for(var/datum/job/occupation as anything in joinable_occupations)
-			var/job_title = occupation.title
+			// var/job_title = occupation.title
 			var/job_key = occupation.config_tag
-			if(!job_config[job_key]) // Job isn't listed, skip it.
+		/* SKYRAT EDIT REMOVAL - WHY ARE WE RELYING ON SHITTY CONFIGS WHEN WE HAVE HARD DEFINES?
+		if(!job_config[job_key]) // Job isn't listed, skip it.
 				message_admins(span_notice("[job_title] (with config key [job_key]) is missing from jobconfig.toml! Using codebase defaults.")) // List both job_title and job_key in case they de-sync over time.
 				continue
+		*/
 
 			// If the value is commented out, we assume that the server operate did not want to override the codebase default values, so we skip it.
 			var/default_positions = job_config[job_key][TOTAL_POSITIONS]

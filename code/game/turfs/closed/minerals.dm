@@ -35,6 +35,8 @@
 	///How long it takes to mine this turf without tools, if it's weak.
 	var/hand_mine_speed = 15 SECONDS
 
+	/// Whether the rock will turn to the rock_color of its level //SKYRAT EDIT ADDITION
+	var/turn_to_level_color = TRUE //SKYRAT EDIT ADDITION
 
 /turf/closed/mineral/Initialize(mapload)
 	var/static/list/smoothing_groups = SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_MINERAL_WALLS
@@ -62,6 +64,11 @@
 		INVOKE_ASYNC(bumping, TYPE_PROC_REF(/mob, ClickOn), src)
 	else if(held_item.tool_behaviour == TOOL_MINING)
 		attackby(held_item, bumping)
+	//SKYRAT EDIT ADDITION
+	if(!color && turn_to_level_color)
+		var/datum/space_level/level = SSmapping.z_list[z]
+		color = level.rock_color
+	//SKYRAT EDIT END
 
 /turf/closed/mineral/proc/Spread_Vein()
 	var/spreadChance = initial(mineralType.spreadChance)
@@ -354,6 +361,8 @@
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	weak_turf = TRUE
 
+	turn_to_level_color = FALSE //SKYRAT EDIT ADDITION
+
 /turf/closed/mineral/random/snow/Change_Ore(ore_type, random = 0)
 	. = ..()
 	if(mineralType)
@@ -644,10 +653,13 @@
 	icon = MAP_SWITCH('icons/turf/walls/red_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "red_wall"
 
+	turn_to_level_color = FALSE //SKYRAT EDIT ADDITION
+
 /turf/closed/mineral/random/stationside/asteroid
 	name = "iron rock"
 	icon = MAP_SWITCH('icons/turf/walls/red_wall.dmi', 'icons/turf/mining.dmi')
 	base_icon_state = "red_wall"
+	turn_to_level_color = FALSE //SKYRAT EDIT ADDITION
 
 /turf/closed/mineral/random/stationside/asteroid/porus
 	name = "porous iron rock"

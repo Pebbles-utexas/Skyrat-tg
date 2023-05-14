@@ -150,6 +150,11 @@
 		T.flags_1 &= ~UNUSED_RESERVATION_TURF
 		SSmapping.unused_turfs["[T.z]"] -= T
 		SSmapping.used_turfs[T] = src
+		//SKYRAT EDIT ADDITION
+		if(edge_type && IsAtEdge(T))
+			T.ChangeTurf(edge_type, edge_type)
+			continue
+		//SKYRAT EDIT END
 		T.ChangeTurf(turf_type, turf_type)
 	generate_cordon()
 	return TRUE

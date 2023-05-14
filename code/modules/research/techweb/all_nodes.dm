@@ -991,7 +991,7 @@
 	. = ..()
 	if(!CONFIG_GET(flag/disable_secborg))
 		design_ids += "borg_upgrade_disablercooler"
-		
+
 /datum/techweb_node/cyborg_upg_serv
 	id = "cyborg_upg_serv"
 	display_name = "Cyborg Upgrades: Service"
@@ -1493,6 +1493,9 @@
 		"hypermod",
 		"jackhammer",
 		"plasmacutter_adv",
+		//SKYRAT EDIT START - RESEARCH DESIGNS
+		//"ripleyupgrade",
+		//SKYRAT EDIT END - RESEARCH DESIGNS
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 	discount_experiments = list(/datum/experiment/scanning/random/material/hard/one = 5000)

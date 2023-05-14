@@ -76,6 +76,8 @@
 	shuttleId = "mining"
 	possible_destinations = "mining_home;mining_away;landing_zone_dock"
 	no_destination_swap = TRUE
+	// var/static/list/dumb_rev_heads = list()
+	uses_overmap = FALSE //SKYRAT EDIT ADDITION
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/machinery/computer/shuttle/mining/attack_hand(mob/user, list/modifiers)

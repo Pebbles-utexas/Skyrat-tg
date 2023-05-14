@@ -250,6 +250,37 @@
 	crate_name = "engineering inducer crate"
 	crate_type = /obj/structure/closet/crate/engineering/electrical
 
+/datum/supply_pack/engineering/overmap_engines
+	name = "Propulsion Engine Boards Crate"
+	desc = "Contains four boards for constructing our high quality FTail (TM) series of propulsion engines, connect to gas supply for best results."
+	cost = CARGO_CRATE_VALUE * 4
+	contains = list(/obj/item/circuitboard/machine/propulsion_engine,
+					/obj/item/circuitboard/machine/propulsion_engine,
+					/obj/item/circuitboard/machine/propulsion_engine,
+					/obj/item/circuitboard/machine/propulsion_engine)
+	crate_name = "Propulsion Engine Boards Box"
+	crate_type = /obj/structure/closet/crate/cardboard/fops
+
+/datum/supply_pack/engineering/overmap_essentials
+	name = "Shuttle Upgrade Machine Boards Crate"
+	desc = "Contains several boards for machines meant to upgrade your private shuttles, with a shield generator, transporter pad, mining laser, and even spare control console included."
+	cost = CARGO_CRATE_VALUE * 6
+	contains = list(/obj/item/circuitboard/computer/shuttle_common_docks,
+					/obj/item/circuitboard/machine/shield_generator,
+					/obj/item/circuitboard/machine/ship_weapon/mining_laser,
+					/obj/item/circuitboard/machine/transporter)
+	crate_name = "Shuttle Upgrade Machine Boards Box"
+	crate_type = /obj/structure/closet/crate/cardboard/fops
+
+/datum/supply_pack/engineering/overmap_trade
+	name = "Shuttle Trade Suite Boards Crate"
+	desc = "Contains boards for the trade console and telepad, meant for mounting on shuttles and for trading with interstellar trading hubs, apply money for best results."
+	cost =  CARGO_CRATE_VALUE * 4
+	contains = list(/obj/item/circuitboard/machine/trade_pad,
+					/obj/item/circuitboard/computer/trade_console)
+	crate_name = "Shuttle Trade Suite Boards Box"
+	crate_type = /obj/structure/closet/crate/cardboard/fops
+
 /datum/supply_pack/engineering/gas_miner
 	name = "Gas Miner Delivery Beacon Crate"
 	desc = "Contains a single gas miner delivery beacon, for the ordering of one gas miner."
@@ -366,6 +397,32 @@
 /*
 *	FOOD
 */
+
+/datum/supply_pack/service/snowmobile
+	name = "Snowmobile kit"
+	desc = "trapped on a frigid wasteland? need to get around fast? purchase a refurbished snowmobile, with a FREE 10 microsecond warranty!"
+	cost = 1500 // 1000 points cheaper than ATV
+	contains = list(/obj/vehicle/ridden/atv/snowmobile = 1,
+			/obj/item/key/atv = 1,
+			/obj/item/clothing/mask/gas/explorer = 1)
+	crate_name = "snowmobile kit"
+	crate_type = /obj/structure/closet/crate/large
+
+/datum/supply_pack/misc/shuttle_crew_outfits
+	name = "Shuttle Crew Outfit Supply Crate"
+	desc = "Looking to start your own shuttle crew to search the stars? Luckily for you, there are a few local fleets pawning off their surplus equipment. Contains equipment for one pilot and three extra crew."
+	cost = CARGO_CRATE_VALUE * 6
+	contains = list(/obj/item/storage/bag/garment/exp_pilot,
+					/obj/item/storage/bag/garment/exp_crew,
+					/obj/item/storage/bag/garment/exp_crew,
+					/obj/item/storage/bag/garment/exp_crew,
+					/obj/item/storage/box/mothic_rations)
+	crate_name = "surplus fleet supply box"
+	crate_type = /obj/structure/closet/crate/cardboard/fops
+
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////// Food Stuff //////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 /datum/supply_pack/organic/combomeal
 	name = "Burger Combo Crate"

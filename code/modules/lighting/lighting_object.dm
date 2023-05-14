@@ -8,6 +8,11 @@
 	///the turf that our light is applied to
 	var/turf/affected_turf
 
+	// SKYRAT EDIT ADDITION
+	/// Area which gets linked to a lighting object to make it consider the luminosity from the day/night blending from the area. Yes this isn't ideal, but applying luminosity up to 2 (from both sources) on the turf is not ideal either
+	var/area/daynight_area
+	// SKYRAT EDIT ADDITION END
+
 // Global list of lighting underlays, indexed by z level
 GLOBAL_LIST_EMPTY(default_lighting_underlays_by_z)
 
@@ -92,6 +97,12 @@ GLOBAL_LIST_EMPTY(default_lighting_underlays_by_z)
 
 	var/mutable_appearance/current_underlay = src.current_underlay
 	affected_turf.underlays -= current_underlay
+	// SKYRAT EDIT ADDITION
+	// Respect daynight blending from an area for luminosity here.
+	if(daynight_area && daynight_area.last_day_night_luminosity)
+		set_luminosity = 1
+	// SKYRAT EDIT ADDITION END
+
 	if(red_corner.cache_r & green_corner.cache_r & blue_corner.cache_r & alpha_corner.cache_r && \
 		(red_corner.cache_g + green_corner.cache_g + blue_corner.cache_g + alpha_corner.cache_g + \
 		red_corner.cache_b + green_corner.cache_b + blue_corner.cache_b + alpha_corner.cache_b == 8))

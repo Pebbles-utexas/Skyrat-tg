@@ -39,7 +39,13 @@
 	///are we registered in SSshuttles?
 	var/registered = FALSE
 
-///register to SSshuttles
+	//SKYRAT EDIT ADDITION
+	var/datum/overmap_object/shuttle/my_overmap_object
+	var/possible_destinations
+	var/obj/docking_port/stationary/freeform_port
+	//SKYRAT EDIT END
+
+	///register to SSshuttles
 /obj/docking_port/proc/register()
 	if(registered)
 		WARNING("docking_port registered multiple times")
@@ -54,8 +60,14 @@
 	registered = FALSE
 	return
 
-/obj/docking_port/proc/Check_id()
-	return
+/obj/docking_port/proc/Check_id(id)
+	for(var/obj/docking_port/mobile/M in SSshuttle.mobile_docking_ports)
+		if(M.shuttle_id == id)
+			return TRUE
+	for(var/obj/docking_port/mobile/S in SSshuttle.stationary_docking_ports)
+		if(S.shuttle_id == id)
+			return TRUE
+	return FALSE
 
 //these objects are indestructible
 /obj/docking_port/Destroy(force)
@@ -326,6 +338,7 @@
 	var/area/shuttle/transit/assigned_area
 	/// The mobile port that owns this transit port
 	var/obj/docking_port/mobile/owner
+	var/datum/transit_instance/transit_instance //SKYRAT EDIT ADDITION
 
 /obj/docking_port/stationary/transit/Initialize(mapload)
 	. = ..()
@@ -335,6 +348,10 @@
 	if(force)
 		if(get_docked())
 			log_world("A transit dock was destroyed while something was docked to it.")
+		//SKYRAT EDIT ADDITION
+		if(transit_instance)
+			QDEL_NULL(transit_instance)
+		//SKYRAT EDIT END
 		SSshuttle.transit_docking_ports -= src
 		if(owner)
 			if(owner.assigned_transit == src)
@@ -567,11 +584,14 @@
 			shuttle_id = "[shuttle_id]_[counter]"
 			name = "[name] [counter]"
 			//Re link machinery to new shuttle id
-			linkup()
+			//linkup() SKYRAT EDIT REMOVAL
 		else
 			SSshuttle.assoc_mobile[shuttle_id] = 1
 
 	SSshuttle.mobile_docking_ports += src
+
+	//Link machinery to new shuttle
+	linkup()
 
 /**
  * Actions to be taken after shuttle is loaded and has been moved to its final location
@@ -588,6 +608,13 @@
 
 /obj/docking_port/mobile/Destroy(force)
 	unregister()
+	//SKYRAT EDIT ADDITION
+	for(var/i in all_extensions)
+		var/datum/shuttle_extension/extension = i
+		extension.RemoveFromShuttle()
+	engine_extensions = null
+	all_extensions = null
+	//SKYRAT EDIT END
 	destination = null
 	previous = null
 	if(!QDELETED(assigned_transit))
@@ -595,6 +622,11 @@
 		assigned_transit = null
 	shuttle_areas = null
 	remove_ripples()
+	//SKYRAT EDIT ADDITION
+	if(freeform_port)
+		qdel(freeform_port, TRUE)
+		freeform_port = null
+	//SKYRAT EDIT END
 	return ..()
 
 /obj/docking_port/mobile/Initialize(mapload)
@@ -642,7 +674,8 @@
 	if(stationary_dock.override_can_dock_checks)
 		return SHUTTLE_CAN_DOCK
 
-	if(dwidth > stationary_dock.dwidth)
+	/* SKYRAT EDIT REMOVAl - TEMPORARY
+	if(dwidth > S.dwidth)
 		return SHUTTLE_DWIDTH_TOO_LARGE
 
 	if(width-dwidth > stationary_dock.width-stationary_dock.dwidth)
@@ -653,7 +686,7 @@
 
 	if(height-dheight > stationary_dock.height-stationary_dock.dheight)
 		return SHUTTLE_HEIGHT_TOO_LARGE
-
+	*/
 	//check the dock isn't occupied
 	var/currently_docked = stationary_dock.get_docked()
 	if(currently_docked)
@@ -747,7 +780,35 @@
 		mode = SHUTTLE_IDLE
 		return
 	previous = null
-	if(!destination)
+	//SKYRAT EDIT ADDITION
+	if(freeform_port)
+		qdel(freeform_port, TRUE)
+		freeform_port = null
+	if(destination == "overmap")
+		destination = null
+		timer = INFINITY
+		var/datum/space_level/S = SSmapping.get_level(z)
+		var/datum/overmap_object/current_overmap_object = S.related_overmap_object
+		var/spawn_x_coord
+		var/spawn_y_coord
+		var/datum/overmap_sun_system/system_to_spawn_in
+		if(!current_overmap_object)
+			WARNING("NO CURRENT OVERMAP OBJECT WHEN ATTEMPT TO GO TO OVERMAP.")
+			//Fallback to not ruin gameplay
+			spawn_x_coord = 1
+			spawn_y_coord = 1
+			system_to_spawn_in = SSovermap.main_system
+		else
+			spawn_x_coord = current_overmap_object.x
+			spawn_y_coord = current_overmap_object.y
+			system_to_spawn_in = current_overmap_object.current_system
+
+		var/datum/overmap_object/shuttle/spawned_shuttle = new overmap_shuttle_type(system_to_spawn_in, spawn_x_coord, spawn_y_coord) //SKYRAT EDIT CHANGE
+		spawned_shuttle.RegisterToShuttle(src)
+		if(my_overmap_object.shuttle_controller)
+			my_overmap_object.shuttle_controller.busy = FALSE
+	else if(!destination)
+	//SKYRAT EDIT END
 		// sent to transit with no destination -> unlimited timer
 		timer = INFINITY
 	var/obj/docking_port/stationary/S0 = get_docked()
